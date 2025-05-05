@@ -1,6 +1,6 @@
 import { Head, Link } from '@inertiajs/react';
 
-export default function Forum({ auth, laravelVersion, phpVersion }) {
+export default function Forum({ posts, auth, laravelVersion, phpVersion }) {
 
     return (
         <>
@@ -49,6 +49,15 @@ export default function Forum({ auth, laravelVersion, phpVersion }) {
             <main>
                 <h1>Forum</h1>
 
+                <ul>
+                    {posts.map((post) => (
+                        <li key={post.id}>
+                            <h2>{post.title}</h2>
+                            <p>{post.content}</p>
+                            <p>By: {post.user.name}</p>
+                        </li>
+                    ))}
+                </ul>
             </main>
 
             <footer className="py-16 text-center text-sm text-black dark:text-white/70">
