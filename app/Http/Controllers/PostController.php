@@ -21,19 +21,26 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        return Inertia::render('post_create', [
+            'posts' => Post::with('user')->latest()->get(),
+            'phpVersion' => PHP_VERSION,
+        ]);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
         ]);
 
-        $request->user()->posts()->create($request->only('title', 'content'));
+        Post::create([
+            'user_id' => auth()->id(),
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+        ]);
 
-        return redirect()->route('forum');
+        return redirect()->route('forum'); // or Inertia::location('/forum');
     }
 
     public function show($id)
@@ -52,6 +59,13 @@ class PostController extends Controller
         // Redirect to the posts index
     }
 
+    public function upvote(Post $post)
+    {
+        $post->increment('upvotes');
+
+        // For Inertia, return a redirect or just 204 No Content for SPA
+        return back(); // Or: return response()->noContent();
+    }
     public function destroy($id)
     {
         // Delete the post
