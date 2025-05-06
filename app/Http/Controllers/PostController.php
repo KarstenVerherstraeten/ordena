@@ -62,9 +62,18 @@ class PostController extends Controller
 
     public function upvote(Post $post)
     {
-        $post->increment('upvotes');
+        $user = Auth::user();
 
-        // For Inertia, return a redirect or just 204 No Content for SPA
+        if ($post->upvotedBy()->where('user_id', $user->id)->exists()) {
+            // User already upvoted: remove upvote
+            $post->upvotedBy()->detach($user->id);
+            $post->decrement('upvotes');
+        } else {
+            // User hasn't upvoted yet: add upvote
+            $post->upvotedBy()->attach($user->id);
+            $post->increment('upvotes');
+        }
+
         return back(); // Or: return response()->noContent();
     }
     public function destroy(Request $request, Post $post)
