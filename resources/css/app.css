@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.post{
+    outline: #1a202c solid 1px;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 20px;
+}
+
+.Button{
+    background-color: #9B77C7;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+}

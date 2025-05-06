@@ -1,5 +1,6 @@
 import {Head, Link, router} from '@inertiajs/react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 export default function Forum({ posts, auth, laravelVersion, phpVersion }) {
 
     const handleUpvote = (postId) => {
@@ -72,6 +73,13 @@ export default function Forum({ posts, auth, laravelVersion, phpVersion }) {
 
                     ))}
                 </ul>
+
+                <Link
+                    href={route('forum.create')}
+                    className={"Button"}
+                >
+                    Maak een post <FontAwesomeIcon icon={faPaperPlane} />
+                </Link>
             </main>
 
             <footer className="py-16 text-center text-sm text-black dark:text-white/70">
