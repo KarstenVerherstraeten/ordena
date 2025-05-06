@@ -1,6 +1,13 @@
-import { Head, Link } from '@inertiajs/react';
+import {Head, Link, router} from '@inertiajs/react';
 
 export default function Forum({ posts, auth, laravelVersion, phpVersion }) {
+
+    const handleUpvote = (postId) => {
+        router.post(route('posts.upvote', postId), {}, {
+            preserveScroll: true,
+            preserveState: true,
+        });
+    };
 
     return (
         <>
@@ -51,11 +58,18 @@ export default function Forum({ posts, auth, laravelVersion, phpVersion }) {
 
                 <ul>
                     {posts.map((post) => (
-                        <li key={post.id}>
-                            <h2>{post.title}</h2>
-                            <p>{post.content}</p>
-                            <p>By: {post.user.name}</p>
-                        </li>
+                        <div className={"post"}>
+                            <li key={post.id}>
+                                <h2>{post.title}</h2>
+                                <p>{post.content}</p>
+                                <p>By: {post.user.name}</p>
+                                <div className="upvotes">
+                                    <span className="upvote-count">{post.upvotes}</span>
+                                    <button onClick={() => handleUpvote(post.id)}>Upvote</button>
+                                </div>
+                            </li>
+                        </div>
+
                     ))}
                 </ul>
             </main>
