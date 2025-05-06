@@ -61,9 +61,11 @@ export default function Forum({ posts, auth, laravelVersion, phpVersion }) {
                     {posts.map((post) => (
                         <div className={"post"}>
                             <li key={post.id}>
-                                <h2>{post.title}</h2>
+                                <div className={'post-info'}>
+                                    <h2>{post.title}</h2>
+                                    <img src={auth.user.badge_icon} alt="Badge" style={{height: '20px'}}/>
+                                </div>
                                 <p>{post.content}</p>
-                                <p>By: {post.user.name}</p>
                                 <div className="upvotes">
                                     <span className="upvote-count">{post.upvotes}</span>
                                     <button onClick={() => handleUpvote(post.id)}>Upvote</button>

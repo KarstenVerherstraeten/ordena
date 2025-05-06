@@ -17,3 +17,12 @@
     padding: 10px 10px 10px 10px;
     margin: 10px 10px 10px 10px;
 }
+
+.post-info{
+    display: flex;
+    align-items: center;
+}
+
+.post-info img{
+  margin-left: 10px;
+}
