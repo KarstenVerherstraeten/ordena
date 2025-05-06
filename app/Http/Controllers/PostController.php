@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 
@@ -66,9 +67,26 @@ class PostController extends Controller
         // For Inertia, return a redirect or just 204 No Content for SPA
         return back(); // Or: return response()->noContent();
     }
-    public function destroy($id)
+    public function destroy(Request $request, Post $post)
     {
+        // Check if the authenticated user is the owner of the post
+        if ($post->user_id !== Auth::id()) {
+            return redirect()->back()->with('error', 'Je hebt geen toestemming om deze post te verwijderen.');
+        }
+
         // Delete the post
-        // Redirect to the posts index
+        $post->delete();
+        return redirect()->back()->with('message', 'Post verwijderd.');
+
+
+    }
+
+    public function myPosts()
+    {
+        $user = Auth::user();
+
+        return Inertia::render('Myposts', [
+            'posts' => $user->posts()->with('user')->latest()->get(),
+        ]);
     }
 }
