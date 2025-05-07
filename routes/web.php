@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +30,10 @@ Route::get('/dashboard/myposts', [PostController::class, 'myPosts'])
 
 
 Route::get('/forum', [PostController::class, 'index'])->name('forum');
+
+Route::middleware(['auth', 'role:Admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+});
 
 
 Route::middleware('auth')->group(function () {
