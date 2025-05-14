@@ -63,7 +63,9 @@ export default function Forum({ posts, auth, laravelVersion, phpVersion }) {
                             <li key={post.id}>
                                 <div className={'post-info'}>
                                     <h2>{post.title}</h2>
-                                    <img src={auth.user.badge_icon} alt="Badge" style={{height: '20px'}}/>
+                                    {post.user && post.user.badge_icon && (
+                                        <img src={post.user.badge_icon} alt="Badge" style={{height: '20px'}} />
+                                    )}
                                 </div>
                                 <p>{post.content}</p>
                                 <div className="upvotes">
