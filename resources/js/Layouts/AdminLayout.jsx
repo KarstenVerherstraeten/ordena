@@ -25,19 +25,19 @@ export default function AdminLayout({header, children}) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
-                                    href={route('dashboard')}
-                                    active={route().current('dashboard')}
+                                    href={route('admin.dashboard')}
+                                    active={route().current('admin.dashboard')}
                                     className="text-gray-300 hover:text-white"
                                 >
                                     Dashboard
                                 </NavLink>
 
                                 <NavLink
-                                    href={route('dashboard.posts')}
-                                    active={route().current('dashboard.posts')}
+                                    href={route('admin.manage')}
+                                    active={route().current('admin.manage')}
                                     className="text-gray-300 hover:text-white"
                                 >
-                                    My posts
+                                    Manage users
                                 </NavLink>
                             </div>
                         </div>
