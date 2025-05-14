@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\UserDetails;
 
 class User extends Authenticatable
 {
@@ -50,9 +51,36 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+    public function detail()
+    {
+        return $this->hasOne(UserDetails::class);
+    }
 
+    protected $appends = ['role', 'badge_icon'];
+
+    public function getRoleAttribute()
+    {
+        return $this->detail?->role;
+    }
+
+    public function getBadgeIconAttribute()
+    {
+        return $this->detail?->badge_icon;
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            $user->detail()->create([
+                'role' => 'Gebruiker',
+                'badge_icon' => '/badges/Icon-Gebruiker.png',
+            ]);
+        });
+    }
     public function upvotedPosts()
     {
         return $this->belongsToMany(Post::class, 'post_user_upvotes')->withTimestamps();
     }
+
+
 }
