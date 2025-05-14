@@ -22,6 +22,7 @@ export default function Edit({ mustVerifyEmail, status }) {
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
                             <p>Your role: {auth.user?.role}</p>
+                            <p>Your badge: <img src={auth.user?.badge_icon} alt="Badge" style={{height: '20px'}}></img></p>
                         </div>
                     </div>
                 </div>
