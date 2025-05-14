@@ -14,7 +14,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Forum', [
+        return Inertia::render('Forum/Forum', [
             'posts' => Post::with('user')->latest()->get(),
             'phpVersion' => PHP_VERSION,
         ]);
@@ -22,7 +22,7 @@ class PostController extends Controller
 
     public function create()
     {
-        return Inertia::render('post_create', [
+        return Inertia::render('Forum/post_create', [
             'posts' => Post::with('user')->latest()->get(),
             'phpVersion' => PHP_VERSION,
         ]);
@@ -46,7 +46,10 @@ class PostController extends Controller
 
     public function show($id)
     {
-        return view('posts.show', ['post' => $id]);
+        return Inertia::render('Forum/SinglePost', [
+            'post' => Post::with('user')->findOrFail($id),
+            'phpVersion' => PHP_VERSION,
+        ]);
     }
 
     public function edit($id)

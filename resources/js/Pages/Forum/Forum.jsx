@@ -10,6 +10,13 @@ export default function Forum({ posts, auth, laravelVersion, phpVersion }) {
         });
     };
 
+    const viewPost = (postId) => {
+        router.get(route('posts.show', postId), {}, {
+            preserveScroll: true,
+            preserveState: true,
+        });
+    }
+
     return (
         <>
             <Head title={"Forum"}
@@ -67,10 +74,13 @@ export default function Forum({ posts, auth, laravelVersion, phpVersion }) {
                                         <img src={post.user.badge_icon} alt="Badge" style={{height: '20px'}} />
                                     )}
                                 </div>
-                                <p>{post.content}</p>
+                                <p>{post.content.split(' ').slice(0, 20).join(' ')}...</p>
                                 <div className="upvotes">
                                     <span className="upvote-count">{post.upvotes}</span>
                                     <button onClick={() => handleUpvote(post.id)}>Upvote</button>
+                                </div>
+                                <div>
+                                    <button onClick={() => viewPost(post.id)}>Bekijk</button>
                                 </div>
                             </li>
                         </div>
