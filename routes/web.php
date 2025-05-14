@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,6 +34,8 @@ Route::get('/forum', [PostController::class, 'index'])->name('forum');
 
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/manage', [UserController::class, 'index'])->name('admin.manage');
+    Route::put('/admin/manage/{user}/role', [UserController::class, 'updateRole'])->name('admin.manage.role');
 });
 
 
