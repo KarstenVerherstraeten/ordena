@@ -12,7 +12,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        return Inertia::render('AdminPanel', [
+        return Inertia::render('AdminPanel/AdminPanel', [
 
 
         ]);
