@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/forum/posts/{post}/upvote', [PostController::class, 'upvote'])->name('posts.upvote');
     Route::post('/forum', [PostController::class, 'store'])->middleware(['auth'])->name('forum.store');
     Route::get('/forum/create', [PostController::class, 'create'])->name('forum.create');
+    Route::get('/forum/posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 });
 
