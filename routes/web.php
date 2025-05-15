@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleRequestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,13 +30,20 @@ Route::get('/dashboard/myposts', [PostController::class, 'myPosts'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard.posts');
 
+Route::get('/dashboard/rolerequest', [RoleRequestController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard.rolerequest');
 
+Route::post('/dashboard/rolerequest', [RoleRequestController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.rolerequest.store');
 Route::get('/forum', [PostController::class, 'index'])->name('forum');
 
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/manage', [UserController::class, 'index'])->name('admin.manage');
     Route::put('/admin/manage/{user}/role', [UserController::class, 'updateRole'])->name('admin.manage.role');
+    Route::get('/admin/requests', [RoleRequestController::class, 'adminIndex'])->name('admin.rolerequest');
+    Route::delete('admin/requests/{id}/deny', [RoleRequestController::class, 'deny'])->name('admin.rolerequest.destroy');
+    Route::post('admin/requests/{id}/accept', [RoleRequestController::class, 'accept'])->name('admin.rolerequest.accept');
 });
 
 
