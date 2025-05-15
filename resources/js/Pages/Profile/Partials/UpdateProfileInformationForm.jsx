@@ -24,6 +24,8 @@ export default function UpdateProfileInformation({
         patch(route('profile.update'));
     };
 
+    const { auth } = usePage().props;
+
     return (
         <section className={className}>
             <header>
@@ -35,6 +37,12 @@ export default function UpdateProfileInformation({
                     Update your account's profile information and email address.
                 </p>
             </header>
+
+            <div className="mt-6">
+
+                    <p>Your role: {auth.user?.role}</p>
+                    <p>Your badge: <img src={auth.user?.badge_icon} alt="Badge" style={{height: '20px'}}></img></p>
+            </div>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
@@ -106,6 +114,10 @@ export default function UpdateProfileInformation({
                             Saved.
                         </p>
                     </Transition>
+
+                    <Link href={route('dashboard.rolerequest')}
+                          className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">Vraag
+                        een rol aan</Link>
                 </div>
             </form>
         </section>
