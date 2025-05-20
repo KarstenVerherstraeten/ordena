@@ -51,6 +51,9 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::post('admin/requests/{id}/accept', [RoleRequestController::class, 'accept'])->name('admin.rolerequest.accept');
 });
 
+Route::middleware(['auth', 'role:Organisator,Admin'])->group(function () {
+    Route::get('/activiteiten/registreren', [ActivityController::class, 'create'])->name('activities.create');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -65,7 +68,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
     //Activity routes
-    Route::get('/activiteiten/registreren', [ActivityController::class, 'create'])->name('activities.create');
     Route::post('/activiteiten', [ActivityController::class, 'store'])->name('activities.store');
     Route::delete('/activiteiten/{id}', [ActivityController::class, 'destroy'])->name('activities.destroy');
 });
