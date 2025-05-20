@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('title');
+            $table->string('title')->default('Placeholder Title');
             $table->string('description');
             $table->dateTime('start');
             $table->dateTime('end');
             $table->integer('price')->default(0);
             $table->string('location');
             $table->string('featured_image')->nullable();
+            $table->timestamps();
         });
 
         Schema::create('activity_images', function (Blueprint $table) {

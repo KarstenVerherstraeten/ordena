@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Activity;
 use Illuminate\Http\Request;
+use App\Models\ActivityImage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class ActivityController extends Controller
 {
@@ -31,18 +35,47 @@ class ActivityController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'date' => 'required|date',
+            'startDate' => 'required|date',
+            'endDate' => 'required|date',
+            'price' => 'required|numeric',
             'location' => 'required|string|max:255',
+            'featured_image' => 'nullable|image',
+            'activity_images.*' => 'nullable|image',
         ]);
 
-        Activity::create([
+        $activity = Activity::create([
             'user_id' => auth()->id(),
             'title' => $validated['title'],
             'description' => $validated['description'],
-            'date' => $validated['date'],
+            'start' => $validated['startDate'],
+            'end' => $validated['endDate'],
+            'price' => $validated['price'],
             'location' => $validated['location'],
+            'featured_image' => $request->file('featured_image') ? $request->file('featured_image')->store('activities', 'public') : null,
         ]);
 
-        return redirect()->route('activities.index')->with('message', 'Activiteit succesvol aangemaakt.');
+        if ($request->hasFile('activity_images')) {
+            foreach ($request->file('activity_images') as $image) {
+                $path = $image->store('activities', 'public');
+
+                $activity->images()->create([
+                    'image_path' => $path
+                ]);
+            }
+        }
+
+        return redirect()->route('activities')->with('success', 'Activiteit aangemaakt!');
     }
+
+
+
+    public function MyActivities()
+    {
+        $user = Auth::user();
+
+        return Inertia::render('MyActivities', [
+            'activities' => $user->activities()->with('user')->latest()->get(),
+        ]);
+    }
+
 }

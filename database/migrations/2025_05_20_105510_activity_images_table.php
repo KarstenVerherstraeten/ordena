@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('activity_images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('activity_id')->constrained()->onDelete('cascade');
-            $table->string('path'); // Path or URL to the image
+            $table->string('image_path'); // Path or URL to the image
             $table->timestamps();
         });
     }

@@ -8,8 +8,16 @@ class Activity extends Model
 {
     protected $fillable = [
         'user_id',
-        'activity_type',
-        'activity_data',
+        'title',
+        'description',
+        'start',
+        'end',
+        'price',
+        'location',
+        'featured_image',
+        'activity_images',
+
+
     ];
 
     public function user()
