@@ -32,6 +32,12 @@ export default function RoleRequest() {
                         >
                             <p className="mb-4">Vraag hier je rol aan, de inzending zal gecontroleerd worden door een van onze administrators!</p>
 
+                            <div>
+
+                                <p>Zorg ervoor dat alle gegevens goed leesbaar zijn</p>
+                                <p>Zorg dat de foto voldoende belicht is</p>
+
+                            </div>
                             <select
                                 className="mt-1 block w-full"
                                 value={data.role}
@@ -42,6 +48,7 @@ export default function RoleRequest() {
                                 <option value="Psycholoog">Psycholoog</option>
                                 <option value="Leerkracht">Leerkracht</option>
                                 <option value="Ouder">Ouder</option>
+                                <option value="Organisator">Organisator</option>
                                 <option value="Gebruiker met ASS">Gebruiker met ASS</option>
                             </select>
 
@@ -89,15 +96,53 @@ export default function RoleRequest() {
                                             <label className="block">School waar je lesgeeft:</label>
                                             <input
                                                 type="text"
+                                                placeholder={'Naam van de school'}
                                                 value={data.school || ''}
                                                 onChange={(e) => setData('school', e.target.value)}
+                                                className="block w-full mt-1 mb-4 border rounded px-2 py-1"
+                                                required
+                                            />
+
+                                            <label className="block">Website van je school:</label>
+                                            <input
+                                                type="text"
+                                                placeholder={'Website van de school'}
+                                                value={data.school || ''}
+                                                onChange={(e) => setData('school', e.target.value)}
+                                                className="block w-full mt-1 mb-4 border rounded px-2 py-1"
+                                                required
+                                            />
+
+                                        </>
+                                    )}
+
+                                    {data.role === 'Ouder' && (
+                                        <>
+                                            <label className="block">Naam van je kind:</label>
+                                            <input
+                                                type="text"
+                                                placeholder={'Naam van je kind'}
+                                                value={data.kind || ''}
+                                                onChange={(e) => setData('kind', e.target.value)}
                                                 className="block w-full mt-1 mb-4 border rounded px-2 py-1"
                                                 required
                                             />
                                         </>
                                     )}
 
-                                    {/* You can add more role-specific fields here if needed */}
+                                    {data.role === 'Organisator' && (
+                                        <>
+                                            <label className="block">Website van je organisatie:</label>
+                                            <input
+                                                type="text"
+                                                placeholder={'Website van de organisatie'}
+                                                value={data.organisatie || ''}
+                                                onChange={(e) => setData('organisatie', e.target.value)}
+                                                className="block w-full mt-1 mb-4 border rounded px-2 py-1"
+                                                required
+                                            />
+                                        </>
+                                    )}
 
                                     <button type="submit" className="bg-blue-600 text-white py-2 px-4 rounded" disabled={processing}>
                                         Verzenden
