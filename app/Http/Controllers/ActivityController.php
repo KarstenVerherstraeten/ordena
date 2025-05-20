@@ -20,8 +20,11 @@ class ActivityController extends Controller
 
     public function show($id)
     {
+        $activity = Activity::with('user', 'images')->findOrFail($id);
+        $activity->load('images');
+
         return inertia('Activity/Show', [
-            'activities' => $activity,
+            'activity' => $activity,
         ]);
     }
 
