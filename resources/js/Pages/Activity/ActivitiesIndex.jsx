@@ -1,8 +1,16 @@
-import {Head} from "@inertiajs/react";
+import {Head, router} from "@inertiajs/react";
 import {useState} from "react";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
+import SecondaryButton from "@/Components/SecondaryButton.jsx";
 
 export default function ActivitiesIndex({ activities }) {
+
+    const viewPost = (activityId) => {
+        router.get(route('activities.show', activityId), {}, {
+            preserveScroll: true,
+            preserveState: true,
+        });
+    }
 
     return (
         <div className="py-12">
@@ -32,7 +40,7 @@ export default function ActivitiesIndex({ activities }) {
                                 <td className="px-6 py-4">{activity.name}</td>
                                 <td className="px-6 py-4">{activity.description}</td>
                                 <td className="px-6 py-4">
-                                    {/* Add action buttons here */}
+                                    <button onClick={() => viewPost(activity.id)}>Bekijk</button>
                                 </td>
                             </tr>
                         ))}
