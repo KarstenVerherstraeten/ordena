@@ -23,13 +23,17 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard/Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::get('/dashboard/myposts', [PostController::class, 'myPosts'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard.posts');
+
+Route::get('/dashboard/myactivities', [ActivityController::class, 'myActivities'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard.activities');
 
 Route::get('/dashboard/rolerequest', [RoleRequestController::class, 'index'])
     ->middleware(['auth', 'verified'])
