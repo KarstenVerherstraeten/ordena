@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 
+body {
+   background-color: #F5F5F5;
+}
+
 .post{
     outline: #1a202c solid 1px;
     margin: 10px 10px 10px 10px;
