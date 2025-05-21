@@ -8,6 +8,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BackToTop from "@/Components/BackToTop.jsx";
 
 export default function ActivitiesIndex({ activities }) {
 
@@ -26,16 +27,21 @@ export default function ActivitiesIndex({ activities }) {
 
                 </div>
 
-                <div className="relative flex flex-row  z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+                <div className="relative flex flex-row z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
                     <Head title={"Activiteiten"} />
-                    <p>Hieronder staan de activiteiten.</p>
-                    <div className={'search flex flex-row mt-4'}>
+                    <div className={"w-1/2 flex flex-col justify-center items-center"}>
+                        <p>Een passende activiteit vinden voor iemand met autisme is niet altijd eenvoudig. Bij Ordena maken we die zoektocht graag wat gemakkelijker. Op deze pagina vind je een selectie van activiteiten die mogelijk goed aansluiten bij de behoeften van jouw kind.<br/>
+                            <strong>En onthoud: niet elk kind heeft dit soort activiteiten nodig. Een druk feestje mag natuurlijk ook gewoon leuk zijn!</strong>
+                        </p>
+                    </div>
+
+                    <div className={'search flex w-1/3 h-1/2 ml-60 flex-row mt-4'}>
                         <input
                             type="text"
                             placeholder="Zoek naar activiteiten..."
                             className="border border-gray-300 rounded-lg px-4 py-2 w-full"
                         />
-                        <button className="bg-[#9B77C7] text-white rounded-lg px-4 py-2 mt-2">
+                        <button className="bg-[#9B77C7] text-white rounded-lg px-4 h-full py-2 mt-2">
                             Zoek
                         </button>
                     </div>
@@ -90,6 +96,7 @@ export default function ActivitiesIndex({ activities }) {
                         ))}
                     </div>
                 </div>
+                <BackToTop></BackToTop>
                 <ToastContainer />
             </div>
         </SiteLayout>
