@@ -31,7 +31,7 @@ Route::get('/dashboard/myposts', [PostController::class, 'myPosts'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard.posts');
 
-Route::get('/dashboard/myactivities', [ActivityController::class, 'myActivities'])
+Route::get('/dashboard/myactivities', [ActivityController::class, 'MyActivities'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard.activities');
 
@@ -73,7 +73,7 @@ Route::middleware('auth')->group(function () {
 
     //Activity routes
     Route::post('/activiteiten', [ActivityController::class, 'store'])->name('activities.store');
-    Route::delete('/activiteiten/{id}', [ActivityController::class, 'destroy'])->name('activities.destroy');
+    Route::delete('/activiteiten/activiteit/{id}', [ActivityController::class, 'destroy'])->name('activities.destroy');
 });
 
 require __DIR__.'/auth.php';
