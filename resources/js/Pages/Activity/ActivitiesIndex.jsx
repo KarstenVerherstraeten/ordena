@@ -5,6 +5,9 @@ import SecondaryButton from "@/Components/SecondaryButton.jsx";
 import SiteLayout from "@/Layouts/SiteLayout.jsx";
 import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
 import React from "react";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ActivitiesIndex({ activities }) {
 
@@ -63,7 +66,18 @@ export default function ActivitiesIndex({ activities }) {
                                             <PrimaryButton onClick={() => viewActivities(activity.id)}>
                                                 Bekijk Activiteit
                                             </PrimaryButton>
-                                            <SecondaryButton>
+                                            <SecondaryButton onClick={() => {
+                                                navigator.clipboard.writeText(route('activities.show', activity.id));
+                                                toast.success('Link gekopieerd!', {
+                                                    position: "top-right",
+                                                    autoClose: 3000,
+                                                    hideProgressBar: true,
+                                                    closeOnClick: true,
+                                                    pauseOnHover: true,
+                                                    draggable: true,
+
+                                                });
+                                            }}>
                                                 Deel Activiteit
                                             </SecondaryButton>
                                         </div>
@@ -76,6 +90,7 @@ export default function ActivitiesIndex({ activities }) {
                         ))}
                     </div>
                 </div>
+                <ToastContainer />
             </div>
         </SiteLayout>
     );
