@@ -97,7 +97,7 @@ class PostController extends Controller
     {
         $user = Auth::user();
 
-        return Inertia::render('Myposts', [
+        return Inertia::render('Dashboard/Myposts', [
             'posts' => $user->posts()->with('user')->latest()->get(),
         ]);
     }

@@ -76,7 +76,7 @@ class ActivityController extends Controller
     {
         $user = Auth::user();
 
-        return Inertia::render('MyActivities', [
+        return Inertia::render('Dashboard/MyActivities', [
             'activities' => $user->activities()->with('user')->latest()->get(),
         ]);
     }
