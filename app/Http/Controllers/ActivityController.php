@@ -70,6 +70,26 @@ class ActivityController extends Controller
         return redirect()->route('activities')->with('success', 'Activiteit aangemaakt!');
     }
 
+    public function destroy($id)
+    {
+        $activity = Activity::findOrFail($id);
+
+        // Delete the featured image if it exists
+        if ($activity->featured_image) {
+            Storage::disk('public')->delete($activity->featured_image);
+        }
+
+        // Delete associated activity images
+        foreach ($activity->images as $image) {
+            Storage::disk('public')->delete($image->image_path);
+            $image->delete();
+        }
+
+        $activity->delete();
+
+        return redirect()->route('activities')->with('success', 'Activiteit verwijderd!');
+    }
+
 
 
     public function MyActivities()
