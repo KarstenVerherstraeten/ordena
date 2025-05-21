@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\ProfileController;
@@ -35,7 +36,11 @@ Route::get('/dashboard/rolerequest', [RoleRequestController::class, 'index'])
     ->name('dashboard.rolerequest');
 
 Route::post('/dashboard/rolerequest', [RoleRequestController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.rolerequest.store');
+
+// No login required
 Route::get('/forum', [PostController::class, 'index'])->name('forum');
+route::get('/activiteiten', [ActivityController::class, 'index'])->name('activities');
+Route::get('/activiteiten/activiteit/{id}', [ActivityController::class, 'show'])->name('activities.show');
 
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -46,16 +51,25 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::post('admin/requests/{id}/accept', [RoleRequestController::class, 'accept'])->name('admin.rolerequest.accept');
 });
 
+Route::middleware(['auth', 'role:Organisator,Admin'])->group(function () {
+    Route::get('/activiteiten/registreren', [ActivityController::class, 'create'])->name('activities.create');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //Forum routes
     Route::post('/forum/posts/{post}/upvote', [PostController::class, 'upvote'])->name('posts.upvote');
     Route::post('/forum', [PostController::class, 'store'])->middleware(['auth'])->name('forum.store');
     Route::get('/forum/create', [PostController::class, 'create'])->name('forum.create');
     Route::get('/forum/posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+    //Activity routes
+    Route::post('/activiteiten', [ActivityController::class, 'store'])->name('activities.store');
+    Route::delete('/activiteiten/{id}', [ActivityController::class, 'destroy'])->name('activities.destroy');
 });
 
 require __DIR__.'/auth.php';
