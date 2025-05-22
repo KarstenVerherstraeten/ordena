@@ -57,7 +57,7 @@ export default function ActivitiesIndex({ activities }) {
                                             <img
                                                 src={activity.featured_image ? `/storage/${activity.featured_image}` : '/Assets/Placeholders/placeholderImage.webp'}
                                                 alt={activity.name} className="w-full h-48 object-cover rounded-lg"/>
-                                            <h2 className="text-lg font-bold my-4">{activity.name}</h2>
+                                            <h2 className="text-lg font-bold my-4">{activity.title}</h2>
                                             <p>{activity.description}</p>
                                         </div>
 
