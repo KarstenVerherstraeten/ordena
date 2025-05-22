@@ -1,4 +1,4 @@
-import { Head, router } from "@inertiajs/react";
+import {Head, Link, router} from "@inertiajs/react";
 import { useState } from "react";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import SecondaryButton from "@/Components/SecondaryButton.jsx";
@@ -20,7 +20,13 @@ export default function ActivitiesIndex({ activities }) {
     }
 
     return (
-        <SiteLayout>
+        <SiteLayout
+            breadcrumbs={[
+                { name: 'Home', href: '/' },
+                { name: 'Activiteiten' }// current page, no href
+            ]}
+        >
+
             <div className="relative">
                 <div className="absolute inset-400 left-20 top-20 overflow-hidden">
                     <GreenBlob1 />

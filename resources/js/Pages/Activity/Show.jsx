@@ -1,4 +1,4 @@
-import { Head } from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import SiteLayout from "@/Layouts/SiteLayout.jsx";
 import SecondaryButton from "@/Components/SecondaryButton.jsx";
 import { toast, ToastContainer } from "react-toastify";
@@ -7,8 +7,17 @@ import BackToTop from "@/Components/BackToTop.jsx";
 
 export default function ActivitiesShow({ activity }) {
     return (
-        <SiteLayout>
+        <SiteLayout
+            breadcrumbs={[
+                { name: 'Home', href: '/' },
+                { name: 'Activiteiten', href: route('activities') }, // Link to the activities index page
+                { name: activity.title } // Current page, no href
+            ]}
+        >
             <Head title="Activiteit" />
+
+
+
 
             {/* Featured image */}
             <div className="w-full">
