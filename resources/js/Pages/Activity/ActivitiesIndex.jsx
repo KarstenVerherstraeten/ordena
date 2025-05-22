@@ -33,7 +33,7 @@ export default function ActivitiesIndex({ activities }) {
 
                 </div>
 
-                <div className="relative flex flex-row z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+                <div className="relative flex flex-row z-10 max-w-7xl  py-12">
                     <Head title={"Activiteiten"} />
                     <div className={"w-1/2 flex flex-col justify-center items-center"}>
                         <p>Een passende activiteit vinden voor iemand met autisme is niet altijd eenvoudig. Bij Ordena maken we die zoektocht graag wat gemakkelijker. Op deze pagina vind je een selectie van activiteiten die mogelijk goed aansluiten bij de behoeften van jouw kind.<br/>
@@ -53,7 +53,7 @@ export default function ActivitiesIndex({ activities }) {
                     </div>
                 </div>
 
-                <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+                <div className="relative mx-auto max-w-7xl py-12">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-centert">
                         {activities.map((activity) => (
 
