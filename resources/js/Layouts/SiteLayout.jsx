@@ -114,7 +114,7 @@ export default function SiteLayout({ header, children, breadcrumbs = [] }) {
             </nav>
 
             {breadcrumbs.length > 0 && (
-                <nav className="flex mx-auto max-w-7xl px-4 mt-4 mb-2" aria-label="Breadcrumb">
+                <nav className="flex mx-auto max-w-7xl px-8 mt-4 mb-2" aria-label="Breadcrumb">
                     <ol className="inline-flex items-center space-x-1 md:space-x-3">
                         {breadcrumbs.map((crumb, index) => (
                             <li key={index} className="inline-flex items-center">
@@ -150,7 +150,7 @@ export default function SiteLayout({ header, children, breadcrumbs = [] }) {
                 </header>
             )}
 
-            <main>{children}</main>
+            <main className={"mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"}>{children}</main>
         </div>
     );
 }
