@@ -11,7 +11,7 @@ export default function SiteLayout({ header, children, breadcrumbs = [] }) {
 
     return (
         <div className="min-h-screen bg-gray-100">
-            <nav className="sticky top-0 z-50 bg-white/30 backdrop-blur-md ">
+            <nav className="sticky top-0 z-50 bg-[F5F5F5]/30 backdrop-blur-md ">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
                         <div className="flex items-center">
