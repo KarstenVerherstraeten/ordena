@@ -48,6 +48,12 @@ Route::post('/dashboard/rolerequest', [RoleRequestController::class, 'store'])->
 Route::get('dashboard/organisatie/aanvragen', [OrganisationController::class, 'create'])->middleware(['auth', 'verified', 'role:Organisator,Admin'])->name('organisatie.aanvragen');
 Route::post('dashboard/organisatie/aanvragen', [OrganisationController::class, 'store'])->middleware(['auth', 'verified',])->name('organisatie.aanvragen.store');
 Route::get('dashboard/organisatie/{id}', [OrganisationController::class, 'show'])->middleware(['auth', 'verified', 'role:Organisator,Admin'])->name('organisatie.show');
+Route::post('/organisations/{organisation}/users', [OrganisationController::class, 'addUser'])
+    ->name('organisations.users.add');
+
+// Remove user from organisation
+Route::delete('/organisations/{organisation}/users/{user}', [OrganisationController::class, 'removeUser'])
+    ->name('organisations.users.remove');
 
 // No login required
 Route::get('/forum', [PostController::class, 'index'])->name('forum');

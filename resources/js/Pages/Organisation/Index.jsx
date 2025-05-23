@@ -1,8 +1,38 @@
-import {Head} from "@inertiajs/react";
+import {Head, router} from "@inertiajs/react";
+import {useState} from "react";
 import SiteLayout from "@/Layouts/SiteLayout.jsx";
 import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
+import PrimaryButton from "@/Components/PrimaryButton.jsx";
+import Modal from "@/Components/Modal.jsx";
 
-export default function OrganisationIndex({organisation}) {
+export default function OrganisationIndex({organisation, organisatorUsers}) {
+
+    const [showModal, setShowModal] = useState(false);
+    const [userIdToAdd, setUserIdToAdd] = useState('');
+    const [search, setSearch] = useState('');
+
+    const filteredUsers = organisatorUsers.filter((user) =>
+        user.name.toLowerCase().includes(search.toLowerCase())
+    );
+
+    const addUser = () => {
+        router.post(route('organisations.users.add', organisation.id), {
+            user_id: userIdToAdd,
+        }, {
+            preserveScroll: true,
+            onSuccess: () => setUserIdToAdd(''),
+        });
+    };
+
+    const removeUser = (userId) => {
+        router.delete(route('organisations.users.remove', {
+            organisation: organisation.id,
+            user: userId,
+        }), {
+            preserveScroll: true,
+        });
+    };
+
     return (
         <SiteLayout
             breadcrumbs={[
@@ -38,13 +68,18 @@ export default function OrganisationIndex({organisation}) {
                                     {organisation.users.map((user) => (
                                         <li key={user.id}>
                                             {user.name} ({user.email})
-                                            {/* Later: Add a remove button here */}
                                         </li>
                                     ))}
                                 </ul>
                             ) : (
-                                <p className="text-gray-600">Er zijn nog geen gebruikers gekoppeld aan deze organisatie.</p>
+                                <p className="text-gray-600">Er zijn nog geen gebruikers gekoppeld aan deze
+                                    organisatie.</p>
                             )}
+                            <div>
+                                <PrimaryButton onClick={() => setShowModal(true)}>
+                                    Beheer leden
+                                </PrimaryButton>
+                            </div>
                         </div>
 
                         <div>
@@ -55,6 +90,44 @@ export default function OrganisationIndex({organisation}) {
                 </div>
             </div>
 
+
+            <Modal show={showModal} onClose={() => setShowModal(false)}>
+                <div className="p-6">
+                    <h2 className="text-xl font-semibold mb-4">Leden beheren:</h2>
+                    
+                    <ul className="mb-4">
+                        {organisation.users.map((user) => (
+                            <li key={user.id} className="flex justify-between items-center">
+                                <span>{user.name} ({user.email})</span>
+                                <button onClick={() => removeUser(user.id)} className="text-red-600 text-sm">Verwijder
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+
+                    <h3 className="font-medium mt-4">Gebruiker toevoegen</h3>
+                    <input
+                        type="text"
+                        className="w-full border px-2 py-1 rounded my-2"
+                        placeholder="Zoek organisator..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+
+                    <ul>
+                        {filteredUsers.map((user) => (
+                            <li key={user.id} className="flex justify-between items-center">
+                                <span>{user.name} ({user.email})</span>
+                                <button onClick={() => {
+                                    setUserIdToAdd(user.id);
+                                    addUser();
+                                }} className="text-green-600 text-sm">Voeg toe
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </Modal>
         </SiteLayout>
     );
 }

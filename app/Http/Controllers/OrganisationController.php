@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Organisation;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class OrganisationController extends Controller
 {
@@ -25,8 +26,18 @@ class OrganisationController extends Controller
     public function show($id)
     {
         $organisation = Organisation::with('users')->findOrFail($id);
+
+        $userIds = $organisation->users->pluck('id')->toArray(); // ensure it's always an array
+
+        $organisatorUsers = User::whereHas('detail', function ($query) {
+            $query->where('role', 'Organisator');
+        })
+            ->whereNotIn('id', $userIds)
+            ->get(['id', 'name', 'email']);
+
         return inertia('Organisation/Index', [
             'organisation' => $organisation,
+            'organisatorUsers' => $organisatorUsers,
         ]);
     }
 
@@ -63,5 +74,27 @@ class OrganisationController extends Controller
         $organisation->users()->attach(auth()->id());
         return redirect()->route('organisatie.show', $organisation->id)
             ->with('message', 'Organisation created successfully.');
+    }
+
+    public function addUser(Request $request, Organisation $organisation)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id'
+        ]);
+
+        $organisation->users()->syncWithoutDetaching($request->user_id);
+
+        return back()->with('message', 'User added to organisation.');
+    }
+
+    public function removeUser(Request $request, Organisation $organisation)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id'
+        ]);
+
+        $organisation->users()->detach($request->user_id);
+
+        return back()->with('message', 'User removed from organisation.');
     }
 }
