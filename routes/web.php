@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AdminController;
 
+use App\Http\Controllers\OrganisationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleRequestController;
 use App\Http\Controllers\UserController;
@@ -22,10 +23,11 @@ Route::get('/', function () {
     ]);
 });
 
+
+// dashboard routes
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard/Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
 
 Route::get('/dashboard/myposts', [PostController::class, 'myPosts'])
     ->middleware(['auth', 'verified'])
@@ -40,6 +42,12 @@ Route::get('/dashboard/rolerequest', [RoleRequestController::class, 'index'])
     ->name('dashboard.rolerequest');
 
 Route::post('/dashboard/rolerequest', [RoleRequestController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.rolerequest.store');
+
+// Organisaties
+
+Route::get('dashboard/organisatie/aanvragen', [OrganisationController::class, 'create'])->middleware(['auth', 'verified', 'role:Organisator,Admin'])->name('organisatie.aanvragen');
+Route::post('dashboard/organisatie/aanvragen', [OrganisationController::class, 'store'])->middleware(['auth', 'verified',])->name('organisatie.aanvragen.store');
+Route::get('dashboard/organisatie/{id}', [OrganisationController::class, 'show'])->middleware(['auth', 'verified', 'role:Organisator,Admin'])->name('organisatie.show');
 
 // No login required
 Route::get('/forum', [PostController::class, 'index'])->name('forum');
