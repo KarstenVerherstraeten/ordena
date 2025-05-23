@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pending_organisation_requests', function (Blueprint $table) {
+        Schema::create('organisations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('owner_id')->constrained('users')->onDelete('set null')->nullable();
+            $table->foreignId('owner_id')->nullable()->constrained('users')->onDelete('set null');
             $table->string('organisation_name');
             $table->string('organisation_address');
             $table->text('description');
-            $table->string('BTW-number'); // VAT number
+            $table->string('btw_number')->unique();
             $table->string('image')->nullable();
             $table->string('website')->nullable();
             $table->timestamps();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pending_organisation_requests');
+        Schema::dropIfExists('organisations');
     }
 };
