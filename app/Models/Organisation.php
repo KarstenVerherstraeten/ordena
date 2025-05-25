@@ -14,6 +14,8 @@ class Organisation extends Model
         'description',
         'btw_number',
         'image',
+        'email',
+        'phone_number',
         'website',
     ];
 

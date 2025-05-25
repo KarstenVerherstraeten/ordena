@@ -32,6 +32,8 @@ class OrganisationRequestController extends Controller
             'btw_number' => 'required|string|max:255', // Or BTW-nummer, just match your DB
             'image' => 'nullable|image',
             'website' => 'nullable|string|max:255',
+            'phone_number' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:255',
             'status' => 'in:pending,approved,rejected', // Optional, default to pending
 
         ]);
@@ -52,6 +54,8 @@ class OrganisationRequestController extends Controller
             'btw_number' => $validated['btw_number'],
             'image' => $imagePath,
             'website' => $validated['website'],
+            'phone_number' => $validated['phone_number'],
+            'email' => $validated['email'],
             'status' => $validated['status'],
         ]);
 
@@ -73,6 +77,8 @@ class OrganisationRequestController extends Controller
             'organisation_address' => $pending->organisation_address,
             'btw_number' => $pending->btw_number,
             'image' => $pending->image, // image already stored
+            'phone_number' => $pending->phone_number,
+            'email' => $pending->email,
             'website' => $pending->website,
         ]);
 

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('btw_number')->unique();
             $table->string('image')->nullable();
             $table->string('website')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone_number')->nullable();
             $table->timestamps();
         });
     }
