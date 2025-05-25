@@ -20,11 +20,19 @@ class ActivityController extends Controller
 
     public function show($id)
     {
-        $activity = Activity::with('user', 'images')->findOrFail($id);
-        $activity->load('images');
+        $activity = Activity::with(['user.organisations', 'images'])->findOrFail($id);
+
+        // Find organisation related to the user (assume one organisation)
+        $organisation = $activity->user->organisations->first();
+
+        // Build organiser object to pass to frontend
+        $organiser = $organisation
+            ? ['organisation' => $organisation]
+            : ['user' => $activity->user];
 
         return inertia('Activity/Show', [
             'activity' => $activity,
+            'organiser' => $organiser,
         ]);
     }
 

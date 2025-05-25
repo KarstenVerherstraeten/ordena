@@ -61,6 +61,10 @@ class User extends Authenticatable
         return $this->hasMany(Activity::class);
     }
 
+    public function organisations()
+    {
+        return $this->belongsToMany(Organisation::class);
+    }
 
     protected $appends = ['role', 'badge_icon'];
 
