@@ -18,6 +18,8 @@ class PendingOrganisationRequest extends Model
         'description',
         'image',
         'website',
+        'email',
+        'phone_number',
         'status',
     ];
 
