@@ -87,13 +87,9 @@ class OrganisationController extends Controller
         return back()->with('message', 'User added to organisation.');
     }
 
-    public function removeUser(Request $request, Organisation $organisation)
+    public function removeUser(Organisation $organisation, User $user)
     {
-        $request->validate([
-            'user_id' => 'required|exists:users,id'
-        ]);
-
-        $organisation->users()->detach($request->user_id);
+        $organisation->users()->detach($user->id);
 
         return back()->with('message', 'User removed from organisation.');
     }

@@ -15,12 +15,11 @@ export default function OrganisationIndex({organisation, organisatorUsers}) {
         user.name.toLowerCase().includes(search.toLowerCase())
     );
 
-    const addUser = () => {
+    const addUser = (userId) => {
         router.post(route('organisations.users.add', organisation.id), {
-            user_id: userIdToAdd,
+            user_id: userId,
         }, {
             preserveScroll: true,
-            onSuccess: () => setUserIdToAdd(''),
         });
     };
 
@@ -28,9 +27,7 @@ export default function OrganisationIndex({organisation, organisatorUsers}) {
         router.delete(route('organisations.users.remove', {
             organisation: organisation.id,
             user: userId,
-        }), {
-            preserveScroll: true,
-        });
+        }));
     };
 
     return (
@@ -94,12 +91,16 @@ export default function OrganisationIndex({organisation, organisatorUsers}) {
             <Modal show={showModal} onClose={() => setShowModal(false)}>
                 <div className="p-6">
                     <h2 className="text-xl font-semibold mb-4">Leden beheren:</h2>
-                    
+
                     <ul className="mb-4">
                         {organisation.users.map((user) => (
                             <li key={user.id} className="flex justify-between items-center">
                                 <span>{user.name} ({user.email})</span>
-                                <button onClick={() => removeUser(user.id)} className="text-red-600 text-sm">Verwijder
+                                <button
+                                    onClick={() => removeUser(user.id)}
+                                    className="text-red-600 text-sm"
+                                >
+                                    Verwijder
                                 </button>
                             </li>
                         ))}
@@ -118,10 +119,11 @@ export default function OrganisationIndex({organisation, organisatorUsers}) {
                         {filteredUsers.map((user) => (
                             <li key={user.id} className="flex justify-between items-center">
                                 <span>{user.name} ({user.email})</span>
-                                <button onClick={() => {
-                                    setUserIdToAdd(user.id);
-                                    addUser();
-                                }} className="text-green-600 text-sm">Voeg toe
+                                <button
+                                    onClick={() => addUser(user.id)}
+                                    className="text-green-600 text-sm"
+                                >
+                                    Voeg toe
                                 </button>
                             </li>
                         ))}
