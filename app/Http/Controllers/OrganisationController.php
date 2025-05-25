@@ -27,7 +27,7 @@ class OrganisationController extends Controller
     {
         $organisation = Organisation::with('users')->findOrFail($id);
 
-        $userIds = $organisation->users->pluck('id')->toArray(); // ensure it's always an array
+        $userIds = $organisation->users->pluck('id')->toArray();
 
         $organisatorUsers = User::whereHas('detail', function ($query) {
             $query->where('role', 'Organisator');
@@ -38,6 +38,7 @@ class OrganisationController extends Controller
         return inertia('Organisation/Index', [
             'organisation' => $organisation,
             'organisatorUsers' => $organisatorUsers,
+            'authUserId' => auth()->id(),
         ]);
     }
 
@@ -92,5 +93,18 @@ class OrganisationController extends Controller
         $organisation->users()->detach($user->id);
 
         return back()->with('message', 'User removed from organisation.');
+    }
+
+    public function makeOwner(Organisation $organisation, User $user)
+    {
+        // Check if the user is part of the organisation
+        if (!$organisation->users->contains($user)) {
+            return back()->with('error', 'User is not part of this organisation.');
+        }
+
+        // Update the owner_id of the organisation
+        $organisation->update(['owner_id' => $user->id]);
+
+        return back()->with('message', 'User is now the owner of the organisation.');
     }
 }

@@ -5,7 +5,7 @@ import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import Modal from "@/Components/Modal.jsx";
 
-export default function OrganisationIndex({organisation, organisatorUsers}) {
+export default function OrganisationIndex({organisation, organisatorUsers, authUserId}) {
 
     const [showModal, setShowModal] = useState(false);
     const [userIdToAdd, setUserIdToAdd] = useState('');
@@ -29,6 +29,15 @@ export default function OrganisationIndex({organisation, organisatorUsers}) {
             user: userId,
         }));
     };
+
+    const makeOwner = (userId) => {
+        router.put(route('organisations.users.update', {
+            organisation: organisation.id,
+            user: userId,
+        }), {}, {
+            preserveScroll: true,
+        });
+    }
 
     return (
         <SiteLayout
@@ -64,7 +73,14 @@ export default function OrganisationIndex({organisation, organisatorUsers}) {
                                 <ul className="list-disc pl-5">
                                     {organisation.users.map((user) => (
                                         <li key={user.id}>
-                                            {user.name} ({user.email})
+
+                                            {user.id === organisation.owner_id && (
+                                                <span title="Eigenaar">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-yellow-500 inline-block ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 3l2.39 4.78L18 9l-4 1-1 4H7l-1-4-4-1 5.61-1.22L10 3z"/></svg>
+                                                 </span>
+                                            )}
+                                            {user.name}
+                                            ({user.email})
                                         </li>
                                     ))}
                                 </ul>
@@ -73,9 +89,13 @@ export default function OrganisationIndex({organisation, organisatorUsers}) {
                                     organisatie.</p>
                             )}
                             <div>
-                                <PrimaryButton onClick={() => setShowModal(true)}>
-                                    Beheer leden
-                                </PrimaryButton>
+                                {authUserId === organisation.owner_id && (
+                                    <div>
+                                        <PrimaryButton onClick={() => setShowModal(true)}>
+                                            Beheer leden
+                                        </PrimaryButton>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
@@ -102,6 +122,16 @@ export default function OrganisationIndex({organisation, organisatorUsers}) {
                                 >
                                     Verwijder
                                 </button>
+
+
+                                {user.id !== organisation.owner_id && (
+                                    <button
+                                    onClick={() => makeOwner(user.id)}
+                                    className="text-blue-600 text-sm"
+                                    >
+                                        Maak eigenaar
+                                    </button>
+                                )}
                             </li>
                         ))}
                     </ul>
@@ -128,6 +158,8 @@ export default function OrganisationIndex({organisation, organisatorUsers}) {
                             </li>
                         ))}
                     </ul>
+
+
                 </div>
             </Modal>
         </SiteLayout>
