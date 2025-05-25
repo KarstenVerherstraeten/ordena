@@ -52,6 +52,8 @@ class OrganisationController extends Controller
             'btw_number' => 'required|string|max:255', // Or BTW-nummer, just match your DB
             'image' => 'nullable|image',
             'website' => 'nullable|string|max:255',
+            'phone_number' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:255',
         ]);
 
         // Handle file upload if present
@@ -69,6 +71,8 @@ class OrganisationController extends Controller
             'btw_number' => $validated['btw_number'],
             'image' => $imagePath,
             'website' => $validated['website'],
+            'phone_number' => $request->input('phone_number', null),
+            'email' => $request->input('email', null),
         ]);
 
         // Attach the user to the organisation via the pivot table

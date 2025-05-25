@@ -92,7 +92,7 @@ export default function ActivitiesShow({activity, organiser}) {
                                 <p className="text-sm text-gray-600 mt-1">📍
                                     Adres: {organiser.organisation.organisation_address}</p>
                                 <p className="text-sm text-gray-600 mt-1">📧 Email: {organiser.email}</p>
-                                <p className="text-sm text-gray-600 mt-1">📞 Telefoon: {organiser.organisation.phone}</p>
+                                <p className="text-sm text-gray-600 mt-1">📞 Telefoon: {organiser.organisation.phone_number}</p>
                                 <p className={"text-sm text-gray-600 mt-1"}> BTW-nummer: {organiser.organisation.btw_number}</p>
                                 <div className="mt-6 flex flex-col gap-2 justify-center items-start">
                                     {organiser.organisation.website && (
