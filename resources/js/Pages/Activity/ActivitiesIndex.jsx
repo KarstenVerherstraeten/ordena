@@ -14,7 +14,7 @@ export default function ActivitiesIndex({ activities }) {
 
     const viewActivities = (activityId) => {
         router.get(route('activities.show', activityId), {}, {
-            preserveScroll: true,
+            preserveScroll: false,
             preserveState: true,
         });
     }

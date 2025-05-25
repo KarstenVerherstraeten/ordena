@@ -47,6 +47,14 @@ export default function AdminLayout({header, children}) {
                                 >
                                     Role requests
                                 </NavLink>
+
+                                <NavLink
+                                    href={route('admin.organisation.requests')}
+                                    active={route().current('admin.organisation.requests')}
+                                    className="text-gray-300 hover:text-white"
+                                >
+                                    Organisation requests
+                                </NavLink>
                             </div>
                         </div>
 

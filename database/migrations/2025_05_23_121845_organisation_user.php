@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activity_images', function (Blueprint $table) {
+        Schema::create('organisation_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('activity_id')->constrained()->onDelete('cascade');
-            $table->string('image_path'); // Path or URL to the image
-            $table->timestamps();
+            $table->foreignId('organisation_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activity_images');
+        Schema::dropIfExists('organisation_user');
     }
 };
