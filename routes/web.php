@@ -4,9 +4,11 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\OrganisationController;
+use App\Http\Controllers\OrganisationRequestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleRequestController;
 use App\Http\Controllers\UserController;
+use App\Models\PendingOrganisationRequest;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -46,7 +48,7 @@ Route::post('/dashboard/rolerequest', [RoleRequestController::class, 'store'])->
 // Organisaties
 
 Route::get('dashboard/organisatie/aanvragen', [OrganisationController::class, 'create'])->middleware(['auth', 'verified', 'role:Organisator,Admin'])->name('organisatie.aanvragen');
-Route::post('dashboard/organisatie/aanvragen', [OrganisationController::class, 'store'])->middleware(['auth', 'verified',])->name('organisatie.aanvragen.store');
+Route::post('dashboard/organisatie/aanvragen', [OrganisationRequestController::class, 'store'])->middleware(['auth', 'verified',])->name('organisatie.aanvragen.store');
 Route::get('dashboard/organisatie/{id}', [OrganisationController::class, 'show'])->middleware(['auth', 'verified', 'role:Organisator,Admin'])->name('organisatie.show');
 Route::post('/organisations/{organisation}/users/add', [OrganisationController::class, 'addUser'])
     ->middleware('auth', 'owner')->name('organisations.users.add');
@@ -69,6 +71,9 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin/requests', [RoleRequestController::class, 'adminIndex'])->name('admin.rolerequest');
     Route::delete('admin/requests/{id}/deny', [RoleRequestController::class, 'deny'])->name('admin.rolerequest.destroy');
     Route::post('admin/requests/{id}/accept', [RoleRequestController::class, 'accept'])->name('admin.rolerequest.accept');
+
+    Route::get('/admin/organisations', [OrganisationRequestController::class, 'adminIndex'])->name('admin.organisation.requests');
+    Route::post('/admin/organisations/{id}/approve', [OrganisationRequestController::class, 'acceptRequest'])->name('admin.organisation.approve');
 });
 
 Route::middleware(['auth', 'role:Organisator,Admin'])->group(function () {

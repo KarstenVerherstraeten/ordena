@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('pending_organisation_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('owner_id')->nullable()->constrained('users')->onDelete('set null');
             $table->string('organisation_name');
             $table->string('organisation_address');
-            $table->string('BTW_number'); // VAT number
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->text('description');
+            $table->string('btw_number')->unique();
+            $table->string('image')->nullable();
+            $table->string('website')->nullable();
+            $table->enum('status', ['pending', 'accepted', 'declined'])->default('pending');
             $table->timestamps();
         });
     }
