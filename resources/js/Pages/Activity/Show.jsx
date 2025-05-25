@@ -12,7 +12,7 @@ import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
 import GreenBlob2 from "@/Components/Blobs/GreenBlob2.jsx";
 import PurpleBlob1 from "@/Components/Blobs/PurpleBlob1.jsx";
 
-export default function ActivitiesShow({activity}) {
+export default function ActivitiesShow({activity, organiser}) {
     // Maak een lijst met unieke afbeeldingen: eerst featured_image (als die bestaat), daarna andere
     const allImages = [
         ...(activity.featured_image ? [{
@@ -84,26 +84,36 @@ export default function ActivitiesShow({activity}) {
                     {/* Rechterkolom - organisator info */}
                     <div className="bg-white p-6 rounded-lg shadow">
                         <h4 className="text-lg font-semibold text-gray-800">Gegevens organisator:</h4>
-                        <p className="text-sm text-gray-600 mt-2">📅 Datum: {activity.start}</p>
-                        <p className="text-sm text-gray-600 mt-1">📍 Locatie: {activity.location}</p>
-                        <p className="text-sm text-gray-600 mt-1">💶
-                            Prijs: {activity.price === 0 ? 'Gratis' : `${activity.price} €`}</p>
 
-                        <div className="mt-6">
-                            <PrimaryButton onClick={() => {
-                                navigator.clipboard.writeText(route('activities.show', activity.id));
-                                toast.success('Link gekopieerd!', {
-                                    position: "top-right",
-                                    autoClose: 3000,
-                                    hideProgressBar: true,
-                                    closeOnClick: true,
-                                    pauseOnHover: true,
-                                    draggable: true,
-                                });
-                            }}>
-                                Website organisatie
-                            </PrimaryButton>
-                        </div>
+                        {organiser.organisation ? (
+                            <>
+                                <p className="text-sm text-gray-600 mt-2">👤
+                                    Organisatie: {organiser.organisation.organisation_name}</p>
+                                <p className="text-sm text-gray-600 mt-1">📍
+                                    Adres: {organiser.organisation.organisation_address}</p>
+                                <p className="text-sm text-gray-600 mt-1">📧 Email: {organiser.email}</p>
+                                <p className="text-sm text-gray-600 mt-1">📞 Telefoon: {organiser.organisation.phone}</p>
+                                <p className={"text-sm text-gray-600 mt-1"}> BTW-nummer: {organiser.organisation.btw_number}</p>
+                                <div className="mt-6 flex flex-col gap-2 justify-center items-start">
+                                    {organiser.organisation.website && (
+                                        <PrimaryButton
+                                            onClick={() => window.open(organiser.organisation.website, '_blank')}>
+                                            Website organisatie
+                                        </PrimaryButton>
+                                    )}
+                                    <SecondaryButton
+                                        onClick={() => window.open(route('organisatie.show', organiser.organisation.id), '_blank')}>
+                                        Bekijk organisatie
+                                    </SecondaryButton>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <p className="text-sm text-gray-600 mt-2">👤 Naam: {organiser.user.name}</p>
+                                {organiser.email &&
+                                    <p className="text-sm text-gray-600 mt-1">📧 Email: {organiser.email}</p>}
+                            </>
+                        )}
                     </div>
                 </div>
 

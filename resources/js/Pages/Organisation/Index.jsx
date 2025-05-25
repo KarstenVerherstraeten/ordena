@@ -47,7 +47,7 @@ export default function OrganisationIndex({organisation, organisatorUsers, authU
                 {name: `Organisatie | ${organisation.organisation_name}`}
             ]}
         >
-            <Head title="Organisatie"/>
+            <Head title={`Organisatie | ${organisation.organisation_name}`}/>
 
             <div className="relative">
                 <div className="absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[15vh] md:left-[20vw]">
