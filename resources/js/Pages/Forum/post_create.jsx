@@ -1,4 +1,9 @@
 import {Head, Link, useForm} from '@inertiajs/react';
+import SiteLayout from "@/Layouts/SiteLayout.jsx";
+import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
+import GreenBlob2 from "@/Components/Blobs/GreenBlob2.jsx";
+import PurpleBlob1 from "@/Components/Blobs/PurpleBlob1.jsx";
+import PrimaryButton from "@/Components/PrimaryButton.jsx";
 
 
 export default function Post_Create({ auth, laravelVersion, phpVersion }) {
@@ -13,88 +18,68 @@ export default function Post_Create({ auth, laravelVersion, phpVersion }) {
         post(route('forum.store'));
     }
     return (
-        <>
-            <Head title={"Create Post"}
-                description={"Create Post"}
-                metaDescription={"Create Post"}
-                metaTitle={"Create Post"}
-                metaImage={"https://laravel.com/img/laravel-logo.png"}
-                metaUrl={"https://laravel.com/docs/10.x"}
-                metaType={"website"}
+        <SiteLayout
+            breadcrumbs={[
+                {name: 'Home', href: '/'},
+                {name: 'Kennisbank', href: route('forum')},
+                {name: 'Bericht plaatsen'}
+            ]}
+        >
+            <Head title={"Bericht plaatsen"}
               />
-            <header>
-                <nav className="-mx-3 flex flex-1 justify-end">
-                    {auth.user ? (
-                        <Link
-                            href={route('dashboard')}
-                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+
+            <div className="absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[5vh] md:left-[-15vw]">
+                <GreenBlob1/>
+            </div>
+            {/* Blob 2 */}
+            <div className="absolute w-[250px] h-[250px] top-[50vh] left-[5vw] md:left-[5vw]">
+                <GreenBlob2/>
+            </div>
+            {/* Blob 3 */}
+            <div className="absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[4vh] md:left-[60vw]">
+                <PurpleBlob1/>
+            </div>
+            <div className="relative">
+                <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+                    <h1 className="text-2xl font-bold mb-4">Nieuw Bericht Plaatsen</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-4">
+                            <label htmlFor="title" className="block text-sm font-medium text-gray-700">Titel</label>
+                            <input
+                                type="text"
+                                id="title"
+                                value={data.title}
+                                onChange={(e) => setData('title', e.target.value)}
+                                className={`mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 ${errors.title ? 'border-red-500' : ''}`}
+                            />
+                            {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="content" className="block text-sm font-medium text-gray-700">Inhoud</label>
+                            <textarea
+                                id="content"
+                                value={data.content}
+                                onChange={(e) => setData('content', e.target.value)}
+                                rows="5"
+                                className={`mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 ${errors.content ? 'border-red-500' : ''}`}
+                            ></textarea>
+                            {errors.content && <p className="text-red-500 text-sm mt-1">{errors.content}</p>}
+                        </div>
+                        <PrimaryButton
+                            type="submit"
+                            disabled={processing}
+                            className={`px-4 py-2 focus:outline-none focus:ring focus:ring-blue-300 ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
                         >
-                            Dashboard
-                        </Link>
-                    ) : (
-                        <>
-                            <Link
-                            href={route('forum')}
-                                className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                            >
-                                Forum
-                            </Link>
-                            <Link
-                                href={route('login')}
-                                className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                            >
-                                Log in
-                            </Link>
-                            <Link
-                                href={route('register')}
-                                className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                            >
-                                Register
-                            </Link>
-                        </>
-                    )}
-                </nav>
-            </header>
+                            Plaats Bericht
+                        </PrimaryButton>
+                    </form>
+                </div>
 
-            <main>
-                <h1>Create Post</h1>
+            </div>
 
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor="title">Title</label>
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            value={data.title}
-                            onChange={(e) => setData('title', e.target.value)}
-                            required
-                        />
-                        {errors.title && <div>{errors.title}</div>}
-                    </div>
-                    <div>
-                        <label htmlFor="content">Content</label>
-                        <textarea
-                            id="content"
-                            name="content"
-                            value={data.content}
-                            onChange={(e) => setData('content', e.target.value)}
-                            required
-                        />
-                        {errors.content && <div>{errors.content}</div>}
-                    </div>
-                    <div>
-                        <button type="submit" disabled={processing}>
-                            Create Post
-                        </button>
-                    </div>
-                </form>
-            </main>
 
-            <footer>
-                <p>Laravel Version: {laravelVersion}</p>
-                <p>PHP Version: {phpVersion}</p>
-            </footer>
-        </>
+
+
+        </SiteLayout>
     );
 }
