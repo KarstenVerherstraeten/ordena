@@ -53,9 +53,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
 
                 <div className="max-w-7xl mx-auto py-12">
                     <div className="grid grid-cols-1 py-20 ">
-                        <h1 className="text-6xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-500">
-                            Ordena
-                        </h1>
+                        <img></img>
                         <div className="flex justify-center items-center h-24">
                             <div className="flex">
                                 <p className="text-xl text-gray-600">Jouw plek voor</p>
@@ -92,9 +90,9 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                         `}</style>
                     </div>
 
-                    <div className="w-full z-10 bg-white rounded p-6 gap-6 mt-6 relative">
-                        <h2 className="text-lg font-semibold text-gray-800 mb-2">Wat is autisme</h2>
-                        <p className="text-gray-600 mb-4">
+                    <div className="w-2/3 z-10 bg-white rounded p-6 gap-6 mt-6 relative mx-auto">
+                        <h1 className="text-lg font-semibold text-gray-800 mb-2 text-center">Wat is autisme</h1>
+                        <p className="text-gray-600 mb-4 text-center">
                             Autisme is een ontwikkelingsstoornis die invloed heeft op de manier waarop mensen
                             communiceren, sociale interacties aangaan en informatie verwerken. Het is een
                             spectrumstoornis,
@@ -106,7 +104,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                     <div className="grid md:grid-cols-2 gap-12 my-12">
                         <div className="w-full bg-white rounded-lg shadow-md p-8 relative">
                             <span
-                                className="absolute -left-8 top-4 w-14 h-14 rounded-full bg-[#9B77C7] text-white flex items-center justify-center text-2xl font-bold">1</span>
+                                className="absolute -left-4 top-8 w-8 h-8 md:-left-8 md:top-4 md:w-14 md:h-14 rounded-full bg-[#9B77C7] text-white flex items-center justify-center text-2xl font-bold">1</span>
                             <h2 className="text-xl font-semibold text-gray-800 mb-4">Wat betekent de diagnose?</h2>
                             <p className="text-gray-600 mb-6">
                                 ASS (Autisme Spectrum Stoornis) is een term die beschrijft hoe mensen
@@ -141,24 +139,24 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                             </PrimaryButton>
                         </div>
 
-                        <div> <Path1></Path1></div>
-                        <div><Path2></Path2></div>
+                        <div className="hidden md:block"><Path1></Path1></div>
+                        <div className="hidden md:block"><Path2></Path2></div>
 
                         <div className="w-full bg-white rounded-lg shadow-md p-8 relative md:ml-auto">
                             <span
-                                className="absolute -left-8 top-4 w-14 h-14 rounded-full bg-[#9B77C7] text-white flex items-center justify-center text-2xl font-bold">2</span>
+                                className="absolute -left-4 top-8 w-8 h-8 md:-left-8 md:top-4 md:w-14 md:h-14 rounded-full bg-[#9B77C7] text-white flex items-center justify-center text-2xl font-bold">2</span>
                             <h2 className="text-xl font-semibold text-gray-800 mb-4">Hoe help je jezelf of je kind
                                 verder op weg?</h2>
 
                             <div className="space-y-6">
                                 <p className="text-gray-600">
-                                    Voor ouders: als je kind de diagnose heeft gekregen, vraag je je misschien af
+                                    als jij of iemand in je omgeving de diagnose heeft gekregen, vraag je je misschien af
                                     hoe je hen het beste kunt helpen.
                                 </p>
 
                                 <div>
                                     <h3 className="font-medium text-gray-800 mb-2">Handige tips:</h3>
-                                    <ul className="list-disc list-inside text-gray-700 space-y-2 pl-4">
+                                    <ul className="list-disc list-outside text-gray-700 space-y-2 pl-4">
                                         <li>Creëer rust en voorspelbaarheid thuis</li>
                                         <li>Observeer wat je kind nodig heeft: rust, structuur, of prikkelreductie</li>
                                     </ul>
@@ -166,7 +164,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
 
                                 <div>
                                     <h3 className="font-medium text-gray-800 mb-2">Verken opties:</h3>
-                                    <ul className="list-disc list-inside text-gray-700 space-y-2 pl-4">
+                                    <ul className="list-disc list-outside text-gray-700 space-y-2 pl-6">
                                         <li>Zijn er hulpmiddelen zoals pictogrammen of dagplanners die nuttig kunnen
                                             zijn?
                                         </li>
@@ -178,7 +176,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
 
                         <div className="w-full bg-white rounded-lg shadow-md p-8 relative">
                             <span
-                                className="absolute -left-8 top-4 w-14 h-14 rounded-full bg-[#9B77C7] text-white flex items-center justify-center text-2xl font-bold">3</span>
+                                className="absolute -left-4 top-8 w-8 h-8 md:-left-8 md:top-4 md:w-14 md:h-14 rounded-full bg-[#9B77C7] text-white flex items-center justify-center text-2xl font-bold">3</span>
                             <h2 className="text-xl font-semibold text-gray-800 mb-4">Onderwijs</h2>
 
                             <div className="space-y-6">
@@ -190,7 +188,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
 
                                 <div>
                                     <h3 className="font-medium text-gray-800 mb-2">Overweeg:</h3>
-                                    <ul className="list-disc list-inside text-gray-700 space-y-2 pl-4">
+                                    <ul className="list-disc list-outside text-gray-700 space-y-2 pl-4">
                                         <li>Praat met leerkrachten over aanpassingen die je kind kunnen helpen.</li>
                                         <li>Ontdek gespecialiseerde scholen of begeleidingsprogramma's in je buurt.</li>
                                     </ul>
@@ -198,7 +196,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
 
                                 <div>
                                     <h3 className="font-medium text-gray-800 mb-2">Waar te beginnen?</h3>
-                                    <ul className="list-disc list-inside text-gray-700 space-y-2 pl-4">
+                                    <ul className="list-disc list-outside text-gray-700 space-y-2 pl-4">
                                         <li>Kijk naar scholen met inclusieve programma's.</li>
                                         <li>Informeer je bij organisaties zoals het <a href="https://www.vrijclb.be/"
                                                                                        target="_blank"
@@ -214,11 +212,11 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                                 Bekijk onze tool | (in ontwikkeling)
                             </PrimaryButton>
                         </div>
-                        <div><Path3></Path3></div>
-                        <div><Path4></Path4></div>
+                        <div className="hidden md:block"><Path3></Path3></div>
+                        <div className="hidden md:block"><Path4></Path4></div>
                         <div className="w-full bg-white rounded-lg shadow-md p-8 relative md:ml-auto">
                             <span
-                                className="absolute -left-8 top-4 w-14 h-14 rounded-full bg-[#9B77C7] text-white flex items-center justify-center text-2xl font-bold">4</span>
+                                className="absolute -left-4 top-8 w-8 h-8 md:-left-8 md:top-4 md:w-14 md:h-14 rounded-full bg-[#9B77C7] text-white flex items-center justify-center text-2xl font-bold">4</span>
                             <h2 className="text-xl font-semibold text-gray-800 mb-4">Activiteiten</h2>
 
                             <div className="space-y-6">
@@ -231,7 +229,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                                 <div>
                                     <h3 className="font-medium text-gray-800 mb-2">Tips voor het vinden van
                                         activiteiten:</h3>
-                                    <ul className="list-disc list-inside text-gray-700 space-y-2 pl-4">
+                                    <ul className="list-disc list-outside text-gray-700 space-y-2 pl-4">
                                         <li>Vraag in je omgeving naar lokale clubs of groepen.</li>
                                         <li>Overweeg online platforms voor speciale activiteiten.</li>
                                     </ul>
@@ -239,7 +237,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
 
                                 <div>
                                     <h3 className="font-medium text-gray-800 mb-2">Waar te zoeken?</h3>
-                                    <ul className="list-disc list-inside text-gray-700 space-y-2 pl-4">
+                                    <ul className="list-disc list-outside text-gray-700 space-y-2 pl-4">
                                         <li>Bekijk onze activiteitenpagina voor een overzicht van beschikbare opties.
                                         </li>
                                         <li>Neem contact op met lokale verenigingen of gemeenschapscentra.</li>
@@ -254,7 +252,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
 
                         <div className="w-full bg-white rounded-lg shadow-md p-8 relative mb-24">
                             <span
-                                className="absolute -left-8 top-4 w-14 h-14 rounded-full bg-[#9B77C7] text-white flex items-center justify-center text-2xl font-bold">5</span>
+                                className="absolute -left-4 top-8 w-8 h-8 md:-left-8 md:top-4 md:w-14 md:h-14 rounded-full bg-[#9B77C7] text-white flex items-center justify-center text-2xl font-bold">5</span>
                             <h2 className="text-xl font-semibold text-gray-800 mb-4">Communicatie met je omgeving</h2>
 
                             <div className="space-y-6">
@@ -267,7 +265,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                                 <div>
                                     <h3 className="font-medium text-gray-800 mb-2">Tips voor effectieve
                                         communicatie:</h3>
-                                    <ul className="list-disc list-inside text-gray-700 space-y-2 pl-4">
+                                    <ul className="list-disc list-outside text-gray-700 space-y-2 pl-4">
                                         <li>Leg uit wat autisme is en hoe het je kind beïnvloedt.</li>
                                         <li>Deel specifieke behoeften of uitdagingen die je kind heeft.</li>
                                     </ul>
@@ -275,7 +273,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
 
                                 <div>
                                     <h3 className="font-medium text-gray-800 mb-2">Waar te beginnen?</h3>
-                                    <ul className="list-disc list-inside text-gray-700 space-y-2 pl-4">
+                                    <ul className="list-disc list-outside text-gray-700 space-y-2 pl-4">
                                         <li>Praat met familieleden, vrienden en leerkrachten.</li>
                                         <li>Overweeg om informatie te delen via sociale media of lokale
                                             gemeenschappen.
@@ -289,9 +287,9 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                         </div>
                     </div>
 
-                    <div className="w-full bg-white rounded p-6 gap-6 mt-6">
+                    <div className="w-2/3 bg-white rounded p-6 gap-6 mt-6 mx-auto text-center">
                         <h2 className="text-2xl font-bold text-gray-800 mb-4">Dat is autisme!</h2>
-                        <p className="text-gray-600 mb-6 ">
+                        <p className="text-gray-600 mb-6">
                             Nu heb je kennis over de basics van autisme, er is natuurlijk nog veel meer te ontdekken /
                             te leren, en dit zal niet altijd even goed lopen maar dat is oké! Elk kind is uniek en heeft
                             zijn eigen manier van omgaan met de wereld.
