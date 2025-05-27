@@ -16,7 +16,7 @@ export default function SiteLayout({ header, children, breadcrumbs = [] }) {
                     <div className="flex h-16 items-center justify-between">
                         <div className="flex items-center">
                             <Link href="/">
-                                <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                                <h1 className="flex-shrink-0 font-['ApparatSemiCond'] text-[20px]">Ordena</h1>
                             </Link>
                         </div>
 
