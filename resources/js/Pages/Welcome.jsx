@@ -47,6 +47,22 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                 </div>
 
                 <div className="max-w-7xl mx-auto py-12">
+                    <div className="flex items-center justify-end w-full ">
+                    <div
+                        className="flex flex-col justify-center  md:flex-row items-center md:justify-end space-x-2 bg-white p-2 rounded-lg shadow-md z-10 w-30 md:w-52">
+                        <span className="text-sm text-gray-700">Animaties toestaan</span>
+                        <label className="relative inline-flex items-center cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={isPlaying}
+                                onChange={() => setIsPlaying(!isPlaying)}
+                                className="sr-only peer"
+                            />
+                            <div
+                                className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                        </label>
+                    </div>
+                    </div>
                     <div className="grid grid-cols-1 py-20 ">
                         <div className="w-1/3 mx-auto">
                             <ApplicationLogo/>
@@ -66,24 +82,6 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                                 >
                                     {words[currentWord]}
                                 </div>
-                                <button
-                                    onClick={() => setIsPlaying(!isPlaying)}
-                                    className="p-2 hover:bg-gray-100 rounded-full flex-shrink-0"
-                                >
-                                    {isPlaying ? (
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             fill="currentColor" viewBox="0 0 16 16">
-                                            <path
-                                                d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
-                                        </svg>
-                                    ) : (
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             fill="currentColor" viewBox="0 0 16 16">
-                                            <path
-                                                d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
-                                        </svg>
-                                    )}
-                                </button>
                             </div>
                         </div>
                         <style jsx>{`
