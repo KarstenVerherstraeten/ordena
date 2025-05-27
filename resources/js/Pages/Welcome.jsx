@@ -14,13 +14,17 @@ import ApplicationLogo from "@/Components/ApplicationLogo.jsx";
 export default function Welcome({auth, laravelVersion, phpVersion}) {
     const [currentWord, setCurrentWord] = useState(0);
     const words = ["Begeleiding", "Ondersteuning", "Activiteiten", "Gemeenschap"];
+    const [isPlaying, setIsPlaying] = useState(true);
 
     useEffect(() => {
+        if (!isPlaying) return;
+
         const interval = setInterval(() => {
             setCurrentWord((prev) => (prev + 1) % words.length);
         }, 2000);
+
         return () => clearInterval(interval);
-    }, []);
+    }, [isPlaying]); // ← depend on isPlaying
 
 
     return (
@@ -48,17 +52,38 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                             <ApplicationLogo/>
                         </div>
                         <div className="flex justify-center items-center h-24 -mt-10">
-                            <div className="flex">
+                            <div className="flex items-center">
                                 <p className="text-3xl font-roboto text-gray-600">Jouw plek voor</p>
                                 <div
-                                    className="text-4xl font-extrabold font-roboto opacity-0 animate-fadeIn text-[#9B77C7] ml-2 w-48"
+                                    className={`text-4xl font-extrabold font-roboto ml-2 w-60 text-[#9B77C7] ${
+                                        isPlaying ? 'opacity-0 animate-fadeIn' : 'opacity-100'
+                                    }`}
                                     key={currentWord}
                                     style={{
-                                        animation: 'fadeInOut 2s ease-in-out',
-                                        position: 'relative'
-                                    }}>
+                                        animation: isPlaying ? 'fadeInOut 2s ease-in-out' : 'none',
+                                        position: 'relative',
+                                    }}
+                                >
                                     {words[currentWord]}
                                 </div>
+                                <button
+                                    onClick={() => setIsPlaying(!isPlaying)}
+                                    className="p-2 hover:bg-gray-100 rounded-full flex-shrink-0"
+                                >
+                                    {isPlaying ? (
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             fill="currentColor" viewBox="0 0 16 16">
+                                            <path
+                                                d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
+                                        </svg>
+                                    ) : (
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             fill="currentColor" viewBox="0 0 16 16">
+                                            <path
+                                                d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                                        </svg>
+                                    )}
+                                </button>
                             </div>
                         </div>
                         <style jsx>{`
