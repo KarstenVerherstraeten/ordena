@@ -9,6 +9,7 @@ import Path1 from "@/Components/DashedLines/Step1to2.jsx";
 import Path2 from "@/Components/DashedLines/Step2to3.jsx";
 import Path3 from "@/Components/DashedLines/Step3to4.jsx";
 import Path4 from "@/Components/DashedLines/Step4to5.jsx";
+import ApplicationLogo from "@/Components/ApplicationLogo.jsx";
 
 export default function Welcome({auth, laravelVersion, phpVersion}) {
     const [currentWord, setCurrentWord] = useState(0);
@@ -21,23 +22,13 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
         return () => clearInterval(interval);
     }, []);
 
-    const handleImageError = () => {
-        document
-            .getElementById('screenshot-container')
-            ?.classList.add('!hidden');
-        document.getElementById('docs-card')?.classList.add('!row-span-1');
-        document
-            .getElementById('docs-card-content')
-            ?.classList.add('!flex-row');
-        document.getElementById('background')?.classList.add('!hidden');
-    };
 
     return (
         <SiteLayout>
             <Head title="Welcome"/>
 
             <div className="relative">
-                <div className="absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[5vh] md:left-[-15vw]">
+                <div className="absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[300vh] md:left-[-15vw]">
                     <GreenBlob1/>
                 </div>
 
@@ -47,18 +38,20 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                 </div>
 
                 {/* Blob 3 */}
-                <div className="absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[4vh] md:left-[60vw]">
+                <div className="absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[200vh] md:left-[60vw]">
                     <PurpleBlob1/>
                 </div>
 
                 <div className="max-w-7xl mx-auto py-12">
                     <div className="grid grid-cols-1 py-20 ">
-                        <img></img>
-                        <div className="flex justify-center items-center h-24">
+                        <div className="w-1/3 mx-auto">
+                            <ApplicationLogo/>
+                        </div>
+                        <div className="flex justify-center items-center h-24 -mt-10">
                             <div className="flex">
-                                <p className="text-xl text-gray-600">Jouw plek voor</p>
+                                <p className="text-3xl font-roboto text-gray-600">Jouw plek voor</p>
                                 <div
-                                    className="text-3xl font-semibold opacity-0 animate-fadeIn text-purple-700 ml-2 w-48"
+                                    className="text-4xl font-extrabold font-roboto opacity-0 animate-fadeIn text-[#9B77C7] ml-2 w-48"
                                     key={currentWord}
                                     style={{
                                         animation: 'fadeInOut 2s ease-in-out',
