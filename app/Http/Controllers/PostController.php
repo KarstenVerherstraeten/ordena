@@ -35,7 +35,13 @@ class PostController extends Controller
         //Sorting
         $sortField = $request->get('sortField', 'created_at');
         $sortOrder = $request->get('sortOrder', 'desc');
-        $query->orderBy($sortField, $sortOrder);
+
+        if ($sortField === 'upvotes') {
+            $query->orderBy('upvotes', $sortOrder);
+        } else {
+            $query->orderBy($sortField, $sortOrder);
+        }
+
 
         // 📄 Pagination
         $posts = $query->paginate(10)->withQueryString();

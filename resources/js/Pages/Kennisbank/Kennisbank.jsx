@@ -18,14 +18,16 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
     const [sortOrder, setSortOrder] = React.useState('desc');
     const [roleFilter, setRoleFilter] = React.useState('');
     const [loading, setLoading] = React.useState(false);
+    const [currentPage, setCurrentPage] = React.useState(1);
 
-    const fetchPosts = async () => {
+    const fetchPosts = async (page = currentPage) => {
         setLoading(true);
         try {
             const params = {
                 search: searchTerm,
-                sort_field: sortField,
-                sort_order: sortOrder,
+                sortField: sortField,
+                sortOrder: sortOrder,
+                page: page
             };
 
             if (roleFilter) {
@@ -38,6 +40,7 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                 replace: true,
                 onSuccess: (page) => {
                     setPosts(page.props.posts);
+                    setCurrentPage(page.props.posts.current_page);
                 }
             });
         } catch (error) {
@@ -53,7 +56,7 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                 preserveScroll: true,
                 preserveState: true,
                 onSuccess: () => {
-                    fetchPosts();
+                    fetchPosts(currentPage);
                 }
             });
         } catch (error) {
@@ -68,7 +71,7 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
     React.useEffect(() => {
         const delayDebounce = setTimeout(() => {
             if (!loading) {
-                fetchPosts();
+                fetchPosts(1); // Reset to page 1 when filters change
             }
         }, 300);
         return () => clearTimeout(delayDebounce);
@@ -190,9 +193,9 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                     </div>
                 </div>
 
-                <div className="mt-6">
-                    <Pagination links={posts.links}/>
-                </div>
+                {posts.data.length === 10 && posts.links && (
+                    <Pagination links={posts.links} onPageChange={(page) => fetchPosts(page)}/>
+                )}
 
                 <PrimaryButton
                     onClick={() => router.get(route('forum.create'))}
