@@ -32,18 +32,28 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
         <SiteLayout>
             <div className="relative">
                 <div
-                    className="absolute hidden md:block w-[200px] h-[200px] top-[10vh] left-[10vw] lg:top-[300vh] lg:left-[-15vw]">
+                    className="absolute hidden md:block w-[200px] h-[200px] top-[150vh] left-[10vw] lg:top-[300vh] lg:left-[-15vw]">
+                    <GreenBlob1/>
+                </div>
+
+                <div
+                    className="absolute hidden md:block w-[200px] h-[200px] top-[300vh] left-[0vw] lg:top-[130vh] lg:left-[5vw]">
                     <GreenBlob1/>
                 </div>
 
                 {/* Blob 2 */}
-                <div className="absolute hidden md:block w-[250px] h-[250px] top-[50vh] left-[5vw] md:left-[5vw]">
+                <div className="absolute hidden md:block w-[250px] h-[250px] top-[240vh] left-[5vw] md:left-[5vw]">
                     <GreenBlob2/>
                 </div>
 
                 {/* Blob 3 */}
                 <div
-                    className="absolute hidden md:block w-[366px] h-[400px] top-[30vh] left-[65vw] md:-top200bh md:-left-2 lg:top-[200vh] lg:left-[60vw]">
+                    className="absolute hidden md:block w-[366px] h-[400px] top-[300vh] left-[70vw] md:-top200bh  lg:top-[300vh] lg:left-[60vw]">
+                    <PurpleBlob1/>
+                </div>
+
+                <div
+                    className="absolute hidden md:block w-[366px] h-[400px] top-[50vh] left-[50vw] md:-top200bh md:-left-30 lg:top-[50vh] lg:left-[60vw]">
                     <PurpleBlob1/>
                 </div>
                 <div className="relative flex items-center justify-end w-full ">
@@ -303,14 +313,14 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                     </div>
                 </div>
 
-                <div className="md:w-2/3 bg-white rounded p-6 gap-6 -mt-12 mx-auto text-center">
+                <div className="md:w-2/3 bg-white z-10 rounded p-6 gap-6 -mt-12 mx-auto text-center">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Dat is autisme!</h2>
                     <p className="text-gray-600 mb-6">
                         Nu heb je kennis over de basics van autisme, er is natuurlijk nog veel meer te ontdekken /
                         te leren, en dit zal niet altijd even goed lopen maar dat is oké! Elk kind is uniek en heeft
                         zijn eigen manier van omgaan met de wereld.
                     </p>
-                    <div className="bg-gray-100 border-l-4 border-yellow-500 p-4 rounded">
+                    <div className="bg-gray-100 z-10 border-l-4 border-yellow-500 p-4 rounded">
                         <p className="text-sm text-gray-700">
                             <span className="font-semibold block mb-1">Disclaimer:</span>
                             Deze informatie is verzameld vanuit onderzoek en samenwerking met mensen in de sector.
@@ -319,6 +329,8 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                         </p>
                     </div>
                 </div>
+
+
             </div>
         </SiteLayout>
     );
