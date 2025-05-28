@@ -29,7 +29,7 @@ export default function Forum({posts, auth, laravelVersion, phpVersion}) {
         <SiteLayout
             breadcrumbs={[
                 {name: 'Home', href: '/'},
-                {name: 'Kennisbank', href: route('forum')},
+                {name: 'Kennisbank'},
             ]}
         >
             <Head title="Kennisbank"/>
