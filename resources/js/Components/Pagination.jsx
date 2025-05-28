@@ -1,28 +1,17 @@
+import { router } from '@inertiajs/react';
+
 export default function Pagination({ links }) {
     return (
-        <nav className="flex items-center justify-between bg-white px-4 py-3 sm:px-6">
-            <div className="flex flex-1 justify-between sm:hidden">
-                <span className="text-sm text-gray-700">Page 1 of {links.length}</span>
-            </div>
-            <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-                <div>
-                    <span className="text-sm text-gray-700">Page 1 of {links.length}</span>
-                </div>
-                <div>
-                    <ul className="inline-flex -space-x-px">
-                        {links.map((link, index) => (
-                            <li key={index}>
-                                <a
-                                    href={link.url}
-                                    className={`px-3 py-2 border border-gray-300 text-sm font-medium ${link.active ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-gray-50'}`}
-                                >
-                                    {link.label}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div className="flex space-x-2 mt-6">
+            {links.map((link, index) => (
+                <button
+                    key={index}
+                    disabled={!link.url}
+                    className={`px-3 py-1 border rounded ${link.active ? 'bg-purple-500 text-white' : 'bg-white'}`}
+                    onClick={() => link.url && router.visit(link.url, { preserveScroll: false })}
+                    dangerouslySetInnerHTML={{ __html: link.label }}
+                />
+            ))}
+        </div>
     );
 }
