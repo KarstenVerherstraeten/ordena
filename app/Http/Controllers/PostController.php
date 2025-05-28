@@ -12,17 +12,43 @@ use Inertia\Inertia;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('Forum/Forum', [
-            'posts' => Post::with('user')->latest()->get(),
-            'phpVersion' => PHP_VERSION,
+        $query = Post::with('user');
+
+        // Search filter
+        if ($request->has('search') && $request->search !== '') {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%$search%")
+                    ->orWhere('content', 'like', "%$search%");
+            });
+        }
+
+        // Role filter
+        if ($request->has('role') && $request->role !== '') {
+            $query->whereHas('user.detail', function ($q) use ($request) {
+                $q->where('role', $request->role);
+            });
+        }
+
+        //Sorting
+        $sortField = $request->get('sortField', 'created_at');
+        $sortOrder = $request->get('sortOrder', 'desc');
+        $query->orderBy($sortField, $sortOrder);
+
+        // 📄 Pagination
+        $posts = $query->paginate(10)->withQueryString();
+
+        return Inertia::render('Kennisbank/Kennisbank', [
+            'posts' => $posts,
+            'filters' => $request->only(['search', 'role', 'sortField', 'sortOrder']),
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Forum/post_create', [
+        return Inertia::render('Kennisbank/post_create', [
             'posts' => Post::with('user')->latest()->get(),
             'phpVersion' => PHP_VERSION,
         ]);
@@ -46,7 +72,7 @@ class PostController extends Controller
 
     public function show($id)
     {
-        return Inertia::render('Forum/SinglePost', [
+        return Inertia::render('Kennisbank/SinglePost', [
             'post' => Post::with('user')->findOrFail($id),
             'phpVersion' => PHP_VERSION,
         ]);
