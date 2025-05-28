@@ -10,6 +10,7 @@ import Path2 from "@/Components/DashedLines/Step2to3.jsx";
 import Path3 from "@/Components/DashedLines/Step3to4.jsx";
 import Path4 from "@/Components/DashedLines/Step4to5.jsx";
 import ApplicationLogo from "@/Components/ApplicationLogo.jsx";
+import Footer from "@/Components/Footer.jsx";
 
 export default function Welcome({auth, laravelVersion, phpVersion}) {
     const [currentWord, setCurrentWord] = useState(0);
@@ -332,6 +333,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
 
 
             </div>
+            <Footer></Footer>
         </SiteLayout>
     );
 }

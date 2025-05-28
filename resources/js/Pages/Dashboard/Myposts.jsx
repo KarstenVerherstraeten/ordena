@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
 import { Head, router, usePage } from '@inertiajs/react';
+import Footer from "@/Components/Footer.jsx";
 
 export default function Myposts({ posts }) {
     const message = usePage().props.flash?.message;
@@ -85,6 +86,7 @@ export default function Myposts({ posts }) {
                     </div>
                 </div>
             )}
+            <Footer></Footer>
         </AuthenticatedLayout>
     );
 }

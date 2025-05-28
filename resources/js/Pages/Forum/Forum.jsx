@@ -8,6 +8,7 @@ import PurpleBlob1 from "@/Components/Blobs/PurpleBlob1.jsx";
 import React from "react";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import BackToTop from "@/Components/BackToTop.jsx";
+import Footer from "@/Components/Footer.jsx";
 
 export default function Forum({posts, auth, laravelVersion, phpVersion}) {
 
@@ -109,7 +110,7 @@ export default function Forum({posts, auth, laravelVersion, phpVersion}) {
 
             </div>
 
-
+        <Footer></Footer>
         </SiteLayout>
 
     )

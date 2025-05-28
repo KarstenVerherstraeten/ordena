@@ -2,6 +2,8 @@ import {Head} from "@inertiajs/react";
 import {useState} from "react";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import {useForm} from "@inertiajs/react";
+import SiteLayout from "@/Layouts/SiteLayout.jsx";
+import Footer from "@/Components/Footer.jsx";
 
 
 export default function ActivitiesCreate() {
@@ -23,6 +25,7 @@ export default function ActivitiesCreate() {
     }
 
     return (
+        <SiteLayout>
         <div className="py-12">
             <Head title="Activiteiten"/>
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -147,5 +150,7 @@ export default function ActivitiesCreate() {
             </div>
 
         </div>
+        <Footer></Footer>
+        </SiteLayout>
     )
 }

@@ -11,6 +11,7 @@ import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
 import GreenBlob2 from "@/Components/Blobs/GreenBlob2.jsx";
 import PurpleBlob1 from "@/Components/Blobs/PurpleBlob1.jsx";
+import Footer from "@/Components/Footer.jsx";
 
 export default function ActivitiesShow({activity, organiser}) {
     // Maak een lijst met unieke afbeeldingen: eerst featured_image (als die bestaat), daarna andere
@@ -180,6 +181,8 @@ export default function ActivitiesShow({activity, organiser}) {
             </div>
             <BackToTop/>
             <ToastContainer/>
+
+            <Footer></Footer>
         </SiteLayout>
     );
 }

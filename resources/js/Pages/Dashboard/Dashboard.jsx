@@ -1,5 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.jsx';
 import { Head } from '@inertiajs/react';
+import Footer from "@/Components/Footer.jsx";
 
 export default function Dashboard() {
     return (
@@ -21,6 +22,7 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </AuthenticatedLayout>
     );
 }

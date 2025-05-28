@@ -4,6 +4,7 @@ import SiteLayout from "@/Layouts/SiteLayout.jsx";
 import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import Modal from "@/Components/Modal.jsx";
+import Footer from "@/Components/Footer.jsx";
 
 export default function OrganisationIndex({organisation, organisatorUsers, authUserId}) {
 
@@ -162,6 +163,8 @@ export default function OrganisationIndex({organisation, organisatorUsers, authU
 
                 </div>
             </Modal>
+
+            <Footer></Footer>
         </SiteLayout>
     );
 }
