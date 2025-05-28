@@ -3,6 +3,7 @@ import { Head, usePage } from '@inertiajs/react';
 import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
+import Footer from "@/Components/Footer.jsx";
 
 export default function Edit({ mustVerifyEmail, status }) {
     const { auth } = usePage().props;
@@ -36,6 +37,7 @@ export default function Edit({ mustVerifyEmail, status }) {
                     </div>
                 </div>
             </div>
+            <Footer></Footer>
         </AuthenticatedLayout>
     );
 }

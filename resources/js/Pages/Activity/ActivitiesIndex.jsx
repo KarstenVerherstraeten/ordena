@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BackToTop from "@/Components/BackToTop.jsx";
+import Footer from "@/Components/Footer.jsx";
 
 export default function ActivitiesIndex({ activities }) {
 
@@ -105,6 +106,7 @@ export default function ActivitiesIndex({ activities }) {
                 <BackToTop></BackToTop>
                 <ToastContainer />
             </div>
+            <Footer></Footer>
         </SiteLayout>
     );
 }

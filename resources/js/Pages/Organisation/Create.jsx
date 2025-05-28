@@ -1,6 +1,7 @@
 import { Head, useForm } from "@inertiajs/react";
 import SiteLayout from "@/Layouts/SiteLayout.jsx";
 import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
+import Footer from "@/Components/Footer.jsx";
 
 export default function Create() {
     const { data, setData, post, processing, errors } = useForm({
@@ -124,6 +125,8 @@ export default function Create() {
                     </form>
                 </div>
             </div>
+
+            <Footer></Footer>
         </SiteLayout>
     );
 }

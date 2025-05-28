@@ -1,6 +1,7 @@
 import {Head, router, usePage} from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.jsx";
 import React, {useState} from "react";
+import Footer from "@/Components/Footer.jsx";
 
 
 
@@ -94,6 +95,8 @@ export default function MyActivities({ activities }) {
             )}
 
         </div>
+
+            <Footer></Footer>
         </AuthenticatedLayout>
     )
 }

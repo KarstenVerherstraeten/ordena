@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage, useForm } from '@inertiajs/react';
+import Footer from "@/Components/Footer.jsx";
 
 export default function RoleRequest() {
     const { auth } = usePage().props;
@@ -162,6 +163,7 @@ export default function RoleRequest() {
 
                 </div>
             </div>
+            <Footer></Footer>
         </AuthenticatedLayout>
     );
 }
