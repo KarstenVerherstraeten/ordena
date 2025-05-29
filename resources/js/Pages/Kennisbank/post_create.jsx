@@ -5,6 +5,7 @@ import GreenBlob2 from "@/Components/Blobs/GreenBlob2.jsx";
 import PurpleBlob1 from "@/Components/Blobs/PurpleBlob1.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import Footer from "@/Components/Footer.jsx";
+import React from "react";
 
 
 export default function Post_Create({ auth, laravelVersion, phpVersion }) {
@@ -29,19 +30,19 @@ export default function Post_Create({ auth, laravelVersion, phpVersion }) {
             <Head title={"Bericht plaatsen"}
               />
 
-            <div className="absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[5vh] md:left-[-15vw]">
+            <div
+                className="hidden md:block md:absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[20vh] md:left-[-15vw]">
                 <GreenBlob1/>
             </div>
-            {/* Blob 2 */}
-            <div className="absolute w-[250px] h-[250px] top-[50vh] left-[5vw] md:left-[5vw]">
-                <GreenBlob2/>
-            </div>
-            {/* Blob 3 */}
-            <div className="absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[4vh] md:left-[60vw]">
+
+
+
+            <div
+                className="hidden md:block md:absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[50vh] md:left-[8vw] lg:top-[4vh] lg:left-[60vw]">
                 <PurpleBlob1/>
             </div>
             <div className="relative">
-                <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+                <div className="max-w-2xl mx-auto mt-12 p-6 py-12 bg-white rounded-lg shadow-md">
                     <h1 className="text-2xl font-bold mb-4">Nieuw Bericht Plaatsen</h1>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
@@ -75,12 +76,8 @@ export default function Post_Create({ auth, laravelVersion, phpVersion }) {
                         </PrimaryButton>
                     </form>
                 </div>
-
+                <Footer></Footer>
             </div>
-
-
-
-        <Footer></Footer>
         </SiteLayout>
     );
 }

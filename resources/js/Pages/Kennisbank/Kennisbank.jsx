@@ -1,6 +1,7 @@
 import {Head, Link, router} from '@inertiajs/react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPaperPlane} from '@fortawesome/free-regular-svg-icons';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import SiteLayout from "@/Layouts/SiteLayout.jsx";
 import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
 import GreenBlob2 from "@/Components/Blobs/GreenBlob2.jsx";
@@ -96,31 +97,32 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
         >
             <Head title="Kennisbank"/>
             <div
-                className="hidden md:block md:absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[5vh] md:left-[-15vw]">
+                className="hidden md:block md:absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[20vh] md:left-[-15vw]">
                 <GreenBlob1/>
             </div>
 
-            <div className="hidden md:block md:absolute w-[250px] h-[250px] top-[50vh] left-[5vw] md:left-[5vw]">
+            <div className="hidden md:block md:absolute w-[250px] h-[250px] top-[70vh] left-[5vw] md:left-[5vw]">
                 <GreenBlob2/>
             </div>
 
+
             <div
-                className="hidden md:block md:absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[4vh] md:left-[60vw]">
+                    className="hidden md:block md:absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[150vh] md:left-[2vw] lg:top-[4vh] lg:left-[60vw]">
                 <PurpleBlob1/>
             </div>
             <div className="relative">
-                <div className="max-w-7xl mx-auto py-12">
+                <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
                     <h1 className="hidden font-bold mb-6">Kennisbank</h1>
 
                     <div className={"flex w-full justify-end mb-4"}>
-                        <div className="mb-6 z-10 bg-white p-4 rounded-lg shadow-md">
-                            <div className="flex justify-end flex-col md:flex-row gap-4">
+                        <div className="w-full md:w-full lg:w-auto mb-6 z-10 bg-white p-4 rounded-lg shadow-md">
+                            <div className="flex flex-col gap-4">
                                 <input
                                     type="text"
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     placeholder="Zoeken..."
-                                    className="rounded lg:w-80 border-gray-300"
+                                    className="w-full rounded border-gray-300"
                                 />
                                 <select
                                     value={`${sortField}-${sortOrder}`}
@@ -129,7 +131,7 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                                         setSortField(field);
                                         setSortOrder(order);
                                     }}
-                                    className="rounded border-gray-300"
+                                    className="w-full rounded border-gray-300"
                                 >
                                     <option value="created_at-desc">Nieuwste datum</option>
                                     <option value="created_at-asc">Oudste datum</option>
@@ -140,12 +142,11 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-4 z-10 gap-6">
-
+                    <div className="grid grid-cols-1 md:grid-cols-4 z-10 gap-6">
                         <div className="col-span-1">
-                            <div className="bg-white shadow-md rounded-lg p-4">
+                            <div className="bg-white shadow-md rounded-lg p-4 w-full">
                                 <h3 className="font-semibold mb-4">Geplaatst door:</h3>
-                                <div className="flex flex-col gap-4">
+                                <div className="flex flex-row flex-wrap justify-around lg:flex-col gap-4">
                                     <label className="flex items-center gap-2">
                                         <input
                                             type="radio"
@@ -185,7 +186,7 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                                 </div>
                                 {(searchTerm || sortField !== 'created_at' || sortOrder !== 'desc' || roleFilter) && (
                                     <PrimaryButton
-                                        className={"mt-12"}
+                                        className={"mt-12 w-full"}
                                         onClick={() => {
                                             setSearchTerm('');
                                             setSortField('created_at');
@@ -197,17 +198,22 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                                     </PrimaryButton>
                                 )}
                             </div>
-
                         </div>
-                        <div className="col-span-3">
+
+                        <div className="col-span-1 md:col-span-3">
                             {loading ? (
                                 <div>Loading...</div>
+                            ) : posts.data.length === 0 ? (
+                                <div className="bg-white shadow-md z-10 rounded-lg p-6 text-center text-gray-600">
+                                    Geen berichten gevonden
+                                </div>
                             ) : (
                                 posts.data.map((post) => (
-                                    <div key={post.id} className="bg-white shadow-md z-10 rounded-lg p-6 flex mb-4">
+                                    <div key={post.id}
+                                         className="bg-white shadow-md z-10 rounded-lg p-6 flex flex-col md:flex-row gap-4 mb-4">
                                         <div className="flex-1">
                                             <div className={"flex items-center gap-6 mb-4 align-center"}>
-                                                <h2 className="text-xl font-semibold mb-2 cursor-pointer"
+                                                <h2 className="text-xl font-semibold cursor-pointer"
                                                     onClick={() => viewPost(post.id)}>
                                                     {post.title}
                                                 </h2>
@@ -217,7 +223,8 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                                                 )}
                                             </div>
                                             <p className="text-gray-600 mb-4">{post.content.length > 100 ? `${post.content.substring(0, 100)}...` : post.content}</p>
-                                            <div className="flex items-center justify-between">
+                                            <div
+                                                className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                                                 <button
                                                     onClick={() => handleUpvote(post.id)}
                                                     className="text-gray-600 hover:text-gray-800 flex flex-row items-center"
@@ -242,9 +249,10 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                                         </div>
                                         <button
                                             onClick={() => viewPost(post.id)}
-                                            className="bg-[#9B77C7] hover:bg-[#8B67B7] text-white px-6 justify-center rounded w-12 ml-6 flex items-center"
+                                            className="w-full md:w-12 bg-[#9B77C7] hover:bg-[#8B67B7] text-white px-6 justify-center rounded flex items-center"
                                         >
-                                            <FontAwesomeIcon icon={faPaperPlane}/>
+                                            <FontAwesomeIcon icon={faChevronUp}  className="hidden rotate-90 md:inline"/> <span
+                                            className="md:hidden">Lees meer</span>
                                         </button>
                                     </div>
                                 ))
@@ -253,23 +261,26 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                     </div>
                 </div>
 
+                <div className={"flex flex-row justify-center items-center lg:justify-end gap-4 mb-12"}>
                 {(posts.data.length === 10 || posts.current_page > 1) && posts.links && (
                     <Pagination links={posts.links} onPageChange={handlePageChange}/>)}
+                </div>
 
                 <PrimaryButton
                     onClick={() => router.get(route('forum.create'))}
-                    className="fixed bottom-6 right-6 z-50 shadow-xl shadow-purple-300/50 bg-[#9B77C7] hover:bg-[#8B67B7]
+                    className="fixed bottom-6 right-6 z-50 shadow-xl md:shadow-purple-300/50 shadow-black/25 bg-[#9B77C7] hover:bg-[#8B67B7]
                      text-white font-semibold p-4 md:py-4 md:px-6 rounded-full
                      flex items-center justify-center gap-2 transition-all duration-300 ease-in-out
-                     active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#9B77C7] focus:ring-offset-2"
+                     active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#9B77C7] focus:ring-offset-2
+                     mobile:drop-shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
                 >
                     <span className="hidden md:inline">Maak een post</span>
                     <FontAwesomeIcon icon={faPaperPlane}/>
                 </PrimaryButton>
-
+                <Footer></Footer>
             </div>
 
-            <Footer></Footer>
+
         </SiteLayout>
     )
 }
