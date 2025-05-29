@@ -144,6 +144,24 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                                 />
                                 <img src="/badges/Icon-Psycholoog.png" alt="Badge" style={{height: '20px'}}/>
                             </label>
+                            <label className="flex items-center gap-2">
+                                <input
+                                    type="radio"
+                                    name="roleFilter"
+                                    checked={roleFilter === 'Ouder'}
+                                    onChange={() => setRoleFilter(roleFilter === 'Ouder' ? '' : 'Ouder')}
+                                />
+                                <img src="/badges/Icon-Ouder.png" alt="Badge" style={{height: '20px'}}/>
+                            </label>
+                            <label className="flex items-center gap-2">
+                                <input
+                                    type="radio"
+                                    name="roleFilter"
+                                    checked={roleFilter === 'GebruikerASS'}
+                                    onChange={() => setRoleFilter(roleFilter === 'GebruikerASS' ? '' : 'GebruikerASS')}
+                                />
+                                <img src="/badges/Icon-gebruikerASS.png" alt="Badge" style={{height: '30px'}}/>
+                            </label>
                         </div>
                     </div>
                     <div className="grid grid-cols-1 gap-6">
