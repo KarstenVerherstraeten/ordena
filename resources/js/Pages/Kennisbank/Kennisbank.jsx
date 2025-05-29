@@ -277,10 +277,10 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                     <span className="hidden md:inline">Maak een post</span>
                     <FontAwesomeIcon icon={faPaperPlane}/>
                 </PrimaryButton>
-
+                <Footer></Footer>
             </div>
 
-            <Footer></Footer>
+
         </SiteLayout>
     )
 }
