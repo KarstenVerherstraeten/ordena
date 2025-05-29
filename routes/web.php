@@ -60,8 +60,8 @@ Route::put('/organisations/{organisation}/users/{user}/update', [OrganisationCon
     ->middleware('auth', 'owner')->name('organisations.users.update');
 
 // No login required
-Route::get('/forum', [PostController::class, 'index'])->name('forum');
-route::get('/activiteiten', [ActivityController::class, 'index'])->name('activities');
+Route::get('/kennisbank', [PostController::class, 'index'])->name('forum');
+Route::get('/activiteiten', [ActivityController::class, 'index'])->name('activities');
 Route::get('/activiteiten/activiteit/{id}', [ActivityController::class, 'show'])->name('activities.show');
 
 Route::middleware(['auth', 'role:Admin'])->group(function () {
@@ -85,11 +85,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    //Forum routes
-    Route::post('/forum/posts/{post}/upvote', [PostController::class, 'upvote'])->name('posts.upvote');
-    Route::post('/forum', [PostController::class, 'store'])->middleware(['auth'])->name('forum.store');
-    Route::get('/forum/create', [PostController::class, 'create'])->name('forum.create');
-    Route::get('/forum/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+    //Kennisbank routes
+    Route::post('/kennisbank/posts/{post}/upvote', [PostController::class, 'upvote'])->name('posts.upvote');
+    Route::post('/kennisbank', [PostController::class, 'store'])->middleware(['auth'])->name('forum.store');
+    Route::get('/kennisbank/create', [PostController::class, 'create'])->name('forum.create');
+    Route::get('/kennisbank/posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
     //Activity routes

@@ -78,9 +78,10 @@ export default function SinglePost() {
                  </SecondaryButton>
              </div>
          </div>
+             <Footer></Footer>
          </div>
          <ToastContainer></ToastContainer>
-         <Footer></Footer>
+
      </SiteLayout>
     );
 }

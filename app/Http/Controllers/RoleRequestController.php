@@ -57,6 +57,7 @@ class RoleRequestController extends Controller
             'Leerkracht' => '/badges/Icon-Leerkracht.png',
             'Psycholoog' => '/badges/Icon-Psycholoog.png',
             'Organisator' => '/badges/Icon-Organisator.png',
+            "GebruikerASS" => '/badges/Icon-GebruikerASS.png',
             'Admin' => '/badges/Icon-Admin.png',
         ];
 
