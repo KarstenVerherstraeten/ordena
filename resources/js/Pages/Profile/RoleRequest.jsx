@@ -50,7 +50,7 @@ export default function RoleRequest() {
                                 <option value="Leerkracht">Leerkracht</option>
                                 <option value="Ouder">Ouder</option>
                                 <option value="Organisator">Organisator</option>
-                                <option value="Gebruiker met ASS">Gebruiker met ASS</option>
+                                <option value="GebruikerASS">Gebruiker met ASS</option>
                             </select>
 
                             <label className="block mb-2 mt-4">Upload document (Certificaat, leerkrachtenkaart, inschrijvingsbewijs...):</label>
