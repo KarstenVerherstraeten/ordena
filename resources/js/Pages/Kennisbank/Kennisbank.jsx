@@ -85,29 +85,30 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
             ]}
         >
             <Head title="Kennisbank"/>
+            <div className="hidden md:block md:absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[5vh] md:left-[-15vw]">
+                <GreenBlob1/>
+            </div>
+
+            <div className="hidden md:block md:absolute w-[250px] h-[250px] top-[50vh] left-[5vw] md:left-[5vw]">
+                <GreenBlob2/>
+            </div>
+
+            <div className="hidden md:block md:absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[4vh] md:left-[60vw]">
+                <PurpleBlob1/>
+            </div>
             <div className="relative">
-                <div className="absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[5vh] md:left-[-15vw]">
-                    <GreenBlob1/>
-                </div>
-
-                <div className="absolute w-[250px] h-[250px] top-[50vh] left-[5vw] md:left-[5vw]">
-                    <GreenBlob2/>
-                </div>
-
-                <div className="absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[4vh] md:left-[60vw]">
-                    <PurpleBlob1/>
-                </div>
                 <div className="max-w-7xl mx-auto py-12">
                     <h1 className="hidden font-bold mb-6">Kennisbank</h1>
 
+                    <div className={"flex w-full justify-end mb-4"}>
                     <div className="mb-6 z-10 bg-white p-4 rounded-lg shadow-md">
-                        <div className="flex flex-col md:flex-row gap-4">
+                        <div className="flex justify-end flex-col md:flex-row gap-4">
                             <input
                                 type="text"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 placeholder="Zoeken..."
-                                className="rounded border-gray-300"
+                                className="rounded lg:w-80 border-gray-300"
                             />
                             <select
                                 value={`${sortField}-${sortOrder}`}
@@ -124,90 +125,119 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                                 <option value="upvotes-asc">Minste upvotes</option>
                             </select>
                         </div>
-                        <div className="mt-4 flex items-center gap-4">
-                            <h3>Post door:</h3>
-                            <label className="flex items-center gap-2">
-                                <input
-                                    type="radio"
-                                    name="roleFilter"
-                                    checked={roleFilter === 'Leerkracht'}
-                                    onChange={() => setRoleFilter(roleFilter === 'Leerkracht' ? '' : 'Leerkracht')}
-                                />
-                                <img src="/badges/Icon-Leerkracht.png" alt="Badge" style={{height: '20px'}}/>
-                            </label>
-                            <label className="flex items-center gap-2">
-                                <input
-                                    type="radio"
-                                    name="roleFilter"
-                                    checked={roleFilter === 'psycholoog'}
-                                    onChange={() => setRoleFilter(roleFilter === 'psycholoog' ? '' : 'psycholoog')}
-                                />
-                                <img src="/badges/Icon-Psycholoog.png" alt="Badge" style={{height: '20px'}}/>
-                            </label>
-                            <label className="flex items-center gap-2">
-                                <input
-                                    type="radio"
-                                    name="roleFilter"
-                                    checked={roleFilter === 'Ouder'}
-                                    onChange={() => setRoleFilter(roleFilter === 'Ouder' ? '' : 'Ouder')}
-                                />
-                                <img src="/badges/Icon-Ouder.png" alt="Badge" style={{height: '20px'}}/>
-                            </label>
-                            <label className="flex items-center gap-2">
-                                <input
-                                    type="radio"
-                                    name="roleFilter"
-                                    checked={roleFilter === 'GebruikerASS'}
-                                    onChange={() => setRoleFilter(roleFilter === 'GebruikerASS' ? '' : 'GebruikerASS')}
-                                />
-                                <img src="/badges/Icon-gebruikerASS.png" alt="Badge" style={{height: '30px'}}/>
-                            </label>
-                        </div>
                     </div>
-                    <div className="grid grid-cols-1 gap-6">
-                        {loading ? (
-                            <div>Loading...</div>
-                        ) : (
-                            posts.data.map((post) => (
-                                <div key={post.id} className="bg-white shadow-md z-10 rounded-lg p-6 flex">
-                                    <div className="flex-1">
-                                        <div className={"flex items-center gap-6 mb-4 align-center"}>
-                                            <h2 className="text-xl font-semibold mb-2 cursor-pointer"
-                                                onClick={() => viewPost(post.id)}>
-                                                {post.title}
-                                            </h2>
-                                            {post.user && post.user.badge_icon && (
-                                                <img src={post.user.badge_icon} alt="Badge" style={{height: '20px'}}/>
-                                            )}
-                                        </div>
-                                        <p className="text-gray-600 mb-4">{post.content.substring(0, 100)}...</p>
-                                        <div className="flex items-center justify-between">
-                                            <button
-                                                onClick={() => handleUpvote(post.id)}
-                                                className="text-blue-500 hover:text-blue-700"
-                                            >
-                                                Upvote ({post.upvotes})
-                                            </button>
+                    </div>
 
-                                            <span className="text-gray-500 text-sm">
-                                                Geplaatst door: {post.user ? post.user.name : 'Onbekend'} op{' '}
-                                                {new Date(post.created_at).toLocaleDateString('nl-NL', {
-                                                    day: 'numeric',
-                                                    month: 'long',
-                                                    year: 'numeric'
-                                                })}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <button
-                                        onClick={() => viewPost(post.id)}
-                                        className="bg-[#9B77C7] hover:bg-[#8B67B7] text-white px-6 justify-center rounded w-12 ml-6 flex items-center"
-                                    >
-                                        <FontAwesomeIcon icon={faPaperPlane}/>
-                                    </button>
+                    <div className="grid grid-cols-4 z-10 gap-6">
+
+                        <div className="col-span-1">
+                            <div className="bg-white shadow-md rounded-lg p-4">
+                                <h3 className="font-semibold mb-4">Geplaatst door:</h3>
+                                <div className="flex flex-col gap-4">
+                                    <label className="flex items-center gap-2">
+                                        <input
+                                            type="radio"
+                                            name="roleFilter"
+                                            checked={roleFilter === 'Leerkracht'}
+                                            onChange={() => setRoleFilter(roleFilter === 'Leerkracht' ? '' : 'Leerkracht')}
+                                        />
+                                        <img src="/badges/Icon-Leerkracht.png" alt="Badge" style={{height: '25px'}}/>
+                                    </label>
+                                    <label className="flex items-center gap-2">
+                                        <input
+                                            type="radio"
+                                            name="roleFilter"
+                                            checked={roleFilter === 'psycholoog'}
+                                            onChange={() => setRoleFilter(roleFilter === 'psycholoog' ? '' : 'psycholoog')}
+                                        />
+                                        <img src="/badges/Icon-Psycholoog.png" alt="Badge" style={{height: '25px'}}/>
+                                    </label>
+                                    <label className="flex items-center gap-2">
+                                        <input
+                                            type="radio"
+                                            name="roleFilter"
+                                            checked={roleFilter === 'Ouder'}
+                                            onChange={() => setRoleFilter(roleFilter === 'Ouder' ? '' : 'Ouder')}
+                                        />
+                                        <img src="/badges/Icon-Ouder.png" alt="Badge" style={{height: '25px'}}/>
+                                    </label>
+                                    <label className="flex items-center gap-2">
+                                        <input
+                                            type="radio"
+                                            name="roleFilter"
+                                            checked={roleFilter === 'GebruikerASS'}
+                                            onChange={() => setRoleFilter(roleFilter === 'GebruikerASS' ? '' : 'GebruikerASS')}
+                                        />
+                                        <img src="/badges/Icon-gebruikerASS.png" alt="Badge" style={{height: '37px'}}/>
+                                    </label>
                                 </div>
-                            ))
-                        )}
+                                {(searchTerm || sortField !== 'created_at' || sortOrder !== 'desc' || roleFilter) && (
+                                    <PrimaryButton
+                                        className={"mt-12"}
+                                        onClick={() => {
+                                            setSearchTerm('');
+                                            setSortField('created_at');
+                                            setSortOrder('desc');
+                                            setRoleFilter('');
+                                        }}
+                                    >
+                                        Reset filters
+                                    </PrimaryButton>
+                                )}
+                            </div>
+
+                        </div>
+                        <div className="col-span-3">
+                            {loading ? (
+                                <div>Loading...</div>
+                            ) : (
+                                posts.data.map((post) => (
+                                    <div key={post.id} className="bg-white shadow-md z-10 rounded-lg p-6 flex mb-4">
+                                        <div className="flex-1">
+                                            <div className={"flex items-center gap-6 mb-4 align-center"}>
+                                                <h2 className="text-xl font-semibold mb-2 cursor-pointer"
+                                                    onClick={() => viewPost(post.id)}>
+                                                    {post.title}
+                                                </h2>
+                                                {post.user && post.user.badge_icon && (
+                                                    <img src={post.user.badge_icon} alt="Badge"
+                                                         style={{height: '20px'}}/>
+                                                )}
+                                            </div>
+                                            <p className="text-gray-600 mb-4">{post.content.length > 100 ? `${post.content.substring(0, 100)}...` : post.content}</p>
+                                            <div className="flex items-center justify-between">
+                                                <button
+                                                    onClick={() => handleUpvote(post.id)}
+                                                    className="text-gray-600 hover:text-gray-800 flex flex-row items-center"
+                                                >
+                                                    <svg className="w-4 h-4 inline-block mr-1" viewBox="0 0 24 24"
+                                                         fill="currentColor">
+                                                        <path
+                                                            d="M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-5.5l.92-4.65c.05-.22.02-.46-.08-.66-.23-.45-.52-.86-.88-1.22L14 2 7.59 8.41C7.21 8.79 7 9.3 7 9.83v7.84C7 18.95 8.05 20 9.34 20h8.11c.7 0 1.36-.37 1.72-.97l2.66-6.15z"/>
+                                                    </svg>
+                                                    {post.upvotes}
+                                                </button>
+
+                                                <span className="text-gray-500 text-sm">
+                                                    Geplaatst door: {post.user ? post.user.name : 'Onbekend'} op{' '}
+                                                    {new Date(post.created_at).toLocaleDateString('nl-NL', {
+                                                        day: 'numeric',
+                                                        month: 'long',
+                                                        year: 'numeric'
+                                                    })}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <button
+                                            onClick={() => viewPost(post.id)}
+                                            className="bg-[#9B77C7] hover:bg-[#8B67B7] text-white px-6 justify-center rounded w-12 ml-6 flex items-center"
+                                        >
+                                            <FontAwesomeIcon icon={faPaperPlane}/>
+                                        </button>
+                                    </div>
+                                ))
+                            )}
+                        </div>
                     </div>
                 </div>
 
