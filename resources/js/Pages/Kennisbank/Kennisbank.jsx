@@ -5,7 +5,7 @@ import SiteLayout from "@/Layouts/SiteLayout.jsx";
 import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
 import GreenBlob2 from "@/Components/Blobs/GreenBlob2.jsx";
 import PurpleBlob1 from "@/Components/Blobs/PurpleBlob1.jsx";
-import React from "react";
+import React, {useEffect} from "react";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import BackToTop from "@/Components/BackToTop.jsx";
 import Footer from "@/Components/Footer.jsx";
@@ -18,30 +18,29 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
     const [sortOrder, setSortOrder] = React.useState('desc');
     const [roleFilter, setRoleFilter] = React.useState('');
     const [loading, setLoading] = React.useState(false);
-    const [currentPage, setCurrentPage] = React.useState(1);
+    const [currentPage, setCurrentPage] = React.useState(initialPosts.current_page);
 
     const fetchPosts = async (page = currentPage) => {
         setLoading(true);
+
+        const params = {
+            search: searchTerm || undefined,
+            sortField: sortField || undefined,
+            sortOrder: sortOrder || undefined,
+            page: page,
+            role: roleFilter || undefined,
+        };
+
         try {
-            const params = {
-                search: searchTerm,
-                sortField: sortField,
-                sortOrder: sortOrder,
-                page: page
-            };
-
-            if (roleFilter) {
-                params.role = roleFilter;
-            }
-
             await router.get(route('forum'), params, {
                 preserveScroll: true,
                 preserveState: true,
                 replace: true,
-                onSuccess: (page) => {
-                    setPosts(page.props.posts);
-                    setCurrentPage(page.props.posts.current_page);
-                }
+                only: ['posts'],
+                onSuccess: ({props}) => {
+                    setPosts(props.posts);
+                    setCurrentPage(props.posts.current_page);
+                },
             });
         } catch (error) {
             console.error('Error fetching posts:', error);
@@ -68,13 +67,24 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
         router.get(route('posts.show', postId));
     }
 
-    React.useEffect(() => {
-        const delayDebounce = setTimeout(() => {
-            if (!loading) {
-                fetchPosts(1); // Reset to page 1 when filters change
-            }
-        }, 300);
-        return () => clearTimeout(delayDebounce);
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+        fetchPosts(page);
+    };
+
+    const [prevFilters, setPrevFilters] = React.useState({
+        searchTerm,
+        sortField,
+        sortOrder,
+        roleFilter
+    });
+
+    useEffect(() => {
+        if (JSON.stringify(prevFilters) !== JSON.stringify({searchTerm, sortField, sortOrder, roleFilter})) {
+            setCurrentPage(1);
+            fetchPosts(1);
+            setPrevFilters({searchTerm, sortField, sortOrder, roleFilter});
+        }
     }, [searchTerm, sortField, sortOrder, roleFilter]);
 
     return (
@@ -85,7 +95,8 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
             ]}
         >
             <Head title="Kennisbank"/>
-            <div className="hidden md:block md:absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[5vh] md:left-[-15vw]">
+            <div
+                className="hidden md:block md:absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[5vh] md:left-[-15vw]">
                 <GreenBlob1/>
             </div>
 
@@ -93,7 +104,8 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                 <GreenBlob2/>
             </div>
 
-            <div className="hidden md:block md:absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[4vh] md:left-[60vw]">
+            <div
+                className="hidden md:block md:absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[4vh] md:left-[60vw]">
                 <PurpleBlob1/>
             </div>
             <div className="relative">
@@ -101,31 +113,31 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                     <h1 className="hidden font-bold mb-6">Kennisbank</h1>
 
                     <div className={"flex w-full justify-end mb-4"}>
-                    <div className="mb-6 z-10 bg-white p-4 rounded-lg shadow-md">
-                        <div className="flex justify-end flex-col md:flex-row gap-4">
-                            <input
-                                type="text"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                placeholder="Zoeken..."
-                                className="rounded lg:w-80 border-gray-300"
-                            />
-                            <select
-                                value={`${sortField}-${sortOrder}`}
-                                onChange={(e) => {
-                                    const [field, order] = e.target.value.split('-');
-                                    setSortField(field);
-                                    setSortOrder(order);
-                                }}
-                                className="rounded border-gray-300"
-                            >
-                                <option value="created_at-desc">Nieuwste datum</option>
-                                <option value="created_at-asc">Oudste datum</option>
-                                <option value="upvotes-desc">Meeste upvotes</option>
-                                <option value="upvotes-asc">Minste upvotes</option>
-                            </select>
+                        <div className="mb-6 z-10 bg-white p-4 rounded-lg shadow-md">
+                            <div className="flex justify-end flex-col md:flex-row gap-4">
+                                <input
+                                    type="text"
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    placeholder="Zoeken..."
+                                    className="rounded lg:w-80 border-gray-300"
+                                />
+                                <select
+                                    value={`${sortField}-${sortOrder}`}
+                                    onChange={(e) => {
+                                        const [field, order] = e.target.value.split('-');
+                                        setSortField(field);
+                                        setSortOrder(order);
+                                    }}
+                                    className="rounded border-gray-300"
+                                >
+                                    <option value="created_at-desc">Nieuwste datum</option>
+                                    <option value="created_at-asc">Oudste datum</option>
+                                    <option value="upvotes-desc">Meeste upvotes</option>
+                                    <option value="upvotes-asc">Minste upvotes</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
                     </div>
 
                     <div className="grid grid-cols-4 z-10 gap-6">
@@ -241,9 +253,8 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                     </div>
                 </div>
 
-                {posts.data.length === 10 && posts.links && (
-                    <Pagination links={posts.links} onPageChange={(page) => fetchPosts(page)}/>
-                )}
+                {(posts.data.length === 10 || posts.current_page > 1) && posts.links && (
+                    <Pagination links={posts.links} onPageChange={handlePageChange}/>)}
 
                 <PrimaryButton
                     onClick={() => router.get(route('forum.create'))}
