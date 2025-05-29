@@ -32,7 +32,7 @@ export default function SinglePost() {
             </div>
 
             <div
-                className="hidden md:block md:absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[150vh] md:left-[2vw] lg:top-[4vh] lg:left-[60vw]">
+                className="hidden lg:block md:absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[150vh] md:left-[2vw] lg:top-[4vh] lg:left-[60vw]">
                 <PurpleBlob1/>
             </div>
 
