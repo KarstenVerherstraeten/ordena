@@ -4,6 +4,7 @@ import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
 import GreenBlob2 from "@/Components/Blobs/GreenBlob2.jsx";
 import PurpleBlob1 from "@/Components/Blobs/PurpleBlob1.jsx";
 import React from "react";
+import {useEffect, useCallback} from "react";
 import Footer from "@/Components/Footer.jsx";
 import {Disclosure} from '@headlessui/react';
 import {faChevronUp} from '@fortawesome/free-solid-svg-icons';
@@ -34,12 +35,47 @@ export default function About() {
         name: '',
         email: '',
         message: '',
+        'g-recaptcha-response': '',
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!data['g-recaptcha-response']) {
+            // Trigger reCAPTCHA validation
+            if (window.grecaptcha) {
+                window.grecaptcha.execute();
+            }
+            return;
+        }
         post('/contact');
     };
+
+    const handleRecaptchaCallback = useCallback((token) => {
+        setData('g-recaptcha-response', token);
+    }, [setData]);
+
+    useEffect(() => {
+        // Load reCAPTCHA script
+        const script = document.createElement('script');
+        script.src = `https://www.google.com/recaptcha/api.js?render=${import.meta.env.VITE_RECAPTCHA_SITE_KEY}`;
+        script.async = true;
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
+    useEffect(() => {
+        window.onRecaptchaLoad = () => {
+            window.grecaptcha.ready(() => {
+                window.grecaptcha.render('g-recaptcha', {
+                    'sitekey': import.meta.env.VITE_RECAPTCHA_SITE_KEY,
+                    'callback': handleRecaptchaCallback
+                });
+            });
+        };
+    }, [handleRecaptchaCallback]);
 
     return (
         <SiteLayout
@@ -120,7 +156,7 @@ export default function About() {
                                 <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                                     <div className="p-6 text-gray-900">
                                         <h1 className="text-2xl font-bold mb-4">Neem contact op</h1>
-                                        <form onSubmit={handleSubmit} className="space-y-4">
+                                        <form onSubmit={handleSubmit} id="contactForm" className="space-y-4">
                                             <div className="flex flex-col">
                                                 <label className="mb-1 text-sm font-medium text-gray-700">Naam:</label>
                                                 <input
@@ -154,13 +190,19 @@ export default function About() {
                                                 />
                                             </div>
 
+                                            <div id="g-recaptcha"></div>
+
                                             <PrimaryButton type="submit" disabled={processing} className="mt-4 w-full">
                                                 Verstuur
                                             </PrimaryButton>
 
-                                            {errors.name && <div>{errors.name}</div>}
-                                            {errors.email && <div>{errors.email}</div>}
-                                            {errors.message && <div>{errors.message}</div>}
+                                            {errors.name && <div className="text-red-500 text-sm">{errors.name}</div>}
+                                            {errors.email && <div className="text-red-500 text-sm">{errors.email}</div>}
+                                            {errors.message &&
+                                                <div className="text-red-500 text-sm">{errors.message}</div>}
+                                            {errors['g-recaptcha-response'] && <div
+                                                className="text-red-500 text-sm">{errors['g-recaptcha-response']}</div>}
+
                                         </form>
                                     </div>
                                 </div>

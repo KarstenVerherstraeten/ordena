@@ -29,6 +29,7 @@ class AboutController extends Controller
             'name' => 'required|string|max:100',
             'email' => 'required|email',
             'message' => 'required|string|max:2000',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         Mail::to('info@ordena.be')->send(new ContactFormMail($data));
