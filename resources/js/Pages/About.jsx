@@ -1,12 +1,12 @@
 import SiteLayout from "@/Layouts/SiteLayout.jsx";
-import {Head} from '@inertiajs/react';
+import {Head, useForm} from '@inertiajs/react';
 import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
 import GreenBlob2 from "@/Components/Blobs/GreenBlob2.jsx";
 import PurpleBlob1 from "@/Components/Blobs/PurpleBlob1.jsx";
 import React from "react";
 import Footer from "@/Components/Footer.jsx";
 import {Disclosure} from '@headlessui/react';
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import {faChevronUp} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 
@@ -22,10 +22,24 @@ export default function About() {
         },
         {
             question: "Wat biedt Ordena?",
-            answer: "Ordena biedt een forum, activiteitenlijst en interactieve ontdekkingstocht rond autisme."
+            answer: "Ordena biedt een forum, activiteitenlijst en een ontdekkingstocht rond autisme."
         },
-        
+        {
+            question: "Van waar haalt Ordena z'n gegevens?",
+            answer: "Ordena haalt informatie vanuit zijn/haar gebruikers, gegevens van de vlaamse overheid en andere online instanties"
+        }
     ];
+
+    const {data, setData, post, processing, errors} = useForm({
+        name: '',
+        email: '',
+        message: '',
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        post('/contact');
+    };
 
     return (
         <SiteLayout
@@ -106,12 +120,14 @@ export default function About() {
                                 <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                                     <div className="p-6 text-gray-900">
                                         <h1 className="text-2xl font-bold mb-4">Neem contact op</h1>
-                                        <form className="space-y-4">
+                                        <form onSubmit={handleSubmit} className="space-y-4">
                                             <div className="flex flex-col">
                                                 <label className="mb-1 text-sm font-medium text-gray-700">Naam:</label>
                                                 <input
                                                     type="text"
                                                     placeholder="John Doe"
+                                                    value={data.name}
+                                                    onChange={e => setData('name', e.target.value)}
                                                     className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                                 />
                                             </div>
@@ -121,6 +137,8 @@ export default function About() {
                                                 <input
                                                     type="email"
                                                     placeholder="info@ordena.be"
+                                                    value={data.email}
+                                                    onChange={e => setData('email', e.target.value)}
                                                     className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                                 />
                                             </div>
@@ -128,16 +146,21 @@ export default function About() {
                                             <div className="flex flex-col">
                                                 <label
                                                     className="mb-1 text-sm font-medium text-gray-700">Onderwerp:</label>
-                                                <input
-                                                    type="text"
+                                                <textarea
                                                     placeholder="Onderwerp"
+                                                    value={data.message}
+                                                    onChange={e => setData('message', e.target.value)}
                                                     className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                                 />
                                             </div>
 
-                                            <PrimaryButton className="mt-4 w-full">
+                                            <PrimaryButton type="submit" disabled={processing} className="mt-4 w-full">
                                                 Verstuur
                                             </PrimaryButton>
+
+                                            {errors.name && <div>{errors.name}</div>}
+                                            {errors.email && <div>{errors.email}</div>}
+                                            {errors.message && <div>{errors.message}</div>}
                                         </form>
                                     </div>
                                 </div>

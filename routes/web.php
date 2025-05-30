@@ -66,6 +66,9 @@ Route::get('/activiteiten', [ActivityController::class, 'index'])->name('activit
 Route::get('/over-ons', [AboutController::class, 'index'])->name('about');
 Route::get('/activiteiten/activiteit/{id}', [ActivityController::class, 'show'])->name('activities.show');
 
+//mail routes
+Route::post('/contact', [AboutController::class, 'send']);
+
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/manage', [UserController::class, 'index'])->name('admin.manage');
