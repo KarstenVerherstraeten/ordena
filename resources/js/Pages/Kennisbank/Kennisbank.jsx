@@ -111,7 +111,7 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                 <PurpleBlob1/>
             </div>
             <div className="relative">
-                <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto py-12">
                     <h1 className="hidden font-bold mb-6">Kennisbank</h1>
 
                     <div className={"flex w-full justify-end mb-4"}>
