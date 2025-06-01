@@ -96,11 +96,11 @@ export default function About() {
             <div className="relative">
                 <Head title="Over ons"/>
                 <div className="py-12">
-                    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-7xl">
                         <div className="flex flex-col md:flex-row gap-6">
                             <div className="md:w-2/3">
                                 <div className="overflow-hidden sm:rounded-lg">
-                                    <div className="p-6 text-gray-900">
+                                    <div className="mb-8 w-4/5 text-gray-900">
                                         <h1 className="text-2xl font-bold mb-4">Over ons</h1>
                                         <p>Ordena is een nieuw platform dat autisme en de wereld errond toegankelijker
                                             maakt voor iedereen. In samenwerking met verschillende BUSO-scholen hebben
@@ -186,7 +186,6 @@ export default function About() {
                                             </div>
 
                                             <div ref={recaptchaRef} className="mt-4" />
-
                                             <PrimaryButton type="submit" disabled={processing} className="mt-4 w-full">
                                                 Verstuur
                                             </PrimaryButton>
