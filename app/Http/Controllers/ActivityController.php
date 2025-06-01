@@ -14,7 +14,28 @@ class ActivityController extends Controller
     public function index()
     {
         return inertia('Activity/ActivitiesIndex', [
-            'activities' => Activity::with('user')->latest()->get(),
+            'activities' => Activity::with('user')
+                ->when(request('search'), function ($query, $search) {
+                    $query->where('title', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%")
+                        ->orWhere('location', 'like', "%{$search}%");
+                })
+                ->when(request('sort'), function ($query, $sort) {
+                    if ($sort === 'price_asc') {
+                        $query->orderBy('price', 'asc');
+                    } elseif ($sort === 'price_desc') {
+                        $query->orderBy('price', 'desc');
+                    } elseif ($sort === 'date_asc') {
+                        $query->orderBy('start', 'asc');
+                    } elseif ($sort === 'date_desc') {
+                        $query->orderBy('start', 'desc');
+                    }
+                }, function ($query) {
+                    $query->latest();
+                })
+                ->paginate(12)
+                ->withQueryString(),
+            'filters' => request()->only(['search', 'sort'])
         ]);
     }
 
