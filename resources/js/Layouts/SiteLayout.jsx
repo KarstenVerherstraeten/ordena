@@ -53,6 +53,9 @@ export default function SiteLayout({header, children, breadcrumbs = []}) {
                             <NavLink href={route('forum')} active={route().current('forum')}>
                                 Kennisbank
                             </NavLink>
+                            <NavLink href={route('about')} active={route().current('about')}>
+                                Over Ordena
+                            </NavLink>
 
                             {user ? (
                                 <Dropdown>

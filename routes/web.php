@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AdminController;
 
@@ -62,7 +63,11 @@ Route::put('/organisations/{organisation}/users/{user}/update', [OrganisationCon
 // No login required
 Route::get('/kennisbank', [PostController::class, 'index'])->name('forum');
 Route::get('/activiteiten', [ActivityController::class, 'index'])->name('activities');
+Route::get('/over-ons', [AboutController::class, 'index'])->name('about');
 Route::get('/activiteiten/activiteit/{id}', [ActivityController::class, 'show'])->name('activities.show');
+
+//mail routes
+Route::post('/contact', [AboutController::class, 'send']);
 
 Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
