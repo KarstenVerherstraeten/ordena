@@ -114,30 +114,46 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                 <div className="max-w-7xl mx-auto py-12">
                     <h1 className="hidden font-bold mb-6">Kennisbank</h1>
 
-                    <div className={"flex w-full justify-end mb-4"}>
-                        <div className="w-full md:w-full lg:w-auto mb-6 z-10 bg-white p-4 rounded-lg shadow-md">
-                            <div className="flex flex-col gap-4">
-                                <input
-                                    type="text"
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    placeholder="Zoeken..."
-                                    className="w-full rounded border-gray-300"
-                                />
-                                <select
-                                    value={`${sortField}-${sortOrder}`}
-                                    onChange={(e) => {
-                                        const [field, order] = e.target.value.split('-');
-                                        setSortField(field);
-                                        setSortOrder(order);
-                                    }}
-                                    className="w-full rounded border-gray-300"
-                                >
-                                    <option value="created_at-desc">Nieuwste datum</option>
-                                    <option value="created_at-asc">Oudste datum</option>
-                                    <option value="upvotes-desc">Meeste upvotes</option>
-                                    <option value="upvotes-asc">Minste upvotes</option>
-                                </select>
+                    <div className="relative flex flex-row z-10 max-w-7xl  py-12">
+                        <Head title={"Activiteiten"}/>
+
+                        <div className={"flex flex-col md:flex-row justify-center items-center  md:w-full"}>
+                            <div className={"md:w-1/2 flex flex-col justify-center items-center"}>
+                                <p>Betrouwbare informatie over autisme vinden is niet altijd eenvoudig. Bij Ordena bouwen we daarom aan een kennisbank die overzichtelijk, praktisch en vooral menselijk is. De inhoud wordt samengesteld door mensen die dicht bij de leefwereld van kinderen met autisme staan: leerkrachten, ouders, psychologen en andere betrokkenen delen hier hun kennis en ervaringen.<br/>
+                                    <strong>En onthoud: deze kennisbank is er voor iedereen die meer wil begrijpen, of je nu ouder, hulpverlener, leerkracht bent, of gewoon oprecht geïnteresseerd.</strong>
+                                </p>
+
+                            </div>
+
+                            <div className="flex md:w-1/2 w-full flex-col md:flex-row justify-center md:justify-end mb-4">
+                                <div
+                                    className="w-full md:w-[500px] lg:w-[600px] mt-6 md:mt-0 mb-6 z-10 justify-end bg-white p-6 rounded-lg shadow-lg">
+                                    <div className="flex flex-col gap-4">
+                                        <input
+                                            type="text"
+                                            value={searchTerm}
+                                            onChange={(e) => setSearchTerm(e.target.value)}
+                                            placeholder="Zoeken naar activiteiten..."
+                                            className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors"
+                                        />
+                                    </div>
+                                    <div className="flex gap-4 mt-4">
+                                        <select
+                                            value={`${sortField}-${sortOrder}`}
+                                            onChange={(e) => {
+                                                const [field, order] = e.target.value.split('-');
+                                                setSortField(field);
+                                                setSortOrder(order);
+                                            }}
+                                            className="w-full rounded border-gray-300"
+                                        >
+                                            <option value="created_at-desc">Nieuwste datum</option>
+                                            <option value="created_at-asc">Oudste datum</option>
+                                            <option value="upvotes-desc">Meeste upvotes</option>
+                                            <option value="upvotes-asc">Minste upvotes</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
