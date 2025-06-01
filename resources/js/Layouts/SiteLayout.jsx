@@ -83,8 +83,8 @@ export default function SiteLayout({header, children, breadcrumbs = []}) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('dashboard')}>Dashboard</Dropdown.Link>
-                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
+                                        <Dropdown.Link href={route('dashboard')}>Mijn profiel</Dropdown.Link>
+                                        <Dropdown.Link href={route('profile.edit')}>Instellingen</Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
                                             Log Out
                                         </Dropdown.Link>
@@ -110,9 +110,12 @@ export default function SiteLayout({header, children, breadcrumbs = []}) {
                         <ResponsiveNavLink href={route('forum')} active={route().current('forum')}>
                             Kennisbank
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('about')} active={route().current('about')}>
+                            Over Ordena
+                            </ResponsiveNavLink>
                         {user && (
                             <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                Dashboard
+                                Mijn profiel
                             </ResponsiveNavLink>
                         )}
                     </div>
