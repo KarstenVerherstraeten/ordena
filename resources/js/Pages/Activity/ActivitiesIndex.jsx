@@ -101,14 +101,16 @@ export default function ActivitiesIndex({activities: initialActivities,}) {
                     <Head title={"Activiteiten"}/>
 
                     <div className={"flex flex-col md:flex-row justify-center items-center  md:w-full"}>
-                    <div className={"md:w-1/2 flex flex-col justify-center items-center"}>
-                        <p>Een passende activiteit vinden voor iemand met autisme is niet altijd eenvoudig. Bij Ordena
-                            maken we die zoektocht graag wat gemakkelijker. Op deze pagina vind je een selectie van
-                            activiteiten die mogelijk goed aansluiten bij de behoeften van jouw kind.<br/>
-                            <strong>En onthoud: niet elk kind heeft dit soort activiteiten nodig. Een druk feestje mag
-                                natuurlijk ook gewoon leuk zijn!</strong>
-                        </p>
-                    </div>
+                        <div className={"md:w-1/2 flex flex-col justify-center items-center"}>
+                            <p>Een passende activiteit vinden voor iemand met autisme is niet altijd eenvoudig. Bij
+                                Ordena
+                                maken we die zoektocht graag wat gemakkelijker. Op deze pagina vind je een selectie van
+                                activiteiten die mogelijk goed aansluiten bij de behoeften van jouw kind.<br/>
+                                <strong>En onthoud: niet elk kind heeft dit soort activiteiten nodig. Een druk feestje
+                                    mag
+                                    natuurlijk ook gewoon leuk zijn!</strong>
+                            </p>
+                        </div>
 
                         <div className="flex md:w-1/2 w-full flex-col md:flex-row justify-center md:justify-end mb-4">
                             <div
@@ -141,44 +143,53 @@ export default function ActivitiesIndex({activities: initialActivities,}) {
 
                 <div className="relative mx-auto max-w-7xl py-12">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-centert">
-                        {activities.data.map((activity) => (
-                            <div key={activity.id} className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                                <div className="p-6 text-gray-900">
-                                    <div className={''}>
-                                        <img
-                                            src={activity.featured_image ? `/storage/${activity.featured_image}` : '/Assets/Placeholders/placeholderImage.webp'}
-                                            alt={activity.name} className="w-full h-48 object-cover rounded-lg"/>
-                                        <h2 className="text-lg font-bold my-4">{activity.title}</h2>
-                                        <p>{activity.description}</p>
-                                    </div>
+                        {loading ? (
+                            <div>Loading...</div>
+                        ) : activities.data.length === 0 ? (
+                            <div
+                                className="bg-white w-full shadow-md z-10 rounded-lg p-6 text-center text-gray-600 col-span-3">
+                                Geen activiteiten gevonden
+                            </div>
+                        ) : (
+                            activities.data.map((activity) => (
+                                <div key={activity.id} className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                                    <div className="p-6 text-gray-900">
+                                        <div className={''}>
+                                            <img
+                                                src={activity.featured_image ? `/storage/${activity.featured_image}` : '/Assets/Placeholders/placeholderImage.webp'}
+                                                alt={activity.name} className="w-full h-48 object-cover rounded-lg"/>
+                                            <h2 className="text-lg font-bold my-4">{activity.title}</h2>
+                                            <p>{activity.description}</p>
+                                        </div>
 
-                                    <div>
-                                        <h4 className={'text-md font-semibold mt-4'}>Details</h4>
-                                        <p className="text-sm text-gray-500 mt-2">Datum: {activity.start}</p>
-                                        <p className="text-sm text-gray-500 mt-2">Locatie: {activity.location}</p>
-                                        <p className="text-sm text-gray-500 mt-2">Prijs: {activity.price === 0 ? 'Gratis' : `${activity.price} €`}</p>
-                                    </div>
-                                    <div className="flex space-x-4 mt-4">
-                                        <PrimaryButton onClick={() => viewActivities(activity.id)}>
-                                            Bekijk Activiteit
-                                        </PrimaryButton>
-                                        <SecondaryButton onClick={() => {
-                                            navigator.clipboard.writeText(route('activities.show', activity.id));
-                                            toast.success('Link gekopieerd!', {
-                                                position: "top-right",
-                                                autoClose: 3000,
-                                                hideProgressBar: true,
-                                                closeOnClick: true,
-                                                pauseOnHover: true,
-                                                draggable: true,
-                                            });
-                                        }}>
-                                            Deel Activiteit
-                                        </SecondaryButton>
+                                        <div>
+                                            <h4 className={'text-md font-semibold mt-4'}>Details</h4>
+                                            <p className="text-sm text-gray-500 mt-2">Datum: {activity.start}</p>
+                                            <p className="text-sm text-gray-500 mt-2">Locatie: {activity.location}</p>
+                                            <p className="text-sm text-gray-500 mt-2">Prijs: {activity.price === 0 ? 'Gratis' : `${activity.price} €`}</p>
+                                        </div>
+                                        <div className="flex space-x-4 mt-4">
+                                            <PrimaryButton onClick={() => viewActivities(activity.id)}>
+                                                Bekijk Activiteit
+                                            </PrimaryButton>
+                                            <SecondaryButton onClick={() => {
+                                                navigator.clipboard.writeText(route('activities.show', activity.id));
+                                                toast.success('Link gekopieerd!', {
+                                                    position: "top-right",
+                                                    autoClose: 3000,
+                                                    hideProgressBar: true,
+                                                    closeOnClick: true,
+                                                    pauseOnHover: true,
+                                                    draggable: true,
+                                                });
+                                            }}>
+                                                Deel Activiteit
+                                            </SecondaryButton>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))
+                        )}
                     </div>
                 </div>
                 <div className={"flex flex-row justify-center items-center lg:justify-end gap-4 mb-12"}>
