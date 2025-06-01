@@ -31,19 +31,23 @@ export default function AuthenticatedLayout({ header, children }) {
                                     Mijn profiel
                                 </NavLink>
 
-                                <NavLink
-                                    href={route('dashboard.posts')}
-                                    active={route().current('dashboard.posts')}
-                                >
-                                    Mijn posts
-                                </NavLink>
+                                {['Organisator', 'Leerkracht', 'Ouder', 'GebruikerASS', 'Psycholoog', 'Admin'].includes(user?.detail?.role) && (
+                                    <NavLink
+                                        href={route('dashboard.posts')}
+                                        active={route().current('dashboard.posts')}
+                                    >
+                                        Mijn posts
+                                    </NavLink>
+                                )}
 
+                                {['Organisator','Admin'].includes(user?.detail?.role) && (
                                 <NavLink
                                     href={route('dashboard.activities')}
                                     active={route().current('dashboard.activities')}
                                 >
                                     Mijn activiteiten
                                 </NavLink>
+                                )}
                             </div>
                         </div>
 

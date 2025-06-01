@@ -33,11 +33,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard/myposts', [PostController::class, 'myPosts'])
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified', 'role:Organisator,Psycholoog,Leerkracht,Ouder,GebruikerASS,Admin'])
     ->name('dashboard.posts');
 
 Route::get('/dashboard/myactivities', [ActivityController::class, 'MyActivities'])
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified', 'role:Organisator,Admin'])
     ->name('dashboard.activities');
 
 Route::get('/dashboard/rolerequest', [RoleRequestController::class, 'index'])
