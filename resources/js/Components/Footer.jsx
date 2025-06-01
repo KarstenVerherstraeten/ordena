@@ -18,11 +18,13 @@ export default function Footer(){
                     <nav className="flex flex-col space-y-3 items-center md:items-start">
                         <Link href="/" className="text-gray-600 hover:text-gray-900 transition-colors">Home</Link>
                         <Link href={route('forum')}
-                              className="text-gray-600 hover:text-gray-900 transition-colors">Forum</Link>
+                              className="text-gray-600 hover:text-gray-900 transition-colors">Kennisbank</Link>
                         <Link href={route('activities')}
                               className="text-gray-600 hover:text-gray-900 transition-colors">Activiteiten</Link>
+                        <Link href={(route('about'))}
+                                className="text-gray-600 hover:text-gray-900 transition-colors">Over Ordena</Link>
                         <Link href={route('dashboard')}
-                              className="text-gray-600 hover:text-gray-900 transition-colors">Dashboard</Link>
+                              className="text-gray-600 hover:text-gray-900 transition-colors">Mijn profiel</Link>
                     </nav>
                 </div>
                 <div className="mt-4 md:mt-0">

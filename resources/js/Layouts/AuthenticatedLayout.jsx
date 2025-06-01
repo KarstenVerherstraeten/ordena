@@ -28,22 +28,26 @@ export default function AuthenticatedLayout({ header, children }) {
                                     href={route('dashboard')}
                                     active={route().current('dashboard')}
                                 >
-                                    Dashboard
+                                    Mijn profiel
                                 </NavLink>
 
-                                <NavLink
-                                    href={route('dashboard.posts')}
-                                    active={route().current('dashboard.posts')}
-                                >
-                                    My posts
-                                </NavLink>
+                                {['Organisator', 'Leerkracht', 'Ouder', 'GebruikerASS', 'Psycholoog', 'Admin'].includes(user?.detail?.role) && (
+                                    <NavLink
+                                        href={route('dashboard.posts')}
+                                        active={route().current('dashboard.posts')}
+                                    >
+                                        Mijn posts
+                                    </NavLink>
+                                )}
 
+                                {['Organisator','Admin'].includes(user?.detail?.role) && (
                                 <NavLink
                                     href={route('dashboard.activities')}
                                     active={route().current('dashboard.activities')}
                                 >
-                                    My activities
+                                    Mijn activiteiten
                                 </NavLink>
+                                )}
                             </div>
                         </div>
 
@@ -78,14 +82,14 @@ export default function AuthenticatedLayout({ header, children }) {
                                         <Dropdown.Link
                                             href={route('profile.edit')}
                                         >
-                                            Profile
+                                            Instellingen
                                         </Dropdown.Link>
                                         <Dropdown.Link
                                             href={route('logout')}
                                             method="post"
                                             as="button"
                                         >
-                                            Log Out
+                                            Log uit
                                         </Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
@@ -146,7 +150,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             href={route('dashboard')}
                             active={route().current('dashboard')}
                         >
-                            Dashboard
+                            Mijn profiel
                         </ResponsiveNavLink>
                     </div>
 
@@ -162,14 +166,14 @@ export default function AuthenticatedLayout({ header, children }) {
 
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink href={route('profile.edit')}>
-                                Profile
+                                Instellingen
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 method="post"
                                 href={route('logout')}
                                 as="button"
                             >
-                                Log Out
+                                Log uit
                             </ResponsiveNavLink>
                         </div>
                     </div>
