@@ -38,44 +38,39 @@ export default function About() {
         'g-recaptcha-response': '',
     });
 
+    const [captchaToken, setCaptchaToken] = React.useState('');
+    const [captchaRendered, setCaptchaRendered] = React.useState(false);
+    const recaptchaRef = React.useRef(null);
+
+
+    useEffect(() => {
+        const checkRecaptcha = setInterval(() => {
+            if (window.grecaptcha && recaptchaRef.current && !captchaRendered) {
+                const widgetId = window.grecaptcha.render(recaptchaRef.current, {
+                    sitekey: import.meta.env.VITE_RECAPTCHA_SITE_KEY,
+                    callback: (token) => {
+                        setCaptchaToken(token);
+                        setData('g-recaptcha-response', token);
+                    }
+                });
+                setCaptchaRendered(true);
+                clearInterval(checkRecaptcha);
+            }
+        }, 300);
+
+        return () => clearInterval(checkRecaptcha);
+    }, [captchaRendered]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!data['g-recaptcha-response']) {
-            // Trigger reCAPTCHA validation
-            if (window.grecaptcha) {
-                window.grecaptcha.execute();
-            }
+        if (!captchaToken) {
+            alert('Please complete the captcha');
             return;
         }
+
         post('/contact');
     };
 
-    const handleRecaptchaCallback = useCallback((token) => {
-        setData('g-recaptcha-response', token);
-    }, [setData]);
-
-    useEffect(() => {
-        // Load reCAPTCHA script
-        const script = document.createElement('script');
-        script.src = `https://www.google.com/recaptcha/api.js?render=${import.meta.env.VITE_RECAPTCHA_SITE_KEY}`;
-        script.async = true;
-        document.body.appendChild(script);
-
-        return () => {
-            document.body.removeChild(script);
-        };
-    }, []);
-
-    useEffect(() => {
-        window.onRecaptchaLoad = () => {
-            window.grecaptcha.ready(() => {
-                window.grecaptcha.render('g-recaptcha', {
-                    'sitekey': import.meta.env.VITE_RECAPTCHA_SITE_KEY,
-                    'callback': handleRecaptchaCallback
-                });
-            });
-        };
-    }, [handleRecaptchaCallback]);
 
     return (
         <SiteLayout
@@ -190,7 +185,7 @@ export default function About() {
                                                 />
                                             </div>
 
-                                            <div id="g-recaptcha"></div>
+                                            <div ref={recaptchaRef} className="mt-4" />
 
                                             <PrimaryButton type="submit" disabled={processing} className="mt-4 w-full">
                                                 Verstuur

@@ -14,9 +14,16 @@
         @routes
         @viteReactRefresh
         @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
         @inertia
     </body>
 </html>
+
+<script>
+    function onRecaptchaLoadCallback() {
+        window.recaptchaReady = true;
+    }
+</script>
