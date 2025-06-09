@@ -27,58 +27,62 @@ export default function Myposts({ posts }) {
 
     return (
         <AuthenticatedLayout
-            header={<h2 className="text-xl font-semibold leading-tight text-gray-800">My Posts</h2>}
+            header={<h2 className="text-2xl font-bold text-gray-800">Mijn berichten</h2>}
         >
             <Head title="Mijn posts" />
 
             {message && (
-                <div className="mb-4 rounded-lg bg-green-100 px-4 py-2 text-green-800 shadow">
+                <div className="mb-4 rounded-md bg-green-100 px-4 py-2 text-green-800 border border-green-300 shadow-md">
                     {message}
                 </div>
             )}
 
-            <h2 className="text-lg font-bold my-4">Je recente posts:</h2>
+            <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <h2 className="text-xl font-semibold my-6 text-gray-700">Je recente posts</h2>
+                <div className="space-y-6">
+                    {posts.map((post) => (
+                        <div key={post.id} className="bg-white rounded-xl shadow-md p-6 transition hover:shadow-lg border border-gray-100">
+                            <h3 className="text-lg font-bold text-gray-800">{post.title}</h3>
+                            <p className="text-gray-700 mt-2">{post.content}</p>
+                            <p className="text-sm text-gray-500 mt-1">By: You</p>
 
-            <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                <div className="p-6 text-gray-900">
-                    <ul>
-                        {posts.map((post) => (
-                            <li key={post.id} className="mb-4 border-b pb-2">
-                                <h3 className="text-lg font-semibold">{post.title}</h3>
-                                <p>{post.content}</p>
-                                <p className="text-sm text-gray-500">By: {post.user.name}</p>
-                                <div className="upvotes">
-                                    <span className="upvote-count">{post.upvotes}</span>
-                                </div>
-
+                            <div className="flex items-center justify-between mt-4">
+                                <span className="text-sm font-medium text-indigo-600">
+                                   <svg className="w-4 h-4 inline-block mr-1" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                                        <path
+                                                            d="M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-5.5l.92-4.65c.05-.22.02-.46-.08-.66-.23-.45-.52-.86-.88-1.22L14 2 7.59 8.41C7.21 8.79 7 9.3 7 9.83v7.84C7 18.95 8.05 20 9.34 20h8.11c.7 0 1.36-.37 1.72-.97l2.66-6.15z"/>
+                                                    </svg>️ {post.upvotes} upvotes
+                                </span>
                                 <button
                                     onClick={() => handleDelete(post.id)}
-                                    className="mt-2 px-4 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+                                    className="px-4 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 transition"
                                 >
-                                    Delete post
+                                    Verwijder post
                                 </button>
-                            </li>
-                        ))}
-                    </ul>
+                            </div>
+                        </div>
+                    ))}
                 </div>
+
+                <Footer />
             </div>
 
-            {/* Modal */}
             {confirmingDelete && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white rounded-lg p-6 shadow-lg max-w-md w-full">
-                        <h3 className="text-lg font-semibold mb-4">Bevestig verwijderen</h3>
-                        <p>Weet je zeker dat je deze post wilt verwijderen?</p>
-                        <div className="mt-4 flex justify-end gap-2">
+                <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
+                    <div className="bg-white rounded-lg p-6 shadow-xl max-w-sm w-full">
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4">Bevestig verwijderen</h3>
+                        <p className="text-gray-700">Weet je zeker dat je deze post wilt verwijderen?</p>
+                        <div className="mt-6 flex justify-end gap-3">
                             <button
                                 onClick={() => setConfirmingDelete(false)}
-                                className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                                className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition"
                             >
                                 Annuleren
                             </button>
                             <button
                                 onClick={confirmDelete}
-                                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
                             >
                                 Verwijderen
                             </button>
@@ -86,7 +90,6 @@ export default function Myposts({ posts }) {
                     </div>
                 </div>
             )}
-            <Footer></Footer>
         </AuthenticatedLayout>
     );
 }
