@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm, Link, Head } from '@inertiajs/react';
 import AdminLayout from '@/Layouts/AdminLayout.jsx';
+import Footer from "@/Components/Footer.jsx";
 
 export default function RoleRequests({ requests, auth }) {
     const { post, delete: destroy } = useForm();
@@ -80,7 +81,7 @@ export default function RoleRequests({ requests, auth }) {
                             </div>
                         </div>
                     </div>
-
+                <Footer></Footer>
                 </div>
             </div>
         </AdminLayout>

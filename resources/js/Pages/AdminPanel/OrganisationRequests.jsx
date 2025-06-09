@@ -1,6 +1,7 @@
 import { Head, useForm } from '@inertiajs/react';
 import AdminLayout from "@/Layouts/AdminLayout.jsx";
 import React from "react";
+import Footer from "@/Components/Footer.jsx";
 
 export default function OrganisationRequests({ pendingRequests }) {
     const { post } = useForm();
@@ -67,6 +68,7 @@ export default function OrganisationRequests({ pendingRequests }) {
                             </table>
                         </div>
                     </div>
+                   <Footer></Footer>
                 </div>
             </div>
         </AdminLayout>

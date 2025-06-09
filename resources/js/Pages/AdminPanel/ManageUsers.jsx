@@ -1,6 +1,7 @@
 import AdminLayout from '@/Layouts/AdminLayout.jsx';
 import { Head, router, usePage } from '@inertiajs/react';
 import { useState } from 'react';
+import Footer from "@/Components/Footer.jsx";
 
 export default function ManageUsers() {
     const { users } = usePage().props;
@@ -111,7 +112,7 @@ export default function ManageUsers() {
                             </div>
                         </div>
                     </div>
-
+                <Footer></Footer>
                 </div>
             </div>
         </AdminLayout>
