@@ -11,7 +11,7 @@ export default function Dashboard() {
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Dashboard
+                    Mijn profiel
                 </h2>
             }
         >
@@ -21,7 +21,7 @@ export default function Dashboard() {
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
-                            Welkom op je dashboard, {auth.user.name}! Hier kan je je profiel beheren en meer.
+                            Welkom op je profiel pagina, {auth.user.name}! Hier kan je je profiel beheren en meer.
                         </div>
                     </div>
 

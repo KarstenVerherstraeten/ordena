@@ -28,19 +28,19 @@ Route::get('/', function () {
 
 
 // dashboard routes
-Route::get('/dashboard', function () {
+Route::get('/mijnprofiel', function () {
     return Inertia::render('Dashboard/Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard/myposts', [PostController::class, 'myPosts'])
+Route::get('/dashboard/mijnberichten', [PostController::class, 'myPosts'])
     ->middleware(['auth', 'verified', 'role:Organisator,Psycholoog,Leerkracht,Ouder,GebruikerASS,Admin'])
     ->name('dashboard.posts');
 
-Route::get('/dashboard/myactivities', [ActivityController::class, 'MyActivities'])
+Route::get('/dashboard/mijnactiviteiten', [ActivityController::class, 'MyActivities'])
     ->middleware(['auth', 'verified', 'role:Organisator,Admin'])
     ->name('dashboard.activities');
 
-Route::get('/dashboard/rolerequest', [RoleRequestController::class, 'index'])
+Route::get('/dashboard/rolaanvraag', [RoleRequestController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard.rolerequest');
 

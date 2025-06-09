@@ -1,7 +1,7 @@
 import {Head, Link, router} from '@inertiajs/react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPaperPlane} from '@fortawesome/free-regular-svg-icons';
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import {faChevronUp} from '@fortawesome/free-solid-svg-icons';
 import SiteLayout from "@/Layouts/SiteLayout.jsx";
 import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
 import GreenBlob2 from "@/Components/Blobs/GreenBlob2.jsx";
@@ -107,7 +107,7 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
 
 
             <div
-                    className="hidden md:block md:absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[150vh] md:left-[2vw] lg:top-[4vh] lg:left-[60vw]">
+                className="hidden md:block md:absolute w-[366px] h-[400px] top-[30vh] left-[65vw] md:top-[150vh] md:left-[2vw] lg:top-[4vh] lg:left-[60vw]">
                 <PurpleBlob1/>
             </div>
             <div className="relative">
@@ -115,17 +115,23 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                     <h1 className="hidden font-bold mb-6">Kennisbank</h1>
 
                     <div className="relative flex flex-row z-10 max-w-7xl  py-12">
-                        <Head title={"Activiteiten"}/>
 
                         <div className={"flex flex-col md:flex-row justify-center items-center  md:w-full"}>
                             <div className={"md:w-1/2 flex flex-col justify-center items-center"}>
-                                <p>Betrouwbare informatie over autisme vinden is niet altijd eenvoudig. Bij Ordena bouwen we daarom aan een kennisbank die overzichtelijk, praktisch en vooral menselijk is. De inhoud wordt samengesteld door mensen die dicht bij de leefwereld van kinderen met autisme staan: leerkrachten, ouders, psychologen en andere betrokkenen delen hier hun kennis en ervaringen.<br/>
-                                    <strong>En onthoud: deze kennisbank is er voor iedereen die meer wil begrijpen, of je nu ouder, hulpverlener, leerkracht bent, of gewoon oprecht geïnteresseerd.</strong>
+                                <p>Betrouwbare informatie over autisme vinden is niet altijd eenvoudig. Bij Ordena
+                                    bouwen we daarom aan een kennisbank die overzichtelijk, praktisch en vooral
+                                    menselijk is. De inhoud wordt samengesteld door mensen die dicht bij de leefwereld
+                                    van kinderen met autisme staan: leerkrachten, ouders, psychologen en andere
+                                    betrokkenen delen hier hun kennis en ervaringen.<br/>
+                                    <strong>En onthoud: deze kennisbank is er voor iedereen die meer wil begrijpen, of
+                                        je nu ouder, hulpverlener, leerkracht bent, of gewoon oprecht
+                                        geïnteresseerd.</strong>
                                 </p>
 
                             </div>
 
-                            <div className="flex md:w-1/2 w-full flex-col md:flex-row justify-center md:justify-end mb-4">
+                            <div
+                                className="flex md:w-1/2 w-full flex-col md:flex-row justify-center md:justify-end mb-4">
                                 <div
                                     className="w-full md:w-[500px] lg:w-[600px] mt-6 md:mt-0 mb-6 z-10 justify-end bg-white p-6 rounded-lg shadow-lg">
                                     <div className="flex flex-col gap-4">
@@ -267,8 +273,9 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                                             onClick={() => viewPost(post.id)}
                                             className="w-full md:w-12 bg-[#9B77C7] hover:bg-[#8B67B7] text-white px-6 justify-center rounded flex items-center"
                                         >
-                                            <FontAwesomeIcon icon={faChevronUp}  className="hidden rotate-90 md:inline"/> <span
-                                            className="md:hidden">Lees meer</span>
+                                            <FontAwesomeIcon icon={faChevronUp} className="hidden rotate-90 md:inline"/>
+                                            <span
+                                                className="md:hidden">Lees meer</span>
                                         </button>
                                     </div>
                                 ))
@@ -278,8 +285,8 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                 </div>
 
                 <div className={"flex flex-row justify-center items-center lg:justify-end gap-4 mb-12"}>
-                {(posts.data.length === 10 || posts.current_page > 1) && posts.links && (
-                    <Pagination links={posts.links} onPageChange={handlePageChange}/>)}
+                    {(posts.data.length === 10 || posts.current_page > 1) && posts.links && (
+                        <Pagination links={posts.links} onPageChange={handlePageChange}/>)}
                 </div>
 
                 <PrimaryButton

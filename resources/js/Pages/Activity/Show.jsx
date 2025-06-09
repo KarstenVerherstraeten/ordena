@@ -34,20 +34,18 @@ export default function ActivitiesShow({activity, organiser}) {
             <Head title="Activiteit"/>
             <div className={"relative"}>
                 <div className="absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[15vh] md:left-[20vw]">
-                    <GreenBlob1 />
+                    <GreenBlob1/>
                 </div>
 
                 {/* Blob 2 */}
                 <div className="absolute w-[250px] h-[250px] top-[50vh] left-[5vw] md:left-[5vw]">
-                    <GreenBlob2 />
+                    <GreenBlob2/>
                 </div>
 
                 {/* Blob 3 */}
                 <div className="absolute w-[180px] h-[180px] top-[30vh] left-[65vw] md:top-[35vh] md:left-[60vw]">
-                    <PurpleBlob1 />
+                    <PurpleBlob1/>
                 </div>
-
-
 
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6 relative z-10">
@@ -57,12 +55,12 @@ export default function ActivitiesShow({activity, organiser}) {
                         <p className="mt-4 text-gray-600 whitespace-pre-line">{activity.description}</p>
 
                         <h3 className="text-lg font-semibold text-gray-800 mt-4">Details:</h3>
-                        <p className="text-sm text-gray-600 mt-2">📅 Start: {activity.start}</p>
-                        <p className="text-sm text-gray-600 mt-1">📍 Einde: {activity.end}</p>
-                        <p className="text-sm text-gray-600 mt-2">⏳
+                        <p className="text-sm text-gray-600 mt-2">Start: {activity.start}</p>
+                        <p className="text-sm text-gray-600 mt-1">Einde: {activity.end}</p>
+                        <p className="text-sm text-gray-600 mt-2">
                             Duur: {Math.ceil((new Date(activity.end) - new Date(activity.start)) / (1000 * 60 * 60 * 24))} dagen</p>
-                        <p className="text-sm text-gray-600 mt-1">📍 Locatie: {activity.location}</p>
-                        <p className="text-sm text-gray-600 mt-1">💶
+                        <p className="text-sm text-gray-600 mt-1">Locatie: {activity.location}</p>
+                        <p className="text-sm text-gray-600 mt-1">
                             Prijs: {activity.price === 0 ? 'Gratis' : `${activity.price} €`}</p>
 
                         <div className="mt-6">
@@ -88,13 +86,13 @@ export default function ActivitiesShow({activity, organiser}) {
 
                         {organiser.organisation ? (
                             <>
-                                <p className="text-sm text-gray-600 mt-2">👤
+                                <p className="text-sm text-gray-600 mt-2">
                                     Organisatie: {organiser.organisation.organisation_name}</p>
-                                <p className="text-sm text-gray-600 mt-1">📍
+                                <p className="text-sm text-gray-600 mt-1">
                                     Adres: {organiser.organisation.organisation_address}</p>
-                                <p className="text-sm text-gray-600 mt-1">📧 Email: {organiser.organisation.email}</p>
-                                <p className="text-sm text-gray-600 mt-1">📞 Telefoon: {organiser.organisation.phone_number}</p>
-                                <p className={"text-sm text-gray-600 mt-1"}> BTW-nummer: {organiser.organisation.btw_number}</p>
+                                <p className="text-sm text-gray-600 mt-1">Email: {organiser.organisation.email}</p>
+                                <p className="text-sm text-gray-600 mt-1">Telefoon: {organiser.organisation.phone_number}</p>
+                                <p className={"text-sm text-gray-600 mt-1"}>BTW-nummer: {organiser.organisation.btw_number}</p>
                                 <div className="mt-6 flex flex-col gap-2 justify-center items-start">
                                     {organiser.organisation.website && (
                                         <PrimaryButton
@@ -110,9 +108,9 @@ export default function ActivitiesShow({activity, organiser}) {
                             </>
                         ) : (
                             <>
-                                <p className="text-sm text-gray-600 mt-2">👤 Naam: {organiser.user.name}</p>
+                                <p className="text-sm text-gray-600 mt-2">Naam: {organiser.user.name}</p>
                                 {organiser.email &&
-                                    <p className="text-sm text-gray-600 mt-1">📧 Email: {organiser.email}</p>}
+                                    <p className="text-sm text-gray-600 mt-1"> Email: {organiser.email}</p>}
                             </>
                         )}
                     </div>
@@ -128,7 +126,7 @@ export default function ActivitiesShow({activity, organiser}) {
                                 <path
                                     d="M20 20H4V4h16v16zM4 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4zm5.5 6a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-3.5 9 3.5-4.5 2.5 3 3.5-4.5 4 6H6z"/>
                             </svg>
-                            Afbeeldingen (scroll door)
+                            Afbeeldingen
                         </h4>
 
                         <Slider
