@@ -12,14 +12,14 @@ export default function AdminLayout({header, children}) {
         useState(false);
 
     return (
-        <div className="min-h-screen bg-slate-100">
-            <nav className="border-b border-slate-200 bg-slate-800">
+        <div className="min-h-screen bg-gray-100">
+            <nav className="border-b border-gray-100 bg-white">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 justify-between">
                         <div className="flex">
-                            <div className="flex shrink-0 items-center">
+                            <div className="flex items-center">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-white"/>
+                                    <h1 className="flex-shrink-0 font-['ApparatSemiCond'] text-[#9B77C7] text-[30px]">Ordena</h1>
                                 </Link>
                             </div>
 
@@ -27,7 +27,6 @@ export default function AdminLayout({header, children}) {
                                 <NavLink
                                     href={route('admin.dashboard')}
                                     active={route().current('admin.dashboard')}
-                                    className="text-gray-300 hover:text-white"
                                 >
                                     Dashboard
                                 </NavLink>
@@ -35,7 +34,6 @@ export default function AdminLayout({header, children}) {
                                 <NavLink
                                     href={route('admin.manage')}
                                     active={route().current('admin.manage')}
-                                    className="text-gray-300 hover:text-white"
                                 >
                                     Manage users
                                 </NavLink>
@@ -43,7 +41,6 @@ export default function AdminLayout({header, children}) {
                                 <NavLink
                                     href={route('admin.rolerequest')}
                                     active={route().current('admin.rolerequest')}
-                                    className="text-gray-300 hover:text-white"
                                 >
                                     Role requests
                                 </NavLink>
@@ -51,7 +48,6 @@ export default function AdminLayout({header, children}) {
                                 <NavLink
                                     href={route('admin.organisation.requests')}
                                     active={route().current('admin.organisation.requests')}
-                                    className="text-gray-300 hover:text-white"
                                 >
                                     Organisation requests
                                 </NavLink>
@@ -65,7 +61,7 @@ export default function AdminLayout({header, children}) {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center rounded-md border border-slate-600 bg-slate-700 px-3 py-2 text-sm font-medium leading-4 text-gray-300 transition duration-150 ease-in-out hover:text-white focus:outline-none"
+                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
                                             >
                                                 {user.name}
 
@@ -110,7 +106,7 @@ export default function AdminLayout({header, children}) {
                                         (previousState) => !previousState,
                                     )
                                 }
-                                className="inline-flex items-center justify-center rounded-md p-2 text-gray-300 transition duration-150 ease-in-out hover:bg-slate-700 hover:text-white focus:bg-slate-700 focus:text-white focus:outline-none"
+                                className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none"
                             >
                                 <svg
                                     className="h-6 w-6"
@@ -156,18 +152,36 @@ export default function AdminLayout({header, children}) {
                         <ResponsiveNavLink
                             href={route('dashboard')}
                             active={route().current('dashboard')}
-                            className="text-gray-300 hover:text-white"
                         >
                             Dashboard
                         </ResponsiveNavLink>
+
+                        <ResponsiveNavLink
+                            href={route('admin.manage')}
+                            active={route().current('admin.manage')}
+                            >
+                            Manage users
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('admin.rolerequest')}
+                            active={route().current('admin.rolerequest')}
+                        >
+                            Role requests
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('admin.organisation.requests')}
+                            active={route().current('admin.organisation.requests')}>
+                            Organisation requests
+                        </ResponsiveNavLink>
+
                     </div>
 
-                    <div className="border-t border-slate-700 pb-1 pt-4">
+                    <div className="border-t border-gray-200 pb-1 pt-4">
                         <div className="px-4">
-                            <div className="text-base font-medium text-white">
+                            <div className="text-base font-medium">
                                 {user.name}
                             </div>
-                            <div className="text-sm font-medium text-gray-300">
+                            <div className="text-sm font-medium ">
                                 {user.email}
                             </div>
                         </div>
@@ -189,7 +203,7 @@ export default function AdminLayout({header, children}) {
             </nav>
 
             {header && (
-                <header className="bg-slate-800 shadow">
+                <header className="bg-white shadow">
                     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 text-white">
                         {header}
                     </div>
