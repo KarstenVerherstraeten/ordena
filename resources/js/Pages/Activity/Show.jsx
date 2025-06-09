@@ -86,9 +86,9 @@ export default function ActivitiesShow({activity, organiser}) {
 
                         {organiser.organisation ? (
                             <>
-                                <p className="text-sm text-gray-600 mt-2">👤
+                                <p className="text-sm text-gray-600 mt-2">
                                     Organisatie: {organiser.organisation.organisation_name}</p>
-                                <p className="text-sm text-gray-600 mt-1">📍
+                                <p className="text-sm text-gray-600 mt-1">
                                     Adres: {organiser.organisation.organisation_address}</p>
                                 <p className="text-sm text-gray-600 mt-1">Email: {organiser.organisation.email}</p>
                                 <p className="text-sm text-gray-600 mt-1">Telefoon: {organiser.organisation.phone_number}</p>
