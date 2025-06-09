@@ -126,7 +126,7 @@ export default function ActivitiesShow({activity, organiser}) {
                                 <path
                                     d="M20 20H4V4h16v16zM4 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4zm5.5 6a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-3.5 9 3.5-4.5 2.5 3 3.5-4.5 4 6H6z"/>
                             </svg>
-                            Afbeeldingen (scroll door)
+                            Afbeeldingen
                         </h4>
 
                         <Slider
