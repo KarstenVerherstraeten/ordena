@@ -11,15 +11,17 @@ export default function AuthenticatedLayout({ header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
+    const { auth } = usePage().props;
+
     return (
         <div className="min-h-screen bg-gray-100">
             <nav className="border-b border-gray-100 bg-white">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 justify-between">
                         <div className="flex">
-                            <div className="flex shrink-0 items-center">
+                            <div className="flex items-center">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                                    <h1 className="flex-shrink-0 font-['ApparatSemiCond'] text-[#9B77C7] text-[30px]">Ordena</h1>
                                 </Link>
                             </div>
 
@@ -40,13 +42,22 @@ export default function AuthenticatedLayout({ header, children }) {
                                     </NavLink>
                                 )}
 
-                                {['Organisator','Admin'].includes(user?.detail?.role) && (
-                                <NavLink
-                                    href={route('dashboard.activities')}
-                                    active={route().current('dashboard.activities')}
-                                >
-                                    Mijn activiteiten
-                                </NavLink>
+                                {['Organisator', 'Leerkracht', 'Ouder', 'GebruikerASS', 'Psycholoog', 'Admin'].includes(auth?.user?.detail?.role) && auth?.organisation_id && (
+                                    <NavLink
+                                        href={route('organisatie.show', { id: auth.organisation_id })}
+                                        active={route().current('organisatie.show')}
+                                    >
+                                        Organisatie
+                                    </NavLink>
+                                )}
+
+                                {['Organisator', 'Admin'].includes(auth?.user?.detail?.role) && !auth?.organisation_id && (
+                                    <NavLink
+                                        href={route('dashboard.activities')}
+                                        active={route().current('dashboard.activities')}
+                                    >
+                                        Mijn activiteiten
+                                    </NavLink>
                                 )}
                             </div>
                         </div>
