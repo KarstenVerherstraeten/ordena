@@ -24,6 +24,13 @@ export default function OrganisationIndex({organisation, organisatorUsers, authU
         });
     };
 
+    const makeActivity = () => {
+        router.get(route('activities.create'), {}, {
+            preserveScroll: false,
+            preserveState: true,
+        });
+    }
+
     const removeUser = (userId) => {
         router.delete(route('organisations.users.remove', {
             organisation: organisation.id,
@@ -50,11 +57,11 @@ export default function OrganisationIndex({organisation, organisatorUsers, authU
         >
             <Head title={`Organisatie | ${organisation.organisation_name}`}/>
 
-            <div className="relative">
-                <div className="absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[15vh] md:left-[20vw]">
-                    <GreenBlob1/>
-                </div>
+            <div className="absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[15vh] md:left-[20vw]">
+                <GreenBlob1/>
+            </div>
 
+            <div className="relative">
                 <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 relative z-10">
                     <h1 className="text-2xl font-semibold mb-6">{organisation.organisation_name}</h1>
 
@@ -106,6 +113,27 @@ export default function OrganisationIndex({organisation, organisatorUsers, authU
                         </div>
                     </div>
                 </div>
+
+                <div className={"flex flex-row"}>
+                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 mt-6 relative z-10">
+                    <h2>Activitieten:</h2>
+
+                    <div>
+                        <p className="text-gray-600">Hier komen de activiteiten van deze organisatie.</p>
+                        {/* Hier kan je een component of lijst toevoegen die de activiteiten toont */}
+
+
+                    </div>
+
+                    </div>
+
+                    <PrimaryButton onClick={() => makeActivity()}>
+                        maak activiteit
+                    </PrimaryButton>
+
+                </div>
+
+                <Footer></Footer>
             </div>
 
 
@@ -163,8 +191,6 @@ export default function OrganisationIndex({organisation, organisatorUsers, authU
 
                 </div>
             </Modal>
-
-            <Footer></Footer>
         </SiteLayout>
     );
 }
