@@ -159,7 +159,7 @@ export default function ActivitiesIndex({activities: initialActivities,}) {
                                                 src={activity.featured_image ? `/storage/${activity.featured_image}` : '/Assets/Placeholders/placeholderImage.webp'}
                                                 alt={activity.name} className="w-full h-48 object-cover rounded-lg"/>
                                             <h2 className="text-lg font-bold my-4">{activity.title}</h2>
-                                            <p>{activity.description}</p>
+                                            <p>{activity.description.length > 100 ? `${activity.description.substring(0,100)}...` : activity.description}</p>
                                         </div>
 
                                         <div>
