@@ -48,7 +48,7 @@ Route::post('/dashboard/rolerequest', [RoleRequestController::class, 'store'])->
 
 // Organisaties
 
-Route::get('dashboard/organisatie/aanvragen', [OrganisationController::class, 'create'])->middleware(['auth', 'verified', 'role:Organisator,Admin'])->name('organisatie.aanvragen');
+Route::get('organisatie/aanvragen', [OrganisationController::class, 'create'])->middleware(['auth', 'verified', 'role:Organisator,Admin'])->name('organisatie.aanvragen');
 Route::post('dashboard/organisatie/aanvragen', [OrganisationRequestController::class, 'store'])->middleware(['auth', 'verified',])->name('organisatie.aanvragen.store');
 Route::get('dashboard/organisatie/{id}', [OrganisationController::class, 'show'])->middleware(['auth', 'verified', 'role:Organisator,Admin'])->name('organisatie.show');
 Route::post('/organisations/{organisation}/users/add', [OrganisationController::class, 'addUser'])
