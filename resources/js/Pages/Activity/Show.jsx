@@ -81,7 +81,7 @@ export default function ActivitiesShow({activity, organiser}) {
                     </div>
 
                     {/* Rechterkolom - organisator info */}
-                    <div className="bg-white p-6 rounded-lg shadow">
+                    <div className="bg-white p-6 rounded-lg max-h-80 shadow">
                         <h4 className="text-lg font-semibold text-gray-800">Gegevens organisator:</h4>
 
                         {organiser.organisation ? (
