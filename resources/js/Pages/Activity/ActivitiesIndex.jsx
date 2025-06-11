@@ -153,16 +153,16 @@ export default function ActivitiesIndex({activities: initialActivities,}) {
                         ) : (
                             activities.data.map((activity) => (
                                 <div key={activity.id} className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                                    <div className="p-6 text-gray-900">
+                                    <div className="p-6 text-gray-900 h-full flex flex-col">
                                         <div className={''}>
                                             <img
                                                 src={activity.featured_image ? `/storage/${activity.featured_image}` : '/Assets/Placeholders/placeholderImage.webp'}
                                                 alt={activity.name} className="w-full h-48 object-cover rounded-lg"/>
                                             <h2 className="text-lg font-bold my-4">{activity.title}</h2>
-                                            <p>{activity.description.length > 100 ? `${activity.description.substring(0,100)}...` : activity.description}</p>
+                                            <p className={"mb-2.5"}>{activity.description.length > 100 ? `${activity.description.substring(0,100)}...` : activity.description}</p>
                                         </div>
 
-                                        <div>
+                                        <div className="mt-auto">
                                             <h4 className={'text-md font-semibold mt-4'}>Details</h4>
                                             <p className="text-sm text-gray-500 mt-2">Datum: {activity.start}</p>
                                             <p className="text-sm text-gray-500 mt-2">Locatie: {activity.location}</p>
