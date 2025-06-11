@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title')->default('Placeholder Title');
-            $table->string('description');
+            $table->text('description');
             $table->dateTime('start');
             $table->dateTime('end');
             $table->integer('price')->default(0);
