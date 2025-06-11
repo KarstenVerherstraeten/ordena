@@ -5,9 +5,10 @@ import GreenBlob1 from "@/Components/Blobs/GreenBlob1.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import Modal from "@/Components/Modal.jsx";
 import Footer from "@/Components/Footer.jsx";
+import SecondaryButton from "@/Components/SecondaryButton.jsx";
+import {toast} from "react-toastify";
 
-export default function OrganisationIndex({organisation, organisatorUsers, authUserId}) {
-
+export default function OrganisationIndex({ organisation, organisatorUsers, authUserId, activities }) {
     const [showModal, setShowModal] = useState(false);
     const [userIdToAdd, setUserIdToAdd] = useState('');
     const [search, setSearch] = useState('');
@@ -114,23 +115,72 @@ export default function OrganisationIndex({organisation, organisatorUsers, authU
                     </div>
                 </div>
 
-                <div className={"flex flex-row"}>
-                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 mt-6 relative z-10">
-                    <h2>Activitieten:</h2>
+                <div className="flex flex-col gap-6">
+                    <div className=" sm:rounded-lg mt-6 relative z-10">
+                        <div className="flex justify-between items-center mb-6">
+                            <h2 className="text-2xl font-semibold">Activiteiten van deze organisatie</h2>
+                            <PrimaryButton onClick={() => makeActivity()}>
+                                Maak Activiteit
+                            </PrimaryButton>
+                        </div>
 
-                    <div>
-                        <p className="text-gray-600">Hier komen de activiteiten van deze organisatie.</p>
-                        {/* Hier kan je een component of lijst toevoegen die de activiteiten toont */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {activities.length === 0 ? (
+                                <div className="bg-white w-full shadow-md z-10 rounded-lg p-6 text-center text-gray-600 col-span-3">
+                                    Geen activiteiten gevonden
+                                </div>
+                            ) : (
+                                activities.map((act) => (
+                                    <div key={act.id} className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                                        <div className="p-6 text-gray-900 h-full flex flex-col">
+                                            <img
+                                                src={act.featured_image ? `/storage/${act.featured_image}` : '/Assets/Placeholders/placeholderImage.webp'}
+                                                alt={act.title}
+                                                className="w-full h-48 object-cover rounded-lg"
+                                            />
+                                            <h3 className="text-lg font-bold my-4">{act.title}</h3>
+                                            <p className={"mb-2.5"}>
+                                                {act.description.length > 100
+                                                    ? `${act.description.substring(0, 100)}...`
+                                                    : act.description}
+                                            </p>
 
+                                            <div className="mt-auto">
+                                                <h4 className="text-md font-semibold">Details</h4>
+                                                <p className="text-sm text-gray-500 mt-1">Datum: {act.start}</p>
+                                                <p className="text-sm text-gray-500 mt-1">Locatie: {act.location}</p>
+                                                <p className="text-sm text-gray-500 mt-1">
+                                                    Prijs: {act.price === 0 ? 'Gratis' : `${act.price} €`}
+                                                </p>
+                                                <p className="text-sm text-gray-500 mt-1">
+                                                    Aangemaakt door: {act.user?.name ?? 'Onbekend'}
+                                                </p>
+                                            </div>
 
+                                            <div className="flex space-x-4 mt-4">
+                                                <PrimaryButton onClick={() => viewActivities(act.id)}>
+                                                    Bekijk Activiteit
+                                                </PrimaryButton>
+                                                <SecondaryButton onClick={() => {
+                                                    navigator.clipboard.writeText(route('activities.show', act.id));
+                                                    toast.success('Link gekopieerd!', {
+                                                        position: "top-right",
+                                                        autoClose: 3000,
+                                                        hideProgressBar: true,
+                                                        closeOnClick: true,
+                                                        pauseOnHover: true,
+                                                        draggable: true,
+                                                    });
+                                                }}>
+                                                    Deel Activiteit
+                                                </SecondaryButton>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
                     </div>
-
-                    </div>
-
-                    <PrimaryButton onClick={() => makeActivity()}>
-                        maak activiteit
-                    </PrimaryButton>
-
                 </div>
 
                 <Footer></Footer>

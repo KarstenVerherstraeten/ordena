@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Organisation;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -25,20 +26,29 @@ class OrganisationController extends Controller
 
     public function show($id)
     {
+        // Load the organisation and its users
         $organisation = Organisation::with('users')->findOrFail($id);
 
+        // Get user IDs from the organisation's users
         $userIds = $organisation->users->pluck('id')->toArray();
 
+        // Fetch users with role 'Organisator' that are not already part of the organisation
         $organisatorUsers = User::whereHas('detail', function ($query) {
             $query->where('role', 'Organisator');
         })
             ->whereNotIn('id', $userIds)
             ->get(['id', 'name', 'email']);
 
+        // Fetch activities for the users in this organisation
+        $activities = Activity::with('user')
+            ->whereIn('user_id', $userIds)
+            ->get();
+
         return inertia('Organisation/Index', [
             'organisation' => $organisation,
             'organisatorUsers' => $organisatorUsers,
             'authUserId' => auth()->id(),
+            'activities' => $activities,
         ]);
     }
 
