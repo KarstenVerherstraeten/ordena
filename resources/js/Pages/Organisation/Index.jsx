@@ -119,9 +119,13 @@ export default function OrganisationIndex({ organisation, organisatorUsers, auth
                     <div className=" sm:rounded-lg mt-6 relative z-10">
                         <div className="flex justify-between items-center mb-6">
                             <h2 className="text-2xl font-semibold">Activiteiten van deze organisatie</h2>
-                            <PrimaryButton onClick={() => makeActivity()}>
-                                Maak Activiteit
-                            </PrimaryButton>
+
+
+                            {organisation.users.some(user => user.id === authUserId) && (
+                                <PrimaryButton onClick={() => makeActivity()}>
+                                    Maak Activiteit
+                                </PrimaryButton>
+                            )}
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
