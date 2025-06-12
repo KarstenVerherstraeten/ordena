@@ -1,78 +1,102 @@
-<a href="https://www.ordena.be" target="_blank" >
-  <img src="https://github.com/user-attachments/assets/fd249d08-74c4-4831-b715-f55c30f54936" alt="Logo Ordena" style="width: 200px; height: auto; align="center;">
-</a>
-
 <p align="center">
-![GitHub repo size](https://img.shields.io/github/repo-size/KarstenVerherstraeten/ordena)
-![GitHub issues](https://img.shields.io/github/issues/KarstenVerherstraeten/ordena)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/KarstenVerherstraeten/ordena)
-![GitHub last commit](https://img.shields.io/github/last-commit/KarstenVerherstraeten/ordena)
-![License](https://img.shields.io/github/license/KarstenVerherstraeten/ordena)
+  <a href="https://www.ordena.be" target="_blank">
+    <img src="https://github.com/user-attachments/assets/fd249d08-74c4-4831-b715-f55c30f54936" alt="Logo Ordena" style="width: 400px; height: auto;">
+  </a>
 </p>
 
-## Wat is ordena?
+<p align="center">
+  <img src="https://img.shields.io/github/repo-size/KarstenVerherstraeten/ordena" alt="GitHub repo size">
+  <img src="https://img.shields.io/github/issues/KarstenVerherstraeten/ordena" alt="GitHub issues">
+  <img src="https://img.shields.io/github/issues-pr/KarstenVerherstraeten/ordena" alt="GitHub pull requests">
+  <img src="https://img.shields.io/github/last-commit/KarstenVerherstraeten/ordena" alt="GitHub last commit">
+  <img src="https://img.shields.io/github/license/KarstenVerherstraeten/ordena" alt="License">
+</p>
 
-Ordena is een platform dat bewustzijn rond autisme vergroot. Organisatoren kunnen activiteiten delen, terwijl psychologen, ouders, leerkrachten en personen met ASS ervaringen en kennis bijdragen aan een centrale kennisbank, zodat iedereen beter inzicht krijgt in het leven met autisme.
+---
 
-## Features
-- Een kennisbank waar Ouders, Leerkrachten, Psyschologen en Gebruikers met ASS hun ideeën kunnen delen, tips en meer.
-- Een activiteiten pagina waar Organisatoren hun activiteit kunnen vermelden ( liefst prikkelarm )
-- Een duidelijke over Ordena pagina voor extra vragen en support.
-- Op de homepage een goed te volgen route voor jou ontdekkingstocht over autisme
+## 🧠 Wat is Ordena?
 
+Ordena is een platform dat het bewustzijn rond autisme vergroot. Organisatoren kunnen activiteiten delen, terwijl psychologen, ouders, leerkrachten en personen met ASS bijdragen aan een centrale kennisbank. Dit helpt iedereen om beter inzicht te krijgen in het leven met autisme.
 
+---
 
-## Inhoudstafel
+## 🚀 Features
 
-- [Instalatie](#Instalatie)
-- [Bronnen](#Bronnen)
-- [Author](#Author)
+- 📚 Kennisbank voor ouders, leerkrachten, psychologen en mensen met ASS om tips en ervaringen te delen.
+- 📅 Activiteitenpagina waar organisatoren prikkelarme evenementen kunnen posten.
+- 🧭 Een heldere "Over Ordena"-pagina voor vragen en ondersteuning.
+- 🏠 Een overzichtelijke homepage met een duidelijke route voor je ontdekkingstocht over autisme.
 
+---
 
+## 📑 Inhoudstafel
 
-## Instalatie
+- [Installatie](#installatie)
+- [Bronnen](#bronnen)
+- [ChatGPT Gesprekken](#chatgpt-gesprekken)
+- [Auteur](#auteur)
+- [Licentie](#licentie)
 
-### how run je het project lokaal
+---
 
-Bekijk de instalatie guide van laravel
-[Instalatie Laravel](https://laravel.com/docs/12.x/installation)
+## 🛠️ Installatie
 
-1. Clone repository
+### 📌 Project lokaal opstarten
+
+Volg de officiële [Laravel installatiegids](https://laravel.com/docs/12.x/installation)
+
+1. Clone de repository:
 ```bash
-git clone [https://github.com/](https://github.com/KarstenVerherstraeten/ordena)
+git clone https://github.com/KarstenVerherstraeten/ordena.git
 ```
-2. Navigeer naar je document
+
+2. Navigeer naar de projectmap:
 ```bash
 cd ordena
 ```
-3. Instaleer dependencies
+
+3. Installeer de dependencies:
 ```bash
 npm install
+composer install
 ```
-4. igrate de Database Tables
+
+4. Genereer `.env`-bestand en pas aan:
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+5. Maak de database aan en voer migraties uit:
 ```bash
 php artisan migrate
 ```
-5. Start je server
+
+6. Start de server en de Vite dev server:
 ```bash
-composer run dev
+php artisan serve
+npm run dev
 ```
-Het project zal runnen op http://127.0.0.1:8000. Of een ander opgegeven adres, of een voorgesteld door je project.
 
-## Bronnen
+Bezoek [http://127.0.0.1:8000](http://127.0.0.1:8000) of het adres dat in de terminal wordt weergegeven.
+
+---
+
+## 📚 Bronnen
+
 - [Laravel Documentatie](https://laravel.com/docs/12.x)
-- [Start project]([https://react.dev/learn/start-a-new-react-project](https://laravel.com/docs/12.x/installation))
-- [W3 schools](https://www.w3schools.com/)
 - [React Documentatie](https://react.dev/)
-- [Courses back-end](https://canvas.ehb.be/courses/33609)
-- [github copilot](https://github.com/features/copilot)
-- [Jetbrains AI](https://www.jetbrains.com/ai/#)
-- [Notificaties](https://www.npmjs.com/package/react-toastify?activeTab=readme)
-- [Image slider](https://react-slick.neostack.com/docs/get-started)
-- [Tailwind css documentation](https://v2.tailwindcss.com/docs)
+- [W3Schools](https://www.w3schools.com/)
+- [Tailwind CSS Docs](https://v2.tailwindcss.com/docs)
+- [React Toastify (notificaties)](https://www.npmjs.com/package/react-toastify)
+- [React Slick (image slider)](https://react-slick.neostack.com/docs/get-started)
+- [GitHub Copilot](https://github.com/features/copilot)
+- [JetBrains AI](https://www.jetbrains.com/ai/#)
+- [EHB Back-end Course](https://canvas.ehb.be/courses/33609)
 
+---
 
-### ChatGPT gesprekken:
+## 💬 ChatGPT Gesprekken
 
 - [Ordena | Blobs Overflow Solution](https://chatgpt.com/share/684af4db-9828-800f-b0c3-ddb28b5e362e)
 - [Ordena | Role middleware optimalisatie](https://chatgpt.com/share/684af4cc-84dc-800f-8798-22cb3cc2b1cb)
@@ -85,10 +109,15 @@ Het project zal runnen op http://127.0.0.1:8000. Of een ander opgegeven adres, o
 - [Ordena | Onboarding Progress Bar Setup](https://chatgpt.com/share/684af436-7888-800f-a539-2a06ffb521a0)
 - [Ordena | Send email on register](https://chatgpt.com/share/684af423-4c04-800f-b6ea-b8ebe3e1176f)
 
+---
 
-## Author
-Karsten Verherstraeten
+## 👨‍💻 Auteur
 
-## License
+**Karsten Verherstraeten**  
+[GitHub Profiel](https://github.com/KarstenVerherstraeten)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 📄 Licentie
+
+De Laravel-framework is open-source software gelicentieerd onder de [MIT-licentie](https://opensource.org/licenses/MIT).
