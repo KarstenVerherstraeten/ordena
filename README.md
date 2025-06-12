@@ -1,60 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<a href="https://www.ordena.be" target="_blank" >
+  <img src="https://github.com/user-attachments/assets/fd249d08-74c4-4831-b715-f55c30f54936" alt="Logo Ordena" style="width: 200px; height: auto; align="center;">
+</a>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+![GitHub repo size](https://img.shields.io/github/repo-size/KarstenVerherstraeten/ordena)
+![GitHub issues](https://img.shields.io/github/issues/KarstenVerherstraeten/ordena)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/KarstenVerherstraeten/ordena)
+![GitHub last commit](https://img.shields.io/github/last-commit/KarstenVerherstraeten/ordena)
+![License](https://img.shields.io/github/license/KarstenVerherstraeten/ordena)
 </p>
 
-## About Laravel
+## Wat is ordena?
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Ordena is een platform dat bewustzijn rond autisme vergroot. Organisatoren kunnen activiteiten delen, terwijl psychologen, ouders, leerkrachten en personen met ASS ervaringen en kennis bijdragen aan een centrale kennisbank, zodat iedereen beter inzicht krijgt in het leven met autisme.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
+- Een kennisbank waar Ouders, Leerkrachten, Psyschologen en Gebruikers met ASS hun ideeën kunnen delen, tips en meer.
+- Een activiteiten pagina waar Organisatoren hun activiteit kunnen vermelden ( liefst prikkelarm )
+- Een duidelijke over Ordena pagina voor extra vragen en support.
+- Op de homepage een goed te volgen route voor jou ontdekkingstocht over autisme
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Inhoudstafel
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- [Instalatie](#Instalatie)
+- [Bronnen](#Bronnen)
+- [Author](#Author)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Instalatie
 
-### Premium Partners
+### how run je het project lokaal
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+Bekijk de instalatie guide van laravel
+[Instalatie Laravel](https://laravel.com/docs/12.x/installation)
 
-## Contributing
+1. Clone repository
+```bash
+git clone [https://github.com/](https://github.com/KarstenVerherstraeten/ordena)
+```
+2. Navigeer naar je document
+```bash
+cd ordena
+```
+3. Instaleer dependencies
+```bash
+npm install
+```
+4. igrate de Database Tables
+```bash
+php artisan migrate
+```
+5. Start je server
+```bash
+composer run dev
+```
+Het project zal runnen op http://127.0.0.1:8000. Of een ander opgegeven adres, of een voorgesteld door je project.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Bronnen
+- [Laravel Documentatie](https://laravel.com/docs/12.x)
+- [Start project]([https://react.dev/learn/start-a-new-react-project](https://laravel.com/docs/12.x/installation))
+- [W3 schools](https://www.w3schools.com/)
+- [React Documentatie](https://react.dev/)
+- [Courses back-end](https://canvas.ehb.be/courses/33609)
+- [github copilot](https://github.com/features/copilot)
+- [Jetbrains AI](https://www.jetbrains.com/ai/#)
+- [Notificaties](https://www.npmjs.com/package/react-toastify?activeTab=readme)
+- [Image slider](https://react-slick.neostack.com/docs/get-started)
+- [Tailwind css documentation](https://v2.tailwindcss.com/docs)
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### ChatGPT gesprekken:
 
-## Security Vulnerabilities
+- [Ordena | Blobs Overflow Solution](https://chatgpt.com/share/684af4db-9828-800f-b0c3-ddb28b5e362e)
+- [Ordena | Role middleware optimalisatie](https://chatgpt.com/share/684af4cc-84dc-800f-8798-22cb3cc2b1cb)
+- [Ordena | Grid Layout with Roles](https://chatgpt.com/share/684af4b8-183c-800f-8a25-c6f19c449cad)
+- [Ordena | Dynamische breadcrumbs maken](https://chatgpt.com/share/684af4a8-d934-800f-bf04-48f2b97595f1)
+- [Ordena | Organisation users pivot table](https://chatgpt.com/share/684af498-788c-800f-a4b6-538fa9ec9292)
+- [Ordena | Frontend vs Backend Security](https://chatgpt.com/share/684af484-e748-800f-9ae4-b8e1f2008b48)
+- [Ordena | Word cycling control logic](https://chatgpt.com/share/684af472-8978-800f-ae1a-31b0116aad88)
+- [Ordena | Secure Backend Mailing Setup](https://chatgpt.com/share/684af44c-a580-800f-9556-884a3a657321)
+- [Ordena | Onboarding Progress Bar Setup](https://chatgpt.com/share/684af436-7888-800f-a539-2a06ffb521a0)
+- [Ordena | Send email on register](https://chatgpt.com/share/684af423-4c04-800f-b6ea-b8ebe3e1176f)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## Author
+Karsten Verherstraeten
 
 ## License
 
