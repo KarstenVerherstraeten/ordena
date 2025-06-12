@@ -1,61 +1,123 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <a href="https://www.ordena.be" target="_blank">
+    <img src="https://github.com/user-attachments/assets/fd249d08-74c4-4831-b715-f55c30f54936" alt="Logo Ordena" style="width: 400px; height: auto;">
+  </a>
 </p>
 
-## About Laravel
+<p align="center">
+  <img src="https://img.shields.io/github/repo-size/KarstenVerherstraeten/ordena" alt="GitHub repo size">
+  <img src="https://img.shields.io/github/issues/KarstenVerherstraeten/ordena" alt="GitHub issues">
+  <img src="https://img.shields.io/github/issues-pr/KarstenVerherstraeten/ordena" alt="GitHub pull requests">
+  <img src="https://img.shields.io/github/last-commit/KarstenVerherstraeten/ordena" alt="GitHub last commit">
+  <img src="https://img.shields.io/github/license/KarstenVerherstraeten/ordena" alt="License">
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🧠 Wat is Ordena?
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Ordena is een platform dat het bewustzijn rond autisme vergroot. Organisatoren kunnen activiteiten delen, terwijl psychologen, ouders, leerkrachten en personen met ASS bijdragen aan een centrale kennisbank. Dit helpt iedereen om beter inzicht te krijgen in het leven met autisme.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🚀 Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- 📚 Kennisbank voor ouders, leerkrachten, psychologen en mensen met ASS om tips en ervaringen te delen.
+- 📅 Activiteitenpagina waar organisatoren prikkelarme evenementen kunnen posten.
+- 🧭 Een heldere "Over Ordena"-pagina voor vragen en ondersteuning.
+- 🏠 Een overzichtelijke homepage met een duidelijke route voor je ontdekkingstocht over autisme.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 📑 Inhoudstafel
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- [Installatie](#installatie)
+- [Bronnen](#Bronnen)
+- [ChatGPT Gesprekken](#ChatGPT-Gesprekken)
+- [Auteur](#Auteur)
+- [Licentie](#Licentie)
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+## 🛠️ Installatie
 
-## Contributing
+### 📌 Project lokaal opstarten
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Volg de officiële [Laravel installatiegids](https://laravel.com/docs/12.x/installation)
 
-## Code of Conduct
+1. Clone de repository:
+```bash
+git clone https://github.com/KarstenVerherstraeten/ordena.git
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2. Navigeer naar de projectmap:
+```bash
+cd ordena
+```
 
-## Security Vulnerabilities
+3. Installeer de dependencies:
+```bash
+npm install
+composer install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. Genereer `.env`-bestand en pas aan:
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## License
+5. Maak de database aan en voer migraties uit:
+```bash
+php artisan migrate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Start de server en de Vite dev server:
+```bash
+php artisan serve
+npm run dev
+```
+
+Bezoek [http://127.0.0.1:8000](http://127.0.0.1:8000) of het adres dat in de terminal wordt weergegeven.
+
+---
+
+## 📚 Bronnen
+
+- [Laravel Documentatie](https://laravel.com/docs/12.x)
+- [React Documentatie](https://react.dev/)
+- [W3Schools](https://www.w3schools.com/)
+- [Tailwind CSS Docs](https://v2.tailwindcss.com/docs)
+- [React Toastify (notificaties)](https://www.npmjs.com/package/react-toastify)
+- [React Slick (image slider)](https://react-slick.neostack.com/docs/get-started)
+- [GitHub Copilot](https://github.com/features/copilot)
+- [JetBrains AI](https://www.jetbrains.com/ai/#)
+- [EHB Back-end Course](https://canvas.ehb.be/courses/33609)
+
+---
+
+## 💬 ChatGPT Gesprekken
+
+- [Ordena | Blobs Overflow Solution](https://chatgpt.com/share/684af4db-9828-800f-b0c3-ddb28b5e362e)
+- [Ordena | Role middleware optimalisatie](https://chatgpt.com/share/684af4cc-84dc-800f-8798-22cb3cc2b1cb)
+- [Ordena | Grid Layout with Roles](https://chatgpt.com/share/684af4b8-183c-800f-8a25-c6f19c449cad)
+- [Ordena | Dynamische breadcrumbs maken](https://chatgpt.com/share/684af4a8-d934-800f-bf04-48f2b97595f1)
+- [Ordena | Organisation users pivot table](https://chatgpt.com/share/684af498-788c-800f-a4b6-538fa9ec9292)
+- [Ordena | Frontend vs Backend Security](https://chatgpt.com/share/684af484-e748-800f-9ae4-b8e1f2008b48)
+- [Ordena | Word cycling control logic](https://chatgpt.com/share/684af472-8978-800f-ae1a-31b0116aad88)
+- [Ordena | Secure Backend Mailing Setup](https://chatgpt.com/share/684af44c-a580-800f-9556-884a3a657321)
+- [Ordena | Onboarding Progress Bar Setup](https://chatgpt.com/share/684af436-7888-800f-a539-2a06ffb521a0)
+- [Ordena | Send email on register](https://chatgpt.com/share/684af423-4c04-800f-b6ea-b8ebe3e1176f)
+
+---
+
+## 👨‍💻 Auteur
+
+**Karsten Verherstraeten**  
+[GitHub Profiel](https://github.com/KarstenVerherstraeten)
+
+---
+
+## 📄 Licentie
+
+De Laravel-framework is open-source software gelicentieerd onder de [MIT-licentie](https://opensource.org/licenses/MIT).
