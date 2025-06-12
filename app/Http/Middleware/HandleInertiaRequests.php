@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -29,11 +31,14 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        return [
-            ...parent::share($request),
+        $user = $request->user();
+
+        return array_merge(parent::share($request), [
             'auth' => [
-                'user' => $request->user(),
+                'user' => $user,
+                'organisation_id' => $user?->organisations()?->first()?->id,
             ],
-        ];
+            'totalUpvotes' => $user ? Post::where('user_id', $user->id)->sum('upvotes') : 0,
+        ]);
     }
 }
