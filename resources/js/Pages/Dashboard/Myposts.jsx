@@ -27,7 +27,7 @@ export default function Myposts({ posts }) {
 
     return (
         <AuthenticatedLayout
-            header={<h2 className="text-2xl font-bold text-gray-800">Mijn berichten</h2>}
+            header={<h2 className="text-xl font-semibold leading-tight text-gray-800">Mijn berichten</h2>}
         >
             <Head title="Mijn posts" />
 
