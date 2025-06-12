@@ -118,7 +118,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                 </div>
 
                 <div className="md:w-2/3 z-10 bg-white rounded p-6 gap-6 mt-6 relative mx-auto">
-                    <h1 className="text-lg font-semibold text-gray-800 mb-2 text-center">Wat is autisme</h1>
+                    <h1 className="text-lg font-semibold text-gray-800 mb-2 text-center">Wat is autisme?</h1>
                     <p className="text-gray-600 mb-4 text-center">
                         Autisme is een ontwikkelingsstoornis die invloed heeft op de manier waarop mensen
                         communiceren, sociale interacties aangaan en informatie verwerken. Het is een
