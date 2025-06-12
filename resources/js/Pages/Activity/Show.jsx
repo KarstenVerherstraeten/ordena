@@ -32,22 +32,20 @@ export default function ActivitiesShow({activity, organiser}) {
             ]}
         >
             <Head title="Activiteit"/>
+            <div className="absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[15vh] md:left-[20vw]">
+                <GreenBlob1/>
+            </div>
+
+            {/* Blob 2 */}
+            <div className="absolute w-[250px] h-[250px] top-[50vh] left-[5vw] md:left-[5vw]">
+                <GreenBlob2/>
+            </div>
+
+            {/* Blob 3 */}
+            <div className="absolute w-[180px] h-[180px] top-[30vh] left-[65vw] md:top-[35vh] md:left-[60vw]">
+                <PurpleBlob1/>
+            </div>
             <div className={"relative"}>
-                <div className="absolute w-[200px] h-[200px] top-[10vh] left-[10vw] md:top-[15vh] md:left-[20vw]">
-                    <GreenBlob1/>
-                </div>
-
-                {/* Blob 2 */}
-                <div className="absolute w-[250px] h-[250px] top-[50vh] left-[5vw] md:left-[5vw]">
-                    <GreenBlob2/>
-                </div>
-
-                {/* Blob 3 */}
-                <div className="absolute w-[180px] h-[180px] top-[30vh] left-[65vw] md:top-[35vh] md:left-[60vw]">
-                    <PurpleBlob1/>
-                </div>
-
-
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6 relative z-10">
                     {/* Linkerkolom - 2/3 breed */}
                     <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow">
@@ -174,13 +172,15 @@ export default function ActivitiesShow({activity, organiser}) {
                                 </div>
                             ))}
                         </Slider>
+
                     </div>
                 )}
+                <Footer></Footer>
             </div>
             <BackToTop/>
             <ToastContainer/>
 
-            <Footer></Footer>
+
         </SiteLayout>
     );
 }
