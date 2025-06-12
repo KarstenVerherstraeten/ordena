@@ -28,7 +28,7 @@ export default function MyActivities({ activities }) {
 
     return (
         <AuthenticatedLayout
-            header={<h2 className="text-xl font-semibold leading-tight text-gray-800">Mijn Activiteiten</h2>}>
+            header={<h2 className="">Mijn Activiteiten</h2>}>
             <Head title="Mijn Activiteiten" />
 
             {message && (
@@ -38,12 +38,8 @@ export default function MyActivities({ activities }) {
             )}
 
             <div className="py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div className="bg-white shadow-md rounded-lg p-6 mb-8 flex flex-row justify-between items-center">
-                    <div>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-2">Mijn Activiteiten</h2>
-                    <p className="text-gray-600">Hieronder staan je activiteiten.</p>
-                    </div>
-                    <PrimaryButton onClick={() => makeActivity()}>
+                <div className={"flex items-center justify-between mb-6"}>
+                    <PrimaryButton className="ml-auto" onClick={() => makeActivity()}>
                         maak activiteit
                     </PrimaryButton>
                 </div>
