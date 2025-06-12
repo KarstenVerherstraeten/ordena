@@ -289,17 +289,19 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                         <Pagination links={posts.links} onPageChange={handlePageChange}/>)}
                 </div>
 
-                <PrimaryButton
-                    onClick={() => router.get(route('forum.create'))}
-                    className="fixed bottom-6 right-6 z-50 shadow-xl md:shadow-purple-300/50 shadow-black/25 bg-[#9B77C7] hover:bg-[#8B67B7]
-                     text-white font-semibold p-4 md:py-4 md:px-6 rounded-full
-                     flex items-center justify-center gap-2 transition-all duration-300 ease-in-out
-                     active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#9B77C7] focus:ring-offset-2
-                     mobile:drop-shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
-                >
-                    <span className="hidden md:inline">Maak een post</span>
-                    <FontAwesomeIcon icon={faPaperPlane}/>
-                </PrimaryButton>
+                {auth.user.role !== 'Gebruiker' && (
+                    <PrimaryButton
+                        onClick={() => router.get(route('forum.create'))}
+                        className="fixed bottom-6 right-6 z-50 shadow-xl md:shadow-purple-300/50 shadow-black/25 bg-[#9B77C7] hover:bg-[#8B67B7]
+                         text-white font-semibold p-4 md:py-4 md:px-6 rounded-full
+                         flex items-center justify-center gap-2 transition-all duration-300 ease-in-out
+                         active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#9B77C7] focus:ring-offset-2
+                         mobile:drop-shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
+                    >
+                        <span className="hidden md:inline">Maak een post</span>
+                        <FontAwesomeIcon icon={faPaperPlane}/>
+                    </PrimaryButton>
+                )}
                 <Footer></Footer>
             </div>
 
