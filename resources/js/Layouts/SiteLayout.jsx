@@ -159,7 +159,7 @@ export default function SiteLayout({header, children, breadcrumbs = []}) {
                                 {crumb.href ? (
                                     <Link
                                         href={crumb.href}
-                                        className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600"
+                                        className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#8B67B7]"
                                     >
                                         {crumb.name}
                                     </Link>
