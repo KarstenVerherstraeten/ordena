@@ -27,7 +27,7 @@
                 <tr>
                     <td style="padding: 20px 40px; color: #333;">
                         <h2 style="margin: 0 0 10px;">Welkom, {{ $user->name }}!</h2>
-                        <p style="margin: 0 0 20px;">Bedankt voor je registratie bij onze app. We zijn blij je aan boord
+                        <p style="margin: 0 0 20px;">Bedankt voor je registratie bij Ordena. We zijn blij je aan boord
                             te hebben!</p>
                     </td>
                 </tr>
