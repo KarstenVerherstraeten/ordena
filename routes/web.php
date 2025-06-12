@@ -40,19 +40,19 @@ Route::post('/mijnprofiel/complete', [OnboardingController::class, 'completeStep
     ->middleware('auth')
     ->name('dashboard.completeStep');
 
-Route::get('/dashboard/mijnberichten', [PostController::class, 'myPosts'])
+Route::get('/mijnprofiel/mijnberichten', [PostController::class, 'myPosts'])
     ->middleware(['auth', 'verified', 'role:Organisator,Psycholoog,Leerkracht,Ouder,GebruikerASS,Admin'])
     ->name('dashboard.posts');
 
-Route::get('/dashboard/mijnactiviteiten', [ActivityController::class, 'MyActivities'])
+Route::get('/mijnprofiel/mijnactiviteiten', [ActivityController::class, 'MyActivities'])
     ->middleware(['auth', 'verified', 'role:Organisator,Admin'])
     ->name('dashboard.activities');
 
-Route::get('/dashboard/rolaanvraag', [RoleRequestController::class, 'index'])
+Route::get('/mijnprofiel/rolaanvraag', [RoleRequestController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard.rolerequest');
 
-Route::post('/dashboard/rolerequest', [RoleRequestController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.rolerequest.store');
+Route::post('/mijnprofiel/rolerequest', [RoleRequestController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.rolerequest.store');
 
 // Organisaties
 
