@@ -4,11 +4,13 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AdminController;
 
+use App\Http\Controllers\OnboardingController;
 use App\Http\Controllers\OrganisationController;
 use App\Http\Controllers\OrganisationRequestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleRequestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use App\Models\PendingOrganisationRequest;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -28,27 +30,33 @@ Route::get('/', function () {
 
 
 // dashboard routes
-Route::get('/mijnprofiel', function () {
-    return Inertia::render('Dashboard/Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard/mijnberichten', [PostController::class, 'myPosts'])
+
+Route::get('/mijnprofiel', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::post('/mijnprofiel/complete', [OnboardingController::class, 'completeStep'])
+    ->middleware('auth')
+    ->name('dashboard.completeStep');
+
+Route::get('/mijnprofiel/mijnberichten', [PostController::class, 'myPosts'])
     ->middleware(['auth', 'verified', 'role:Organisator,Psycholoog,Leerkracht,Ouder,GebruikerASS,Admin'])
     ->name('dashboard.posts');
 
-Route::get('/dashboard/mijnactiviteiten', [ActivityController::class, 'MyActivities'])
+Route::get('/mijnprofiel/mijnactiviteiten', [ActivityController::class, 'MyActivities'])
     ->middleware(['auth', 'verified', 'role:Organisator,Admin'])
     ->name('dashboard.activities');
 
-Route::get('/dashboard/rolaanvraag', [RoleRequestController::class, 'index'])
+Route::get('/mijnprofiel/rolaanvraag', [RoleRequestController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard.rolerequest');
 
-Route::post('/dashboard/rolerequest', [RoleRequestController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.rolerequest.store');
+Route::post('/mijnprofiel/rolerequest', [RoleRequestController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard.rolerequest.store');
 
 // Organisaties
 
-Route::get('dashboard/organisatie/aanvragen', [OrganisationController::class, 'create'])->middleware(['auth', 'verified', 'role:Organisator,Admin'])->name('organisatie.aanvragen');
+Route::get('organisatie/aanvragen', [OrganisationController::class, 'create'])->middleware(['auth', 'verified', 'role:Organisator,Admin'])->name('organisatie.aanvragen');
 Route::post('dashboard/organisatie/aanvragen', [OrganisationRequestController::class, 'store'])->middleware(['auth', 'verified',])->name('organisatie.aanvragen.store');
 Route::get('dashboard/organisatie/{id}', [OrganisationController::class, 'show'])->middleware(['auth', 'verified', 'role:Organisator,Admin'])->name('organisatie.show');
 Route::post('/organisations/{organisation}/users/add', [OrganisationController::class, 'addUser'])
