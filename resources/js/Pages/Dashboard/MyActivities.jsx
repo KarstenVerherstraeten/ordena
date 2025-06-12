@@ -2,6 +2,7 @@ import { Head, router, usePage } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.jsx";
 import React, { useState } from "react";
 import Footer from "@/Components/Footer.jsx";
+import PrimaryButton from "@/Components/PrimaryButton.jsx";
 
 export default function MyActivities({ activities }) {
     const message = usePage().props.flash?.message;
@@ -37,6 +38,15 @@ export default function MyActivities({ activities }) {
             )}
 
             <div className="py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div className="bg-white shadow-md rounded-lg p-6 mb-8 flex flex-row justify-between items-center">
+                    <div>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-2">Mijn Activiteiten</h2>
+                    <p className="text-gray-600">Hieronder staan je activiteiten.</p>
+                    </div>
+                    <PrimaryButton onClick={() => makeActivity()}>
+                        maak activiteit
+                    </PrimaryButton>
+                </div>
 
                 <div className="overflow-hidden bg-white rounded-xl shadow-lg">
                     <table className="min-w-full divide-y divide-gray-200 text-sm">
