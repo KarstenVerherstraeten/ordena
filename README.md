@@ -31,11 +31,11 @@ Ordena is een platform dat het bewustzijn rond autisme vergroot. Organisatoren k
 
 ## 📑 Inhoudstafel
 
-- [Installatie](#installatie)
-- [Bronnen](#bronnen)
-- [ChatGPT Gesprekken](#chatgpt-gesprekken)
-- [Auteur](#auteur)
-- [Licentie](#licentie)
+- [Installatie](#Installatie)
+- [Bronnen](#Bronnen)
+- [ChatGPT Gesprekken](#ChatGPT-Gesprekken)
+- [Auteur](#Auteur)
+- [Licentie](#Licentie)
 
 ---
 
