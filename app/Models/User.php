@@ -66,6 +66,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Organisation::class);
     }
 
+    public function onboardingProgress()
+    {
+        return $this->hasMany(UserOnboardingProgress::class);
+    }
+
     protected $appends = ['role', 'badge_icon'];
 
     public function getRoleAttribute()
