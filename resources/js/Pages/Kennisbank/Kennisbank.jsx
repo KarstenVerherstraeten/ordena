@@ -289,7 +289,7 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                         <Pagination links={posts.links} onPageChange={handlePageChange}/>)}
                 </div>
 
-                {auth.user.role !== 'Gebruiker' && (
+                {auth.user && auth.user.role !== 'Gebruiker' && (
                     <PrimaryButton
                         onClick={() => router.get(route('forum.create'))}
                         className="fixed bottom-6 right-6 z-50 shadow-xl md:shadow-purple-300/50 shadow-black/25 bg-[#9B77C7] hover:bg-[#8B67B7]
