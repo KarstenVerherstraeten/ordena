@@ -27,7 +27,7 @@ export default function About() {
         },
         {
             question: "Van waar haalt Ordena z'n gegevens?",
-            answer: "Ordena haalt informatie vanuit zijn/haar gebruikers, gegevens van de vlaamse overheid en andere online instanties"
+            answer: "Ordena haalt informatie vanuit zijn/haar gebruikers, gegevens van de Vlaamse overheid en andere online instanties."
         }
     ];
 
