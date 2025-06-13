@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Anhskohbo\NoCaptcha\Rules\Captcha;
 use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Register the CAPTCHA validation rule
+        Validator::extend('captcha', function ($attribute, $value, $parameters, $validator) {
+            return (new Captcha)->passes($attribute, $value);
+        });
+
+        // Share data with Inertia
         Inertia::share([
             'auth' => function () {
                 $user = Auth::user();
@@ -35,6 +43,7 @@ class AppServiceProvider extends ServiceProvider
             },
         ]);
 
+        // Vite prefetch
         Vite::prefetch(concurrency: 3);
     }
 }

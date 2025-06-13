@@ -163,6 +163,33 @@ export default function AuthenticatedLayout({ header, children }) {
                         >
                             Mijn profiel
                         </ResponsiveNavLink>
+
+                        {['Organisator', 'Leerkracht', 'Ouder', 'GebruikerASS', 'Psycholoog', 'Admin'].includes(user?.detail?.role) && (
+                            <ResponsiveNavLink
+                                href={route('dashboard.posts')}
+                                active={route().current('dashboard.posts')}
+                            >
+                                Mijn posts
+                            </ResponsiveNavLink>
+                        )}
+
+                        {['Organisator', 'Leerkracht', 'Ouder', 'GebruikerASS', 'Psycholoog', 'Admin'].includes(auth?.user?.detail?.role) && auth?.organisation_id && (
+                            <ResponsiveNavLink
+                                href={route('organisatie.show', { id: auth.organisation_id })}
+                                active={route().current('organisatie.show')}
+                            >
+                                Organisatie
+                            </ResponsiveNavLink>
+                        )}
+
+                        {['Organisator', 'Admin'].includes(auth?.user?.detail?.role) && !auth?.organisation_id && (
+                            <ResponsiveNavLink
+                                href={route('dashboard.activities')}
+                                active={route().current('dashboard.activities')}
+                            >
+                                Mijn activiteiten
+                            </ResponsiveNavLink>
+                        )}
                     </div>
 
                     <div className="border-t border-gray-200 pb-1 pt-4">

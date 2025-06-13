@@ -177,7 +177,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
 
                         <div className="space-y-6">
                             <p className="text-gray-600">
-                                als jij of iemand in je omgeving de diagnose heeft gekregen, vraag je je misschien af
+                                Als jij of iemand in je omgeving de diagnose heeft gekregen, vraag je je misschien af
                                 hoe je hen het beste kunt helpen.
                             </p>
 
@@ -317,7 +317,7 @@ export default function Welcome({auth, laravelVersion, phpVersion}) {
                 <div className="md:w-2/3 bg-white z-10 rounded p-6 gap-6 -mt-12 mx-auto text-center">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Dat is autisme!</h2>
                     <p className="text-gray-600 mb-6">
-                        Nu heb je kennis over de basics van autisme, er is natuurlijk nog veel meer te ontdekken /
+                        Nu heb je kennis over de basis van autisme, er is natuurlijk nog veel meer te ontdekken /
                         te leren, en dit zal niet altijd even goed lopen maar dat is oké! Elk kind is uniek en heeft
                         zijn eigen manier van omgaan met de wereld.
                     </p>

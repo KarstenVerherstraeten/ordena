@@ -132,7 +132,7 @@ export default function ActivitiesIndex({activities: initialActivities,}) {
                                     >
                                         <option value="price_asc">Laagste prijs</option>
                                         <option value="price_desc">Hoogste prijs</option>
-                                        <option value="date_desc">Recente eerst</option>
+                                        <option value="date_desc">Recentste eerst</option>
                                         <option value="date_asc">Laatste eerst</option>
                                     </select>
                                 </div>

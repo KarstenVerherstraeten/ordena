@@ -124,7 +124,7 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                                     van kinderen met autisme staan: leerkrachten, ouders, psychologen en andere
                                     betrokkenen delen hier hun kennis en ervaringen.<br/>
                                     <strong>En onthoud: deze kennisbank is er voor iedereen die meer wil begrijpen, of
-                                        je nu ouder, hulpverlener, leerkracht bent, of gewoon oprecht
+                                        je nu ouder, hulpverlener, leerkracht bent of gewoon oprecht
                                         geïnteresseerd.</strong>
                                 </p>
 
@@ -203,7 +203,7 @@ export default function Kennisbank({posts: initialPosts, auth, laravelVersion, p
                                             checked={roleFilter === 'GebruikerASS'}
                                             onChange={() => setRoleFilter(roleFilter === 'GebruikerASS' ? '' : 'GebruikerASS')}
                                         />
-                                        <img src="/badges/Icon-gebruikerASS.png" alt="Badge" style={{height: '37px'}}/>
+                                        <img src="/badges/Icon-GebruikerASS.png" alt="Badge" style={{height: '37px'}}/>
                                     </label>
                                 </div>
                                 {(searchTerm || sortField !== 'created_at' || sortOrder !== 'desc' || roleFilter) && (
